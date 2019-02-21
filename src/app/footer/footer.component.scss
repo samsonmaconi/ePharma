@@ -1,0 +1,38 @@
+@import '../../color-palette.scss';
+
+footer{
+    border-top: 5px solid $color4;
+    .footer-brand{
+        img{
+            width: 140px;
+            height: 100px;
+        }
+    }
+
+    color: $color1;
+
+    h5{
+        color: $color4;
+        font-weight: bold;
+    }
+
+    a{
+        color: $color1;
+        text-decoration: none;
+        &:hover{
+            color: $color4;
+        }
+    }
+
+    .footer-copyright{
+        color: white;
+        font-size: 0.85em;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+    }
+
+}

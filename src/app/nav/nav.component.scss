@@ -1,0 +1,58 @@
+@import '../../color-palette.scss';
+
+.navbar-brand{
+    img{
+        width: 140px;
+        height: 100px;
+    }
+}
+
+.form-control{
+    width: 100%;
+}
+
+.btn{
+    background-color: $color2;
+    color: white;
+    &:hover{
+        background-color: $color4;
+    }
+    // font-weight: bold;
+}
+
+input.product-search{
+    background: url("src/assets/images/magnifier.png") no-repeat scroll 7px 7px;
+    background-color: white;
+    background-size: 25px;
+    padding-left:40px;
+    border-color: $color2;
+    &:focus{
+        border-color: $color4;
+    }
+}
+
+.or{
+    color: $color2;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 38px;
+  }
+
+.cart-itemcount{
+    color: $color1;
+    font-weight: bold;
+  }
+
+.navbar-nav .nav-item .nav-link{
+    font-size: 0.875em;
+    i{
+        font-size: 1.25em;
+        color: $color1;
+    }
+    &:hover{
+        color: $color4;
+        i{
+            color: $color4;
+        }
+    }
+}
