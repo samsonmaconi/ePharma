@@ -5,7 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
-  dataAPIURL = 'https://my.api.mockaroo.com/epharma.json?key=3a972810?count=100'; // sample products dataset
+  // dataAPIURL = 'https://my.api.mockaroo.com/epharma.json?key=3a972810&count=100'; // sample products dataset
+  dataAPIURL = '../assets/test_data/epharma.json'; // sample products dataset
   productsData;
 
   constructor(private http: HttpClient) {
