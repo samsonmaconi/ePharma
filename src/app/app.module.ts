@@ -12,6 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavCategoryComponent } from './nav-category/nav-category.component';
 import { NavComponent } from './nav/nav.component';
+import { SliderSingleComponent } from './slider-single/slider-single.component';
+import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { NavComponent } from './nav/nav.component';
     HeaderComponent,
     FooterComponent,
     NavCategoryComponent,
-    NavComponent
+    NavComponent,
+    SliderSingleComponent,
+    SliderMultiComponent
   ],
   imports: [
     BrowserModule,

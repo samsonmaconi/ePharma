@@ -1,0 +1,13 @@
+
+<div class="carousel" id="slider-single" data-flickity='{"contain": true, "autoPlay": 10000, "wrapAround": true}'>
+  <ng-container *ngFor="let image of promoimages;">
+    <div class="carousel-cell">
+      <!-- <img src="{{ image }}" alt="Random image"> -->
+      <div class="carousel-image" style="background-position: center center;" [style.background-image]="image"></div>
+      <div class="carousel-caption">
+        <h3>PROMOTION SLIDER</h3>
+        <p>promo details</p>
+      </div>
+    </div>
+  </ng-container>
+</div>

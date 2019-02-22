@@ -1,0 +1,28 @@
+<div class="slider-multi container-fluid container-ext" [ngStyle]="{'background-color' : bg ? bg : ''}" >
+  <div class="container-fluid p-3 ">
+    <h2 class="text-center p-4 mt-2 color1 font-weight-bold">{{ sectionHeader | titlecase}}</h2>
+    <div class="carousel slider-multi pb-5" id="slider-multi" [flickity]='{"groupCells": "90%", "contain": false, "autoPlay": 5000, "wrapAround": true, "draggable": true, "selectedAttraction": 0.01 }'>
+      <ng-container *ngFor="let item of Products; index as i;">
+        <div [flickityChild] *ngIf="item.product_rating >= minRating && item.product_rating <= maxRating && item.product_category == category"
+          class="carousel-cell">
+          <div class="card m-1">
+            <div class="card-body">
+              <img src="{{ item.product_image }}" class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-capitalize truncate" ngbPopover="{{ item.product_name | titlecase }} by {{ item.product_company | titlecase }}"
+                triggers="mouseenter:mouseleave">{{ item.product_name | lowercase }}</h5>
+              <p class="card-text">$ {{ item.product_price }}</p>
+              <span class="d-flex justify-content-between">
+                <a routerLink="/product/{{i}}" class="btn">View</a>
+                <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- <div [flick| -->

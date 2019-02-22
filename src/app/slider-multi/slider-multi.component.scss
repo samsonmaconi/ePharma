@@ -1,0 +1,59 @@
+@import '../../color-palette.scss';
+
+.carousel-cell {
+    width: 15em;
+    height: 400px;
+    margin-right: 3em;
+    border-radius: 5px;
+    counter-increment: carousel-cell;
+    &:not(.is-selected) {
+        visibility: hidden;
+    }
+}
+
+.truncate {
+    width: 10em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card{
+    width: 100%;
+    border: none;
+    border-radius: 5%;
+    box-shadow: 0 0 10px 0.2rem transparentize(black, $amount: .9);
+    img{
+        border-radius: 100%;
+    }
+}
+
+app-slider-multi{
+    .container-ext {
+        background-color: rgb(119, 68, 2);
+    }
+}
+
+/deep/ {
+    .flickity-button{
+        background: none;
+        &:hover{
+            svg{
+                fill:$color4;
+            }
+        }
+    }
+
+    .flickity-page-dots {
+        bottom: 5px;
+        .dot{
+            &.is-selected{
+                background: $color4;
+            }
+        }
+    }
+
+    .carousel-indicators li.active {
+        background-color: $color4 !important;
+    }
+}
