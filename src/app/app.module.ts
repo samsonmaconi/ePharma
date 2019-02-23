@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavCategoryComponent } from './nav-category/nav-category.component';
 import { NavComponent } from './nav/nav.component';
+import { UploadPrescriptionComponent } from './upload-prescription/upload-prescription.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavComponent } from './nav/nav.component';
     HeaderComponent,
     FooterComponent,
     NavCategoryComponent,
-    NavComponent
+    NavComponent,
+    UploadPrescriptionComponent
   ],
   imports: [
     BrowserModule,
