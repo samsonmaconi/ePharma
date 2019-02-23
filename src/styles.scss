@@ -82,3 +82,37 @@ body{
     }
 }
 
+//Forms ===========
+
+input.form-control{
+    border: none;
+    border-bottom: solid 1px;
+    border-radius: 0px;
+    &:focus{
+        border-color: $color4;
+        border-width: 2px;
+        box-shadow: none;
+    }
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: $color4;
+    background-color: $color4;
+}
+
+.has-error{
+    .form-control{
+        border-color: #dc3545;
+        border-style: dashed;
+        border-width: 1px;
+        padding-right: 2.25rem;
+        background-repeat: no-repeat;
+        background-position: center right calc(2.25rem / 4);
+        background-size: calc(2.25rem / 2) calc(2.25rem / 2);
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc354…%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+    }
+    .invalid-feedback{
+        display: block;
+    }
+}
