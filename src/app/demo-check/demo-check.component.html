@@ -1,0 +1,46 @@
+<div class="d-flex flex-row-reverse bg-image">
+  <div class="col-md-5 col-xl-4">
+    <div class="container">
+      <div class="row">
+        <div class="col mx-auto">
+          <div class="card my-5">
+            <div class="card-body p-md-5">
+              <h3 class="card-title text-center font-weight-bold color1 mb-md-4">Sign In</h3>
+              <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+                <div class="form-label-group" [ngClass]="{ 'has-error' : signinForm.controls.email.errors && (signinForm.controls.email.touched || signinForm.controls.email.dirty)}">
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" autocomplete="email"
+                    required autofocus>
+                  <label for="inputEmail">Email address</label>
+                  <span *ngIf="signinForm.controls.email.errors && signinForm.controls.email.errors.pattern" class="invalid-feedback">This is not a valid email
+                    address</span>
+                </div>
+
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" autocomplete="current-password"
+                    required>
+                  <label for="inputPassword">Password</label>
+                </div>
+
+                <div class="custom-control custom-checkbox mb-3">
+                  <input type="checkbox" class="custom-control-input" formControlName="remember" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Remember me</label>
+                </div>
+                <button class="btn btn-signin bg-color1 btn-primary btn-block" type="submit">Sign in</button>
+                <a class="small text-center d-block forgotpassword mt-3" routerLink="/forgotpassword"> I forgot my
+                  password </a>
+                <hr class="my-4">
+                <button class="btn btn-google btn-block" type="submit"><i class="fab fa-google mr-2"></i> Login with
+                  Google</button>
+                <button class="btn btn-facebook btn-block" type="submit"><i class="fab fa-facebook-f mr-2"></i> Login
+                  with Facebook</button>
+              </form>
+              <hr class="my-4">
+              <span class="text-center d-block  mt-4">New to ePharma? <a class="font-weight-bold" routerLink="/signup">
+                  Sign up now</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

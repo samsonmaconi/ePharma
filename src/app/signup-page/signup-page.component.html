@@ -1,0 +1,87 @@
+<div class="d-flex flex-row-reverse bg-image">
+  <div class="col-md-5 col-xl-4">
+    <div class="container">
+      <div class="row">
+        <div class="col mx-auto">
+          <div class="card flex-row my-5">
+            <div class="card-body p-md-5">
+              <h3 class="card-title text-center font-weight-bold color1 mb-md-4">Sign Up</h3>
+              <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <div class="form-label-group" [ngClass]="{ 'has-error' : signupForm.controls.firstName.errors && (signupForm.controls.firstName.touched || signupForm.controls.firstName.dirty)}">
+                  <input type="text" id="inputFirstName" class="form-control" placeholder="First Name" formControlName="firstName"
+                    required autofocus>
+                  <label for="inputFirstName">First name</label>
+                  <span class="invalid-feedback">Your first name is required</span>
+                </div>
+
+                <div class="form-label-group" [ngClass]="{ 'has-error' : signupForm.controls.lastName.errors && (signupForm.controls.lastName.touched || signupForm.controls.lastName.dirty)}">
+                  <input type="text" id="inputLastName" class="form-control" placeholder="Last Name" formControlName="lastName"
+                    required>
+                  <label for="inputLastName">Last name</label>
+                  <span class="invalid-feedback">Your last name is required</span>
+                </div>
+
+                <div class="form-radio-group" [ngClass]="{ 'has-error' : signupForm.controls.gender.errors && (signupForm.controls.gender.touched || signupForm.controls.gender.dirty)}">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="inputMale" class="custom-control-input" type="radio" name="gender" value="male"
+                      formControlName="gender" required>
+                    <label for="inputMale" class="custom-control-label"> Male</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="inputFemale" class="custom-control-input" type="radio" name="gender" value="female"
+                      formControlName="gender" required>
+                    <label for="inputFemale" class="custom-control-label"> Female</label>
+                  </div>
+                  <span class="invalid-feedback">Your gender is required</span>
+                </div>
+
+                <div class="form-label-group" [ngClass]="{ 'has-error' : signupForm.controls.email.errors && (signupForm.controls.email.touched || signupForm.controls.email.dirty)}">
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" autocomplete="email"
+                    formControlName="email" required>
+                  <label for="inputEmail">Email address</label>
+                  <ng-container *ngIf="signupForm.controls.email.errors">
+                    <span *ngIf="signupForm.controls.email.errors.pattern" class="invalid-feedback">Must be a valid email
+                      address</span>
+                    <span *ngIf="signupForm.controls.email.errors.required" class="invalid-feedback">Your email is
+                      required</span>
+                  </ng-container>
+                </div>
+
+                <hr>
+
+                <div class="form-label-group" [ngClass]="{ 'has-error' : signupForm.controls.password.errors && (signupForm.controls.password.touched || signupForm.controls.password.dirty)}">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" autocomplete="off"
+                    formControlName="password" required>
+                  <label for="inputPassword">Password</label>
+                  <ng-container *ngIf="signupForm.controls.password.errors">
+                    <span *ngIf="signupForm.controls.password.errors.required" class="invalid-feedback">Your password
+                      is required</span>
+                    <span *ngIf="signupForm.controls.password.errors.minlength" class="invalid-feedback">Your password
+                      must be at least 8 characters long</span>
+                  </ng-container>
+                </div>
+
+                <div class="form-label-group" [ngClass]="{ 'has-error' : signupForm.controls.confirmPassword.errors && (signupForm.controls.confirmPassword.touched || signupForm.controls.confirmPassword.dirty)}">
+                  <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Confirm Password"
+                    autocomplete="off" formControlName="confirmPassword" required>
+                  <label for="inputConfirmPassword">Confirm password</label>
+                  <span class="invalid-feedback" *ngIf="signupForm.controls.confirmPassword.errors?.MatchPassword">Passwords
+                    do not match</span>
+                </div>
+
+                <button class="btn btn-register bg-color1 btn-primary btn-block " type="submit">Register</button>
+                <span class="text-center d-block  mt-4"> <span class="">Already a user? </span> <a class="mt-2 color1 font-weight-bold"
+                    routerLink="/signin">Sign In</a></span>
+                <hr class="my-4">
+                <button class="btn btn-google btn-block " type="submit"><i class="fab fa-google mr-2"></i> 
+                  Sign up with Google</button>
+                <button class="btn btn-facebook btn-block " type="submit"><i class="fab fa-facebook-f mr-2"></i>
+                  Sign up with Facebook</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

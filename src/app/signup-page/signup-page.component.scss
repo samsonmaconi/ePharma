@@ -1,0 +1,46 @@
+@import '../../color-palette.scss';
+
+.btn-google {
+    color: white;
+    background-color: #ea4335;
+    &:hover{
+        background-color:lighten($color: #ea4335, $amount: 10%);
+    }
+  }
+  
+  .btn-facebook {
+    color: white;
+    background-color: #3b5998;
+    &:hover{
+        background-color:lighten($color: #3b5998, $amount: 10%);
+    }
+  }
+
+  .btn-register {
+    &:hover{
+        background-color:$color4;
+    }
+  }
+
+  .btn {
+      font-size: 1em;
+  }
+
+  a{
+    color: $color1;
+    text-decoration: none;
+    &:hover{
+        color:$color4;
+    }
+  }
+
+  .bg-image {
+    background-image: url('https://images.unsplash.com/photo-1521453510357-5c7a77db7074?ixlib=rb-1.2.1&auto=format&fit=crop&w=2175&q=80');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .form-radio-group{
+      padding: .75em;
+      margin-bottom: 1rem;
+  }

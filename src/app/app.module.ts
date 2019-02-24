@@ -10,7 +10,9 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavCategoryComponent } from './nav-category/nav-category.component';
 import { NavComponent } from './nav/nav.component';
-import { UploadPrescriptionComponent } from './upload-prescription/upload-prescription.component';
+
+import { DemoCheckComponent } from './demo-check/demo-check.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,10 @@ import { UploadPrescriptionComponent } from './upload-prescription/upload-prescr
     FooterComponent,
     NavCategoryComponent,
     NavComponent,
-    UploadPrescriptionComponent
+    
+    DemoCheckComponent,
+    
+    SignupPageComponent
   ],
   imports: [
     BrowserModule,
