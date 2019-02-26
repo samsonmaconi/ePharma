@@ -21,13 +21,16 @@
 }
 
 input.product-search{
-    background: url("src/assets/images/magnifier.png") no-repeat scroll 7px 7px;
+    background: url("src/assets/images/magnifier.png") no-repeat scroll 12px 6px;
     background-color: white;
     background-size: 25px;
-    padding-left:40px;
+    padding-left:45px;
+    border-radius: 1.078em;
+    border: solid 1px;
     border-color: $color2;
     &:focus{
         border-color: $color4;
+        border-width: 2px;
     }
 }
 
