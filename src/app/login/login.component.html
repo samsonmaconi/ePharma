@@ -1,0 +1,55 @@
+<div class="d-flex flex-row-reverse image ">
+  <div class="col-md-5 ">
+    <div class="container">
+      <div class="row">
+        <div class="col mr-auto">
+          <div class="card  mdp shadow-lg p-3 mb-5 bg-white rounded " style="max-width: 30rem;">
+            <div class="card-header text-info ">
+              <h4>Customer Login</h4>
+            </div>
+            <div class="card-body text-info">
+              <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <div class="form-label-group">
+                  
+                  <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required id="email"
+                    autofocus
+                    [ngClass]="{ 'is-invalid' : myForm.controls.email.errors && (myForm.controls.email.touched || myForm.controls.email.dirty)}">
+                    <label for="email">Email address</label>
+                    <span class="invalid-feedback"
+                    *ngIf="{ 'is-invalid' : myForm.controls.email.errors && (myForm.controls.email.touched || myForm.controls.email.dirty)}">
+                    Invalid Email
+                  </span>
+                </div>
+                <div class="form-label-group">
+                  
+                  <input type="password" class="form-control" formControlName="password" placeholder="Enter password" id="password"
+                    required autofocus
+                    [ngClass]="{ 'is-invalid' : myForm.controls.password.errors && (myForm.controls.password.touched || myForm.controls.password.dirty)}">
+                    <label for="password">Password</label>
+                    <span class="invalid-feedback"
+                    *ngIf="{ 'is-invalid' : myForm.controls.password.errors && (myForm.controls.password.touched || myForm.controls.password.dirty)}">
+                    Invalid Password
+                  </span>
+                </div>
+                <div class="custom-control custom-checkbox mb-3">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Remember me</label>
+                </div>
+                <div>
+                  <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                </div>
+                <div style="text-align : center; padding: 2%">
+                  <a href="#">Forgot password?</a>
+                </div>
+
+                <div style="text-align : center">Not a member?
+                  <a routerLink="/register">Register</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
