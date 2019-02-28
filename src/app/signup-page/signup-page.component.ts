@@ -10,21 +10,27 @@ import { Router } from '@angular/router';
 })
 export class SignupPageComponent implements OnInit {
 
-  
+  fileToUpload: File= null;
   signupForm: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router) { }
 
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
   ngOnInit() {
+
+   
     window.scrollTo(0, 0);
 
     this.signupForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      name: ['', Validators.required],      
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      gender: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required]
+      phoneNumber: ['', Validators.required],
+      //gender: ['', Validators.required],
+      //password: ['', [Validators.required, Validators.minLength(8)]],
+      //confirmPassword: ['', Validators.required]
     });
   }
 
@@ -51,5 +57,4 @@ export class SignupPageComponent implements OnInit {
       }
     });
   }
-
 }
