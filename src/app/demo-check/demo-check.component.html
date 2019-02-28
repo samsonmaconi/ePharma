@@ -9,7 +9,7 @@
               <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
                 <div class="form-label-group" [ngClass]="{ 'has-error' : signinForm.controls.email.errors && (signinForm.controls.email.touched || signinForm.controls.email.dirty)}">
                   <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" autocomplete="email"
-                    required autofocus>
+                    required autofocus> 
                   <label for="inputEmail">Email address</label>
                   <span *ngIf="signinForm.controls.email.errors && signinForm.controls.email.errors.pattern" class="invalid-feedback">This is not a valid email
                     address</span>
