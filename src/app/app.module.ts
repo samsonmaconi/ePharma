@@ -13,6 +13,9 @@ import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+import { DemoCheckComponent } from './demo-check/demo-check.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,8 +24,15 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     NavCategoryComponent,
     NavComponent,
+
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+
+    
+    DemoCheckComponent,
+    
+    SignupPageComponent
+
   ],
   imports: [
     BrowserModule,
