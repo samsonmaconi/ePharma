@@ -11,7 +11,7 @@
               <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
                 <div class="form-label-group">
                   
-                  <input type="email" class="form-control " formControlName="email" placeholder="Enter email" required id="email"
+                  <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required id="email"
                     autofocus
                     [ngClass]="{ 'is-invalid' : myForm.controls.email.errors && (myForm.controls.email.touched || myForm.controls.email.dirty)}">
                     <label for="email">Email address</label>

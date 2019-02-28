@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
       Add1 : ['',Validators.required],
       Add2 : ['',Validators.required],
       city : ['',Validators.required],
-      pc : ['',Validators.required ],
+      pc : ['',[Validators.required,Validators.pattern('^[+++-+++]$') ]],
     },
     {
       validators: PasswordMatchValidation.pwdmatch
