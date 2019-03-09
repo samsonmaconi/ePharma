@@ -13,8 +13,7 @@ import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-import { DemoCheckComponent } from './demo-check/demo-check.component';
-import { SignupPageComponent } from './signup-page/signup-page.component';
+import { UploadPrescriptionComponent} from './upload-prescription/upload-prescription.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +27,9 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
     LoginComponent,
     RegisterComponent,
 
-    
-    DemoCheckComponent,
-    
-    SignupPageComponent
+
+
+    UploadPrescriptionComponent
 
   ],
   imports: [
@@ -39,7 +37,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-//import { PasswordMatchValidation } from './password-match';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-signup-page',
-  templateUrl: './signup-page.component.html',
-  styleUrls: ['./signup-page.component.scss']
+  selector: 'app-upload-prescription',
+  templateUrl: './upload-prescription.component.html',
+  styleUrls: ['./upload-prescription.component.scss']
 })
-export class SignupPageComponent implements OnInit {
+export class UploadPrescriptionComponent implements OnInit {
 
-  fileToUpload: File= null;
-  signupForm: FormGroup;
+  fileToUpload: File = null;
+  prescriptionForm: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router) { }
 
@@ -21,30 +20,27 @@ export class SignupPageComponent implements OnInit {
 
   ngOnInit() {
 
-   
+
     window.scrollTo(0, 0);
 
-    this.signupForm = this.fb.group({
-      name: ['', Validators.required],      
+    this.prescriptionForm = this.fb.group({
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
       phoneNumber: ['', Validators.required],
-      //gender: ['', Validators.required],
-      //password: ['', [Validators.required, Validators.minLength(8)]],
-      //confirmPassword: ['', Validators.required]
     });
   }
 
   onSubmit(): void {
-    if (this.signupForm.valid) {
+    if (this.prescriptionForm.valid) {
       console.log('Signup Submitted Sucessfully');
-      console.log(this.signupForm.value);
+      console.log(this.prescriptionForm.value);
       alert('Registration Successful');
-      this.signupForm.reset();
+      this.prescriptionForm.reset();
       this.router.navigate(['/']);
     } else {
       console.log('Signup Submision Failed');
-      this.markFormGroupTouched(this.signupForm);
-      console.log(this.signupForm.value);
+      this.markFormGroupTouched(this.prescriptionForm);
+      console.log(this.prescriptionForm.value);
     }
   }
 
