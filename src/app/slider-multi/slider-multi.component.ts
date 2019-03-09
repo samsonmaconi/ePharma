@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service';
-// import 'flickity';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-slider-multi',
@@ -8,7 +8,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./slider-multi.component.scss']
 })
 export class SliderMultiComponent implements OnInit {
-  Products;
+  Products: Product[];
   sectionHeader;
   @Input() minRating;
   @Input() maxRating;

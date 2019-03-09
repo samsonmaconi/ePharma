@@ -1,0 +1,14 @@
+img{
+    border-radius: 100%;
+}
+
+a{
+    text-decoration: none;
+
+    &.addtocart{
+        font-size: 1em;
+    }
+}   
+.breadcrumb a{
+    color: #414040;
+}

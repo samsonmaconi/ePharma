@@ -23,8 +23,18 @@
     border: none;
     border-radius: 5%;
     box-shadow: 0 0 10px 0.2rem transparentize(black, $amount: .9);
+    background: #ffffff66;
     img{
         border-radius: 100%;
+    }
+}
+
+h2{
+    font-size: 1.5rem;
+    a.more{
+        font-size: 1rem;
+        font-weight: 200;
+        color: $color4;
     }
 }
 

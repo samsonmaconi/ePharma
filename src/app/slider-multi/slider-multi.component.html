@@ -1,6 +1,6 @@
 <div class="slider-multi container-fluid container-ext" [ngStyle]="{'background-color' : bg ? bg : ''}" >
   <div class="container-fluid p-3 ">
-    <h2 class="text-center p-4 mt-2 color1 font-weight-bold">{{ sectionHeader | titlecase}}</h2>
+    <h2 class="text-center p-4 mt-2 color1 font-weight-bold">{{ sectionHeader | titlecase}} <a routerLink="/{{ category }}" class="more">see more...</a></h2>
     <div class="carousel slider-multi pb-5" id="slider-multi" [flickity]='{"groupCells": "90%", "contain": false, "autoPlay": 5000, "wrapAround": true, "draggable": true, "selectedAttraction": 0.01 }'>
       <ng-container *ngFor="let item of Products; index as i;">
         <div [flickityChild] *ngIf="item.product_rating >= minRating && item.product_rating <= maxRating && item.product_category == category"
@@ -24,5 +24,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div [flick| -->
