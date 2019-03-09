@@ -61,14 +61,14 @@
                           <input type="email" id="inputEmail" class="form-control" placeholder="Email address" autocomplete="email"
                             formControlName="email" required>
                           <label for="inputEmail">Email address</label>
-
+                          <!--
                           <ng-container *ngIf="prescriptionForm.controls.email.errors">
                             <span *ngIf="prescriptionForm.controls.email.errors.pattern" class="invalid-feedback">Must be a valid email
                               address</span>
                             <span *ngIf="prescriptionForm.controls.email.errors.required" class="invalid-feedback">Your E-mail is
                               required</span>
                           </ng-container>
-
+                          -->
                         </div>
 
                         <div class="form-label-group" [ngClass]="{ 'has-error' : prescriptionForm.controls.phoneNumber.errors && (prescriptionForm.controls.phoneNumber.touched || prescriptionForm.controls.phoneNumber.dirty)}">
