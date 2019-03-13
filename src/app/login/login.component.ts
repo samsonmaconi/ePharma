@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onSubmit() : void
+  onSubmit(): void
+
   {
 
     if(this.myForm.valid){
