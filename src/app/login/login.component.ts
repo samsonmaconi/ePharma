@@ -32,21 +32,8 @@ export class LoginComponent implements OnInit {
     }
     else{
       console.log("Sign-in fail");
-    // this.markFormGroupTouched(this.myForm);
       console.log(this.myForm.value);
     }
 
   }
-
-
-  // markFormGroupTouched(formGroup: FormGroup) {
-  //   (Object as any).values(formGroup.controls).forEach(control => {
-  //     control.markAsTouched();
-
-  //     if (control.controls) {
-  //       this.markFormGroupTouched(control);
-  //     }
-  //   });
-  // }
-
 }
