@@ -56,18 +56,18 @@ body{
 .btn {
     border-radius: 1.078em;
     font-weight: bold;
-  
+
     &-lg {
       border-radius: 2.688em;
     }
-  
+
     &-sm {
       border-radius: 0.844em;
       font-size: 0.688em;
     }
-    
+
     color: white;
-    background-color: $color2;
+    background-color: $color1;
     &:hover{
         color: white;
         background-color: $color4;
