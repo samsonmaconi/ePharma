@@ -19,6 +19,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProductComponent } from './product/product.component';
     SignupPageComponent,
     SliderSingleComponent,
     SliderMultiComponent,
-    ProductComponent
+    ProductComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
