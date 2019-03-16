@@ -18,6 +18,7 @@ import { UploadPrescriptionComponent} from './upload-prescription/upload-prescri
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
+import { CatalogComponent } from './catalog/catalog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProductComponent } from './product/product.component';
     UploadPrescriptionComponent,
     SliderSingleComponent,
     SliderMultiComponent,
-    ProductComponent
+    ProductComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,

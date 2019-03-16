@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2 p-3 sidebar">side</div>
+    <div class="col-lg-10 d-flex p-3 flex-wrap">
+      <nav class="" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item active">
+            {{ category | titlecase }}
+            {{ searchstringlabel }}
+          </li>
+        </ol>
+      </nav>
+      <div class="w-100 mb-3">
+        <ng-container *ngIf="Products">
+          <ngb-pagination
+            size="sm"
+            class="d-flex justify-content-end"
+            [collectionSize]="Products.length"
+            [pageSize]="pageSize"
+            [(page)]="page"
+            [boundaryLinks]="true"
+            aria-label="Default pagination"
+            (pageChange)="onPageChange($event)"
+          ></ngb-pagination
+        ></ng-container>
+      </div>
+      <ng-container
+        *ngFor="
+          let item of (Products
+            | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize);
+          index as i
+        "
+      >
+      <div class="col-lg-3 col-md-4 col-6">
+        <a routerLink="/product/{{ item._id }}" class="card m-3">
+          <div class="card-body">
+            <img
+              src="{{ item.product_image }}"
+              class="card-img-top"
+              alt="..."
+            />
+          </div>
+          <div class="card-body">
+            <ng-template #popContent
+              ><span class="title">{{ item.product_name | titlecase }}</span> by
+              {{ item.product_company | titlecase }}</ng-template
+            >
+            <p
+              class="card-title text-capitalize truncate"
+              [ngbPopover]="popContent"
+              triggers="mouseenter:mouseleave"
+            >
+              {{ item.product_name | lowercase }}
+            </p>
+            <p class="card-text">$ {{ item.product_price }}</p>
+            <span class="d-flex justify-content-between">
+              <a routerLink="/product/{{ item._id }}" class="btn d-md-inline d-none">View</a>
+              <a href="#" class="btn"
+                ><i class="fas fa-shopping-cart"></i> Add to Cart</a
+              >
+            </span>
+          </div>
+        </a>
+      </div>
+      </ng-container>
+      <div class="w-100 mt-5">
+        <ng-container *ngIf="Products">
+          <ngb-pagination
+            size="sm"
+            class="d-flex justify-content-center"
+            [collectionSize]="Products.length"
+            [pageSize]="pageSize"
+            [(page)]="page"
+            [boundaryLinks]="true"
+            aria-label="Default pagination"
+            (pageChange)="onPageChange($event)"
+          ></ngb-pagination
+        ></ng-container>
+      </div>
+    </div>
+  </div>
+</div>

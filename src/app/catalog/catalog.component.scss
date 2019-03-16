@@ -1,0 +1,59 @@
+@import '../../color-palette.scss';
+
+.card {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0.2rem transparentize(black, $amount: 0.9);
+  background: #ffffff66;
+  text-decoration: none;
+  color: black;
+  img {
+    border-radius: 100%;
+    width: 50%;
+    height: auto;
+  }
+  &:hover {
+    box-shadow: 0 0 10px 0.2rem transparentize(black, $amount: 0.8);
+  }
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-title,
+.title {
+  color: $color1;
+  font-weight: 600;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  a {
+    color: #414040;
+  }
+}
+
+.sidebar {
+  background-color: aliceblue;
+}
+
+/deep/ {
+  .pagination {
+    .page-item.active .page-link {
+      background-color: $color4;
+      color: white;
+      border-color: transparent;
+    }
+    .page-item:not(.active) .page-link {
+      color: gray;
+      &:hover {
+        color: $color4;
+      }
+    }
+  }
+}

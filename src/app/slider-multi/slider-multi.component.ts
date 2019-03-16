@@ -10,8 +10,6 @@ import { Product } from '../models/product.model';
 export class SliderMultiComponent implements OnInit {
   Products: Product[];
   sectionHeader;
-  @Input() minRating;
-  @Input() maxRating;
   @Input() category;
   @Input() bg;
   @Input() header;
@@ -21,8 +19,7 @@ export class SliderMultiComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('"Init Called"');
-    this.data.getProductsData()
+    this.data.getFeaturedItems()
       .subscribe(data => { this.Products = data; console.log('Products loaded'); });
 
     this.sectionHeader = this.header ? this.header : 'Featured ' + this.category + ' Products';
