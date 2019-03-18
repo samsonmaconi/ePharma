@@ -19,11 +19,8 @@ import { UploadPrescriptionComponent} from './upload-prescription/upload-prescri
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
-<<<<<<< HEAD
 import { MainComponent } from './main/main.component';
-=======
 import { CatalogComponent } from './catalog/catalog.component';
->>>>>>> f41a4bb40271d4174ce4ae4e0e6d43acb5a4b1cf
 
 @NgModule({
   declarations: [
@@ -39,11 +36,8 @@ import { CatalogComponent } from './catalog/catalog.component';
     SliderSingleComponent,
     SliderMultiComponent,
     ProductComponent,
-<<<<<<< HEAD
-    MainComponent
-=======
+    MainComponent,
     CatalogComponent
->>>>>>> f41a4bb40271d4174ce4ae4e0e6d43acb5a4b1cf
   ],
   imports: [
     BrowserModule,
