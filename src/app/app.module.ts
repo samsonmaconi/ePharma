@@ -1,3 +1,4 @@
+import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +20,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
-import { AdminComponent } from './admin/admin.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { AdminComponent } from './admin/admin.component';
     SliderSingleComponent,
     SliderMultiComponent,
     ProductComponent,
-    AdminComponent
+    MainComponent
   ],
   imports: [
     BrowserModule,
