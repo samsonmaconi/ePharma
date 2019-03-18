@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { DemoCheckComponent } from './demo-check/demo-check.component';
-import { SignupPageComponent } from './signup-page/signup-page.component';
+import { UploadPrescriptionComponent} from './upload-prescription/upload-prescription.component';
 import { ProductComponent } from './product/product.component';
+import { CatalogComponent } from './catalog/catalog.component';
 import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
@@ -15,10 +15,13 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'product/:productId', component: ProductComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'demo-check', component: DemoCheckComponent },
-      { path: 'signup-page', component: SignupPageComponent }
+      { path: 'product', component: CatalogComponent },
+      { path: 'catalog/:category', component: CatalogComponent },
+      { path: 'catalog/:category/:querystring', component: CatalogComponent },
+      { path: 'catalog', component: CatalogComponent },
+      { path : 'login', component: LoginComponent },
+      { path : 'register', component: RegisterComponent },
+      { path : 'upload-prescription', component : UploadPrescriptionComponent }
     ]
   },
   {

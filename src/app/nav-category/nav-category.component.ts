@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-nav-category',
@@ -7,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavCategoryComponent implements OnInit {
 
-  categories = ['Prescription Meds', 'Devices', 'Personal Care', 'Treatments', 'Others'];
+  categories;
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.getProductCategories()
+      .subscribe(data => { this.categories = data; });
   }
 
 }

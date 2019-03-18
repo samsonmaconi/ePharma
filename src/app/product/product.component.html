@@ -1,75 +1,95 @@
-<div class="container">
+<div class="container-fluid">
   <nav class="mt-4" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
       <li class="breadcrumb-item">
-        <a href="#">{{ productCategory | titlecase }}</a>
+        <a routerLink="/catalog/{{ productCategory }}">{{
+          productCategory | titlecase
+        }}</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">
         {{ productName | titlecase }}
       </li>
     </ol>
   </nav>
-  <div class="row">
-    <div class="col-lg-4">
-      <div class="card mt-4">
-        <div class="card-body">
-          <img src="{{ productImage }}" class="card-img-top p-3" alt="..." />
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <div class="card mt-4">
+          <div class="card-body">
+            <img src="{{ productImage }}" class="card-img-top p-3" alt="..." />
+          </div>
+          <div class="card-body">
+            <span class="">
+              <form
+                [formGroup]=""
+                class="form-inline d-flex justify-content-center"
+              >
+                <div class="form-inline">
+                  <label class="mr-1" for="quantity">Qty:</label>
+                  <input
+                    class="form-control"
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    max="30"
+                    value="1"
+                  />
+                </div>
+                <button type="submit" class="btn form-control ml-3">
+                  <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+              </form>
+            </span>
+          </div>
         </div>
-        <div class="card-body">
-          <span class="">
-            <form [formGroup]="" class="form-inline d-flex justify-content-center">
-              <div class="form-inline">
-                <label class="mr-1" for="quantity">Qty:</label>
-                <input class="form-control" type="number" name="quantity" min="1" max="20" value="1"/>
-              </div>
-              <button type="submit" class="btn btn-primary form-control ml-3">
-                <i class="fas fa-shopping-cart"></i> Add to Cart
-              </button>
-            </form>
-          </span>
+      </div>
+      <div class="col-lg-6">
+        <div class="card mt-4 nooutline">
+          <div class="card-body">
+            <h3 class="card-title color1">{{ productName | titlecase }}</h3>
+            <span class="mb-1">By {{ productCompany | titlecase }}</span>
+            <p class="price">C$ {{ productPrice }}</p>
+            <p class="card-text">
+              Description:
+              {{ productDescription }}
+            </p>
+            <span class="text-warning"
+              ><span *ngFor="let x of [].constructor(starRating)">★ </span
+              ><span *ngFor="let x of [].constructor(5 - starRating)"
+                >☆
+              </span></span
+            >
+            {{ starRating | number: '1.1' }} stars
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-8">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h3 class="card-title color1">{{ productName | titlecase }}</h3>
-          <span class="mb-1">By {{ productCompany | titlecase }}</span>
-          <h4>${{ productPrice }}</h4>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-            dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id
-            dolores, sint aperiam sequi pariatur praesentium animi perspiciatis
-            molestias iure, ducimus!
-          </p>
-          <span class="text-warning">★ ★ ★ ☆ ☆</span>
-          3.0 stars
-        </div>
-      </div>
-
-      <div class="card card-outline-secondary my-4">
-        <div class="card-header bg-color1 whiteText">
-          Product Reviews
-        </div>
-        <div class="card-body">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et
-            enim aperiam inventore, similique necessitatibus neque non!
-            Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi
-            mollitia, necessitatibus quae sint natus.
-          </p>
-          <small class="text-muted">Posted by Joe on 3 July 2018</small>
-          <hr />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et
-            enim aperiam inventore, similique necessitatibus neque non!
-            Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi
-            mollitia, necessitatibus quae sint natus.
-          </p>
-          <small class="text-muted">Posted by Ruthie on 1 January 2019</small>
-          <hr />
-          <a href="#" class="btn">Leave a Review</a>
+    <div class="row justify-content-center mt-5">
+      <div class="col-10">
+        <div class="card nooutline my-4">
+          <div class="card-header bg-color1 whiteText">
+            Product Reviews
+          </div>
+          <div class="card-body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et
+              enim aperiam inventore, similique necessitatibus neque non!
+              Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi
+              mollitia, necessitatibus quae sint natus.
+            </p>
+            <small class="text-muted">Posted by Joe on 3 July 2018</small>
+            <hr />
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et
+              enim aperiam inventore, similique necessitatibus neque non!
+              Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi
+              mollitia, necessitatibus quae sint natus.
+            </p>
+            <small class="text-muted">Posted by Ruthie on 1 January 2019</small>
+            <hr />
+            <a href="#" class="btn">Leave a Review</a>
+          </div>
         </div>
       </div>
     </div>

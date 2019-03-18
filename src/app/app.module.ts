@@ -15,12 +15,15 @@ import { NavCategoryComponent } from './nav-category/nav-category.component';
 import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { DemoCheckComponent } from './demo-check/demo-check.component';
-import { SignupPageComponent } from './signup-page/signup-page.component';
+import { UploadPrescriptionComponent} from './upload-prescription/upload-prescription.component';
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
+<<<<<<< HEAD
 import { MainComponent } from './main/main.component';
+=======
+import { CatalogComponent } from './catalog/catalog.component';
+>>>>>>> f41a4bb40271d4174ce4ae4e0e6d43acb5a4b1cf
 
 @NgModule({
   declarations: [
@@ -32,12 +35,15 @@ import { MainComponent } from './main/main.component';
     NavComponent,
     LoginComponent,
     RegisterComponent,
-    DemoCheckComponent,
-    SignupPageComponent,
+    UploadPrescriptionComponent,
     SliderSingleComponent,
     SliderMultiComponent,
     ProductComponent,
+<<<<<<< HEAD
     MainComponent
+=======
+    CatalogComponent
+>>>>>>> f41a4bb40271d4174ce4ae4e0e6d43acb5a4b1cf
   ],
   imports: [
     BrowserModule,
