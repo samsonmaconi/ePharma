@@ -1,3 +1,4 @@
+import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,6 +19,7 @@ import { UploadPrescriptionComponent} from './upload-prescription/upload-prescri
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
+import { MainComponent } from './main/main.component';
 import { CatalogComponent } from './catalog/catalog.component';
 
 @NgModule({
@@ -34,6 +36,7 @@ import { CatalogComponent } from './catalog/catalog.component';
     SliderSingleComponent,
     SliderMultiComponent,
     ProductComponent,
+    MainComponent,
     CatalogComponent
   ],
   imports: [
