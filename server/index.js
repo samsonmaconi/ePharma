@@ -22,12 +22,6 @@ const Product = require('./models/products');
 
 app.use(bodyParser.json());
 
-app.get('/api/products', async (req, res) => {
-  data = await Product.find();
-  res.send(data);
-  console.log('/api/products' + ' response sent');
-});
-
 app.get('/api/products/:type', async (req, res) => {
   console.log(JSON.stringify(req.query));
 
@@ -39,7 +33,7 @@ app.get('/api/products/:type', async (req, res) => {
           { product_rating: { $gte: req.query.minrating } },
           { product_rating: { $lte: req.query.maxrating } }
         ]
-      });
+      }).sort({ product_rating: -1 });
       res.send(data);
       break;
     case 'catalog':
@@ -83,7 +77,55 @@ app.get('/api/products/:type', async (req, res) => {
           }
         ]
       });
-      res.send(data);
+
+      categoriesCount = await Product.aggregate([
+        {
+          $match: {
+            $or: [
+              {
+                product_name: {
+                  $regex: new RegExp(req.query.query),
+                  $options: 'i'
+                }
+              },
+              {
+                product_company: {
+                  $regex: new RegExp(req.query.query),
+                  $options: 'i'
+                }
+              },
+              {
+                product_description: {
+                  $regex: new RegExp(req.query.query),
+                  $options: 'i'
+                }
+              }
+            ]
+          }
+        },
+        {
+          $group: {
+            _id: '$product_category',
+            count: {
+              $sum: 1
+            }
+          }
+        },
+        {
+          $sort: {
+            _id: -1
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            category: '$_id',
+            count: '$count'
+          }
+        }
+      ]);
+
+      res.send([data, categoriesCount]);
       break;
   }
 });
