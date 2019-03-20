@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlickityModule } from 'ngx-flickity';
 
@@ -42,7 +42,8 @@ import { CatalogComponent } from './catalog/catalog.component';
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlickityModule
+    FlickityModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
