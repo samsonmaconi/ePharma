@@ -4,6 +4,12 @@ a, a:hover, a:focus {
     transition: all 0.3s;
 }
 
+.admin-sidebar-header-parent{
+  background-color: #2980b9 !important;
+  padding: 10px;
+  text-align: center;
+}
+
 .navbar {
     padding: 15px 10px;
     background: #fff;
@@ -36,7 +42,7 @@ a, a:hover, a:focus {
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: #2ecc71;
+    background: #2c3e50;
     color: #fff;
     transition: all 0.3s;
 }
@@ -47,7 +53,7 @@ a, a:hover, a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #2ecc71;
+    background: #2c3e50;
 }
 
 #sidebar ul.components {
@@ -66,13 +72,13 @@ a, a:hover, a:focus {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #27ae60;
+    color: #34495e;
     background: #fff;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #27ae60;
+    background: #34495e;
 }
 
 
@@ -96,7 +102,7 @@ a[aria-expanded="true"]::before {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #2c3e50;
 }
 
 ul.CTAs {
@@ -115,7 +121,7 @@ a.download {
     color: #7386D5;
 }
 a.article, a.article:hover {
-    background: #6d7fcc !important;
+    background: #2c3e50 !important;
     color: #fff !important;
 }
 
