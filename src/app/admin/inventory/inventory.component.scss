@@ -1,0 +1,18 @@
+.custab{
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-left: 250px;
+  box-shadow: 3px 3px 2px #ccc;
+  transition: 0.5s;
+  }
+  .btn-info {
+    color: #fff;
+    background-color: #607D8B;
+    border-color: #9E9E9E;
+}
+@media (max-width: 768px) {
+  #admin-page-content-wrapper{
+    margin-left: 5px;
+    margin-right: 0px;
+  }
+}

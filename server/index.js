@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 const PORT = 1234;
 const DB_URI =
@@ -26,6 +27,73 @@ app.get('/api/products', async (req, res) => {
   data = await Product.find();
   res.send(data);
   console.log('/api/products' + ' response sent');
+});
+
+app.get('/api/admin/products', async (req, res) => {
+  data = await Product.find();
+  res.send(data);
+  console.log('/api/admin/products' + ' response sent');
+});
+
+app.get('/api/admin/products/:id', async (req, res) => {
+  if (!ObjectId.isValid(req.params.id))
+      return res.status(400).send(`No record with given id : ${req.params.id}`);
+
+  Product.findById(req.params.id, (err, doc) => {
+      if (!err) { res.send(doc); }
+      else { console.log('Error in Retriving Employee :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
+
+app.post('/api/admin/products', async (req, res) => {
+  var product = new Product({
+      _id : req.body._id,
+      product_name : req.body.product_name,
+      product_description: req.body.product_description,
+      product_company: req.body.product_company,
+      product_price: req.body.product_price,
+      product_image: req.body.product_image,
+      product_category: req.product_category,
+      product_rating: req.body.product_rating,
+      product_quantity: req.body.product_quantity,
+  });
+
+  product.save((err,doc) => {
+    if(!err) {res.send(doc);}
+    else {
+      console.log('Error in product save' + JSON.stringify(err, undefined, 2));}
+  })
+})
+
+app.put('/api/admin/products/:id', (req, res) => {
+  if (!ObjectId.isValid(req.params.id))
+      return res.status(400).send(`No record with given id : ${req.params.id}`);
+
+  var product = {
+    _id : req.body._id,
+    product_name : req.body.product_name,
+    product_description: req.body.product_description,
+    product_company: req.body.product_company,
+    product_price: req.body.product_price,
+    product_image: req.body.product_image,
+    product_category: req.body.product_category,
+    product_rating: req.body.product_rating,
+    product_quantity: req.body.product_quantity,
+  };
+  Product.findByIdAndUpdate(req.params.id, { $set: product }, { new: true }, (err, doc) => {
+      if (!err) { res.send(doc); }
+      else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
+
+app.delete('/api/admin/products/:id', (req, res) => {
+  if (!ObjectId.isValid(req.params.id))
+      return res.status(400).send(`No record with given id : ${req.params.id}`);
+
+  Product.findByIdAndRemove(req.params.id, (err, doc) => {
+      if (!err) { res.send(doc); }
+      else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }
+  });
 });
 
 app.get('/api/products/:type', async (req, res) => {
