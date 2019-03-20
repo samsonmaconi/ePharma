@@ -14,27 +14,27 @@
   </nav>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-4">
+      <div *ngIf="productCategory == 'prescription meds' " class="col-10 alert-warning p-1 text-center"> Requires Prescription</div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-4 order-md-1 order-2">
         <div class="card mt-4">
           <div class="card-body">
             <img src="{{ productImage }}" class="card-img-top p-3" alt="..." />
           </div>
           <div class="card-body">
             <span class="">
-              <form
-                [formGroup]=""
-                class="form-inline d-flex justify-content-center"
-              >
+              <form class="form-inline d-flex justify-content-center">
                 <div class="form-inline">
                   <label class="mr-1" for="quantity">Qty:</label>
-                  <input
-                    class="form-control"
-                    type="number"
-                    name="quantity"
-                    min="1"
-                    max="30"
-                    value="1"
-                  />
+                  <select [(ngModel)]="selectedQuantity" name="quantity">
+                    <option
+                      class="form-control"
+                      *ngFor="let x of [].constructor(30); let i = index"
+                      [value]="i + 1"
+                      >{{ i + 1 }}</option
+                    >
+                  </select>
                 </div>
                 <button type="submit" class="btn form-control ml-3">
                   <i class="fas fa-shopping-cart"></i> Add to Cart
@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-6 order-md-2 order-1">
         <div class="card mt-4 nooutline">
           <div class="card-body">
             <h3 class="card-title color1">{{ productName | titlecase }}</h3>
@@ -54,7 +54,7 @@
               Description:
               {{ productDescription }}
             </p>
-            <span class="text-warning"
+            <span class="stars"
               ><span *ngFor="let x of [].constructor(starRating)">★ </span
               ><span *ngFor="let x of [].constructor(5 - starRating)"
                 >☆
@@ -65,37 +65,9 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center mt-5">
-      <div class="col-10">
-        <div class="card nooutline my-4">
-          <div class="card-header bg-color1 whiteText">
-            Product Reviews
-          </div>
-          <div class="card-body">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et
-              enim aperiam inventore, similique necessitatibus neque non!
-              Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi
-              mollitia, necessitatibus quae sint natus.
-            </p>
-            <small class="text-muted">Posted by Joe on 3 July 2018</small>
-            <hr />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et
-              enim aperiam inventore, similique necessitatibus neque non!
-              Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi
-              mollitia, necessitatibus quae sint natus.
-            </p>
-            <small class="text-muted">Posted by Ruthie on 1 January 2019</small>
-            <hr />
-            <a href="#" class="btn">Leave a Review</a>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
-<hr />
+<hr class="mt-5" />
 <app-slider-multi
   header="Similar Products"
   minRating="2"

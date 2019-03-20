@@ -1,6 +1,6 @@
 @import '../../color-palette.scss';
 
-.card {
+a.card {
   width: 100%;
   border: none;
   border-radius: 5px;
@@ -16,6 +16,31 @@
   &:hover {
     box-shadow: 0 0 10px 0.2rem transparentize(black, $amount: 0.8);
   }
+
+  .card-title,
+  .title {
+    color: $color1;
+    font-weight: 600;
+  }
+}
+
+.price {
+  color: rgb(151, 0, 0);
+  font-weight: 600;
+}
+
+.stars {
+  color: $color5;
+}
+
+.filter-group .custom-control {
+  &:hover {
+    font-weight: 800;
+    color: $color4;
+    .stars {
+      color: lighten($color5, $amount: 15) ;
+    }
+  }
 }
 
 .truncate {
@@ -25,16 +50,18 @@
   text-overflow: ellipsis;
 }
 
-.card-title,
-.title {
-  color: $color1;
-  font-weight: 600;
-}
-
 .breadcrumb {
   background-color: transparent;
   a {
     color: #414040;
+  }
+}
+
+.sort.label-group {
+  font-size: 0.9em;
+  color: #535353;
+  select {
+    color: #535353;
   }
 }
 
