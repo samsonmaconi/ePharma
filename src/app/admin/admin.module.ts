@@ -8,12 +8,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserComponent } from './user/user.component';
 import { OrdersComponent } from './orders/orders.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { AdminnavbarComponent } from './adminnavbar/adminnavbar.component';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule
   ],
-  declarations: [ DashboardComponent, AdminMainComponent, SidebarComponent, UserComponent, OrdersComponent, InventoryComponent]
+  declarations: [ DashboardComponent, AdminMainComponent, SidebarComponent, UserComponent, OrdersComponent, InventoryComponent, AdminnavbarComponent]
 })
 export class AdminModule { }
