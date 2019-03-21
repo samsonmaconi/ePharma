@@ -7,8 +7,8 @@ import { UploadPrescriptionComponent} from './upload-prescription/upload-prescri
 import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'product/:productId', component: ProductComponent },
+  { path : '', component: HomeComponent },
+  { path : 'product/:productId', component: ProductComponent },
   { path : 'login', component: LoginComponent },
   { path : 'register', component: RegisterComponent },
   { path : 'upload-prescription', component : UploadPrescriptionComponent }
