@@ -7,8 +7,8 @@
   <div class="navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarsExample03">
     <div class="w-100">
       <div class="row w-100 align-content-center no-gutters">
-        <form [formGroup]="" class="form-inline col-8 pr-0 d-none d-md-block">
-          <input class="form-control product-search" type="text" name="searchString" placeholder="Search for prescription medicine and OTC products">
+        <form [formGroup]="" (keydown.enter)="onSearchSubmit($event)" class="form-inline col-8 pr-0 d-none d-md-block">
+          <input class="form-control product-search" type="search" name="searchString" placeholder="Search for prescription medicine and OTC products" [value]="searchString" (keydown)="searchString=searchInput.value" #searchInput autocomplete="off">
         </form>
         <span class="or text-center p-auto col-1 d-none d-md-inline"> or </span>
         <a class="btn col-md-3 col-12" routerLink="/signup-page"><i class="fas fa-prescription-bottle-alt"> </i> Upload
@@ -29,7 +29,7 @@
         <div class="d-block w-100 d-md-none">
           <a class="btn col-12 block" routerLink="signin"><i class="fa fa-user" aria-hidden="true"> </i> Sign In</a>
           <a class="btn col-12 block mt-3" routerLink="shoppingcart"><i class="fa fa-shopping-cart" aria-hidden="true"> </i>
-            Shopping Cart (<span class="cart-itemcount">{{ cartItemCount }}</span>) </a>
+            Shopping Cart (<span class="">{{ cartItemCount }}</span>) </a>
         </div>
       </div>
     </div>
@@ -38,6 +38,6 @@
 
 
 </nav>
-<form [formGroup]="" class="form-inline col-12 py-4 bg-light d-md-none">
-  <input class="form-control product-search" type="text" placeholder="Search for prescription medicine and OTC products">
+<form [formGroup]="" (keydown.enter)="onSearchSubmit($event)" class="form-inline col-12 py-4 bg-light d-md-none">
+  <input class="form-control product-search" type="search" placeholder="Search for prescription medicine and OTC products" [value]="searchString" (keydown)="searchString=searchInput2.value" #searchInput2 autocomplete="off">
 </form>

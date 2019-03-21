@@ -1,34 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  // dataAPIURL = 'https://my.api.mockaroo.com/epharma.json?key=3a972810&count=100'; // sample products dataset
-  dataAPIURL = '/api/products'; // sample products dataset
-  productsData;
+  productAPIURL = '/api/products'; // api for accessing product items
+  featuredItems;
+  productCategories;
+  featuredItemsRating = [8, 10]; // [min, max]
 
   constructor(private http: HttpClient) {
-    this.productsData = this.loadProductsData();
+    this.setFeaturedItems();
+    this.setProductCategories();
+  }
 
-    // Logs sample dataset to console when it's loaded for debugging
-    this.getProductsData().subscribe(
-      data => {
-        console.log('"The data:"');
-        console.log(data);
-      },
-      error => console.error('There was an error retrieving the data', error),
-      () => console.log('Product Data retrieved!')
+  private setFeaturedItems() {
+    this.featuredItems = this.http.get(
+      this.productAPIURL +
+        `/featured?minrating=${this.featuredItemsRating[0]}&maxrating=${
+          this.featuredItemsRating[1]
+        }`
     );
   }
 
-  loadProductsData() {
-    return this.http.get(this.dataAPIURL);
+  getFeaturedItems() {
+    return this.featuredItems;
   }
 
-  getProductsData() {
-    return this.productsData;
+  private setProductCategories() {
+    this.productCategories = this.http.get(this.productAPIURL + `/category`);
   }
 
+  getProductCategories() {
+    return this.productCategories;
+  }
 }

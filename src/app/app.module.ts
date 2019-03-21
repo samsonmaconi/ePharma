@@ -1,7 +1,8 @@
+import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlickityModule } from 'ngx-flickity';
 
@@ -18,6 +19,8 @@ import { UploadPrescriptionComponent} from './upload-prescription/upload-prescri
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
+import { MainComponent } from './main/main.component';
+import { CatalogComponent } from './catalog/catalog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { ProductComponent } from './product/product.component';
     UploadPrescriptionComponent,
     SliderSingleComponent,
     SliderMultiComponent,
-    ProductComponent
+    ProductComponent,
+    MainComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ import { ProductComponent } from './product/product.component';
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FlickityModule
+    FlickityModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

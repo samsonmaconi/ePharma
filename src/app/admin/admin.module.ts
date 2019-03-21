@@ -1,0 +1,19 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { AdminRoutingModule } from './admin-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminMainComponent } from './admin-main/admin-main.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { UserComponent } from './user/user.component';
+import { OrdersComponent } from './orders/orders.component';
+import { InventoryComponent } from './inventory/inventory.component';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    AdminRoutingModule
+  ],
+  declarations: [ DashboardComponent, AdminMainComponent, SidebarComponent, UserComponent, OrdersComponent, InventoryComponent]
+})
+export class AdminModule { }

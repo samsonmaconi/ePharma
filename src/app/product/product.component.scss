@@ -1,3 +1,5 @@
+@import '../../color-palette.scss';
+
 img{
     border-radius: 100%;
 }
@@ -8,7 +10,25 @@ a{
     &.addtocart{
         font-size: 1em;
     }
-}   
-.breadcrumb a{
+}
+
+.price {
+  color: rgb(151, 0, 0);
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.stars {
+  color: $color5;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  a {
     color: #414040;
+  }
+}
+
+.nooutline {
+  border: none;
 }
