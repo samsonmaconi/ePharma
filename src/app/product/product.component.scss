@@ -1,3 +1,5 @@
+@import '../../color-palette.scss';
+
 img{
     border-radius: 100%;
 }
@@ -14,6 +16,10 @@ a{
   color: rgb(151, 0, 0);
   font-size: 1.1em;
   font-weight: 600;
+}
+
+.stars {
+  color: $color5;
 }
 
 .breadcrumb {

@@ -2,10 +2,10 @@ import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlickityModule } from 'ngx-flickity';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -19,6 +19,9 @@ import { UploadPrescriptionComponent} from './upload-prescription/upload-prescri
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
+import { AuthenticationInterceptor } from './services/authentication-interceptor';
+import { ErrorInterceptor } from './services/error-interceptor';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MainComponent } from './main/main.component';
 import { CatalogComponent } from './catalog/catalog.component';
 
@@ -37,17 +40,25 @@ import { CatalogComponent } from './catalog/catalog.component';
     SliderMultiComponent,
     ProductComponent,
     MainComponent,
-    CatalogComponent
+    CatalogComponent,
+    ForgotPasswordComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
-    FlickityModule
+    FlickityModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass:AuthenticationInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

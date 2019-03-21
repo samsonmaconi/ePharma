@@ -27,7 +27,9 @@ export class DataService {
   getFeaturedItems() {
     return this.featuredItems;
   }
-
+  loadProductsData() {
+    return this.http.get(this.productAPIURL);
+  }
   private setProductCategories() {
     this.productCategories = this.http.get(this.productAPIURL + `/category`);
   }
