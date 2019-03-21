@@ -72,15 +72,6 @@ export class UploadPrescriptionComponent implements OnInit {
       this.markFormGroupTouched(this.prescriptionForm);
       console.log(this.prescriptionForm.value);
     }
-    // tslint:disable-next-line: max-line-length
-    // this.prescriptionService.createPrescription(
-    //   this.prescriptionForm.value.orderNumber,
-    //   this.prescriptionForm.value.name,
-    //   this.prescriptionForm.value.email,
-    //   this.prescriptionForm.value.phoneNumber,
-    //   this.imageSrc);
-    // this.prescriptionForm.reset();
-    // this.imageSrc = '';
 
   }
 
