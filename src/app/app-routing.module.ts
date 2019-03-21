@@ -22,8 +22,7 @@ const routes: Routes = [
       { path: 'catalog', component: CatalogComponent },
       { path : 'login', component: LoginComponent },
       { path : 'register', component: RegisterComponent },
-      { path : 'upload-prescription', component : UploadPrescriptionComponent },
-      { path : '**', redirectTo: '' }
+      { path : 'upload-prescription', component : UploadPrescriptionComponent }
     ]
   },
   {
