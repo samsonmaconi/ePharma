@@ -2,10 +2,16 @@ import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+<<<<<<< HEAD
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+=======
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+>>>>>>> feature_login
 import { FlickityModule } from 'ngx-flickity';
-
+import { MatDialogModule, } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -19,8 +25,15 @@ import { UploadPrescriptionComponent} from './upload-prescription/upload-prescri
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
+<<<<<<< HEAD
 import { MainComponent } from './main/main.component';
 import { CatalogComponent } from './catalog/catalog.component';
+=======
+import { AuthenticationInterceptor } from './services/authentication-interceptor';
+import { ErrorInterceptor } from './services/error-interceptor';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
+>>>>>>> feature_login
 
 @NgModule({
   declarations: [
@@ -36,19 +49,36 @@ import { CatalogComponent } from './catalog/catalog.component';
     SliderSingleComponent,
     SliderMultiComponent,
     ProductComponent,
+<<<<<<< HEAD
     MainComponent,
     CatalogComponent
+=======
+    ForgotPasswordComponent
+
+
+
+
+>>>>>>> feature_login
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     FlickityModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass:AuthenticationInterceptor, multi: true
+  }],
+  // {
+  //   provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true
+  // }],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

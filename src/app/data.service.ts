@@ -24,8 +24,14 @@ export class DataService {
     );
   }
 
+<<<<<<< HEAD
   getFeaturedItems() {
     return this.featuredItems;
+=======
+  loadProductsData() {
+    return this.http.get(this.dataAPIURL);
+    
+>>>>>>> feature_login
   }
 
   private setProductCategories() {

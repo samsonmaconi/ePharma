@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -7,33 +10,41 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  myForm : FormGroup;
-  constructor(private fb :FormBuilder ) { }
+export class LoginComponent implements OnInit, OnDestroy {
+  myform: FormGroup;
+  public firstname: string;
+  isValid = true;
+  private authSub: Subscription;
+  constructor(private fb: FormBuilder, public authService: AuthService,private router: Router) {}
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      email : ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      password : ['',Validators.required],
-      remember : ['true']
+    this.authSub = this.authService.getAuthStatusListener().subscribe(
+      authStatus=>{
+        this.isValid = false;
+        console.log("value",this.isValid);
+      }
+    );
+    this.myform = this.fb.group({
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      password: ['', Validators.required],
+      remember: ['true']
     });
-
   }
 
-  onSubmit(): void
-
-  {
-
-    if(this.myForm.valid){
-      console.log(this.myForm.value);
-      alert("Welcome to ePharma");
-      this.myForm.reset();
-
+  onSubmit() {
+    if (this.myform.invalid) {
+    return;
     }
-    else{
-      console.log("Sign-in fail");
-      console.log(this.myForm.value);
-    }
+    this.authService.login(this.myform.value.email,this.myform.value.password)
+// Display user name to front end
+    this.firstname = this.authService.getUsernName();
+    this.myform.reset();
+
 
   }
+  ngOnDestroy(){
+    this.authSub.unsubscribe();
+  }
+
 }
+

@@ -1,25 +1,45 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <a class="navbar-brand" routerLink=""><img src="{{ logo }}" alt="{{ logoAltText }}" /></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03"
-    aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03"
+    aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation"
+    (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarsExample03">
     <div class="w-100">
       <div class="row w-100 align-content-center no-gutters">
+<<<<<<< HEAD
         <form [formGroup]="" (keydown.enter)="onSearchSubmit($event)" class="form-inline col-8 pr-0 d-none d-md-block">
           <input class="form-control product-search" type="search" name="searchString" placeholder="Search for prescription medicine and OTC products" [value]="searchString" (keydown)="searchString=searchInput.value" #searchInput autocomplete="off">
+=======
+        <form [formGroup]="" class="form-inline col-8 pr-0 d-none d-md-block">
+          <input class="form-control product-search" type="text" name="searchString"
+            placeholder="Search for prescription medicine and OTC products">
+>>>>>>> feature_login
         </form>
         <span class="or text-center p-auto col-1 d-none d-md-inline"> or </span>
-        <a class="btn col-md-3 col-12" routerLink="/signup-page"><i class="fas fa-prescription-bottle-alt"> </i> Upload
+        <a class="btn col-md-3 col-12" routerLink="/upload-prescription"><i class="fas fa-prescription-bottle-alt"> </i>
+          Upload
           Prescription</a>
       </div>
 
       <div class="pt-3 row no-gutters w-100 justify-content-end align-bottom">
+        <span *ngIf="IsUserAuth" _ngcontent-c3="" class="nav-item p-2" style="
+          padding-right: 25% !important;
+          font-size: 28px; color: #1972A4;">Welcome {{firstname}} </span>
         <ul class="navbar-nav d-none d-md-inline-flex">
-          <li class="nav-item" [routerLinkActive]="['active']">
+          <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!IsUserAuth">
             <a class="nav-link" routerLink="/login"><i class="fa fa-user" aria-hidden="true"> </i> Sign In</a>
           </li>
+          <div ngbDropdown class="d-inline-block" *ngIf="IsUserAuth">
+            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>My Profile</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem class="btn-block drop-button" routerLink="/">Manage Profile</button>
+              <button ngbDropdownItem class="btn-block drop-button" routerLink="/home"
+                (click)="onLogout()">Logout</button>
+            </div>
+          </div>
+
           <li class="nav-item ml-auto" [routerLinkActive]="['active']">
             <a class="nav-link" routerLink="shoppingcart"><i class="fa fa-shopping-cart" aria-hidden="true"> </i>
               Shopping Cart (<span class="cart-itemcount">{{ cartItemCount }}</span>) </a>
@@ -28,8 +48,14 @@
 
         <div class="d-block w-100 d-md-none">
           <a class="btn col-12 block" routerLink="signin"><i class="fa fa-user" aria-hidden="true"> </i> Sign In</a>
+<<<<<<< HEAD
           <a class="btn col-12 block mt-3" routerLink="shoppingcart"><i class="fa fa-shopping-cart" aria-hidden="true"> </i>
             Shopping Cart (<span class="">{{ cartItemCount }}</span>) </a>
+=======
+          <a class="btn col-12 block mt-3" routerLink="shoppingcart"><i class="fa fa-shopping-cart" aria-hidden="true">
+            </i>
+            Shopping Cart (<span class="cart-itemcount">{{ cartItemCount }}</span>) </a>
+>>>>>>> feature_login
         </div>
       </div>
     </div>
@@ -38,6 +64,13 @@
 
 
 </nav>
+<<<<<<< HEAD
 <form [formGroup]="" (keydown.enter)="onSearchSubmit($event)" class="form-inline col-12 py-4 bg-light d-md-none">
   <input class="form-control product-search" type="search" placeholder="Search for prescription medicine and OTC products" [value]="searchString" (keydown)="searchString=searchInput2.value" #searchInput2 autocomplete="off">
 </form>
+=======
+<form [formGroup]="" class="form-inline col-12 py-4 bg-light d-md-none">
+  <input class="form-control product-search" type="text"
+    placeholder="Search for prescription medicine and OTC products">
+</form>
+>>>>>>> feature_login

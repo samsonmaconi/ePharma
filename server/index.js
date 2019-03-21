@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const loginRegisterRoute = require('./routes/login-register-routes');
 
 const PORT = 1234;
 const DB_URI =
@@ -19,7 +22,10 @@ mongoose
   .catch(ERR => console.log(ERR));
 
 const Product = require('./models/products');
-
+app.use(cors({
+  origin:['http://localhost:4200','http://127.0.0.1:4200'],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 app.get('/api/products/:type', async (req, res) => {
@@ -129,5 +135,5 @@ app.get('/api/products/:type', async (req, res) => {
       break;
   }
 });
-
+app.use("/api/user",loginRegisterRoute);
 app.listen(PORT, () => console.log('Server listening at port: ' + PORT));
