@@ -25,6 +25,7 @@ export class DataService {
 
   loadProductsData() {
     return this.http.get(this.dataAPIURL);
+    
   }
 
   getProductsData() {

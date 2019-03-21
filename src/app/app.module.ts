@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlickityModule } from 'ngx-flickity';
-
+import { MatDialogModule, } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +19,10 @@ import { UploadPrescriptionComponent} from './upload-prescription/upload-prescri
 import { SliderSingleComponent } from './slider-single/slider-single.component';
 import { SliderMultiComponent } from './slider-multi/slider-multi.component';
 import { ProductComponent } from './product/product.component';
+import { AuthenticationInterceptor } from './services/authentication-interceptor';
+import { ErrorInterceptor } from './services/error-interceptor';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
 
 @NgModule({
   declarations: [
@@ -32,17 +37,31 @@ import { ProductComponent } from './product/product.component';
     UploadPrescriptionComponent,
     SliderSingleComponent,
     SliderMultiComponent,
-    ProductComponent
+    ProductComponent,
+    ForgotPasswordComponent
+
+
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     FlickityModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass:AuthenticationInterceptor, multi: true
+  }],
+  // {
+  //   provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true
+  // }],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
