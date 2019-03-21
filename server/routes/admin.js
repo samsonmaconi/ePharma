@@ -105,3 +105,5 @@ router.delete('/api/admin/products/:id', (req, res) => {
       else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }
   });
 });
+
+module.exports = router;
