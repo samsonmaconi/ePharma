@@ -1,7 +1,45 @@
-<div id="page-content-wrapper">
-  <div class="container-fluid">
-      <h1>Simple Sidebar</h1>
-      <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+<div class="outer-dashboard-div">
+<div id="admin-page-content-wrapper">
+  <div class="container-fluid custom-margin">
+      <h1>Dashboard</h1>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card bg-info">
+            <div class="card-body">
+              <h5 class="card-title">Pending Orders</h5>
+              <p class="card-text">Total number of Pending orders are: {{pendingOrderCount}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card bg-success">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+
+      <table>
+          <thead>
+            <tr>
+              <td>Key</td>
+              <td>ID</td>
+              <td>Name</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor ="let d of data;">
+              <td>{{d.order_id}}</td>
+              <td>{{d.order_status}}</td>
+            </tr>
+          </tbody>
+        </table>
   </div>
 </div> <!-- /#page-content-wrapper -->
+</div>

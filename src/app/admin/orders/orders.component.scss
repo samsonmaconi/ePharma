@@ -1,0 +1,19 @@
+#admin-page-content-wrapper{
+  margin-left: 250px;
+  margin-right: 40px;
+}
+.custom-margin{
+  padding:2%;
+}
+
+.outer-dashboard-div{
+  background: rgba(203, 203, 210, 0.15);
+  padding: 2%;
+}
+
+@media (max-width: 768px) {
+  #admin-page-content-wrapper{
+    margin-left: 5px;
+    margin-right: 0px;
+  }
+}

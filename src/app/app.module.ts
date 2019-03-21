@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlickityModule } from 'ngx-flickity';
-import { MatDialogModule, } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -50,7 +49,6 @@ import { CatalogComponent } from './catalog/catalog.component';
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,

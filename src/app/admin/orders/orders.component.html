@@ -1,3 +1,36 @@
-<p>
-  orders works!
-</p>
+<div class="outer-dashboard-div">
+<div id="admin-page-content-wrapper">
+  <h4 class="card-title">Orders</h4>
+  <div class="well">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Order Status</th>
+          <th>Total Cost</th>
+          <th>Options</th>
+          <th style="width: 36px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor ="let d of data;">
+              <td>{{d._id}}</td>
+              <td>{{d.order_status}}</td>
+              <td>$ {{d.total_cost}}</td>
+              <td>Edit</td>
+          </tr>
+      </tbody>
+    </table>
+</div>
+<div class="pagination">
+    <ul>
+        <li><a href="#">Prev</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">Next</a></li>
+    </ul>
+</div>
+</div>
+</div>
