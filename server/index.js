@@ -19,8 +19,44 @@ mongoose
   .catch(ERR => console.log(ERR));
 
 const Product = require('./models/products');
+const Orders = require('./models/orders');
 
 app.use(bodyParser.json());
+
+app.get('/api/admin/viewOrders', async(req, res) =>{
+  data = await Orders.find();
+  res.send(data);
+})
+
+app.post('/api/admin/saveOrders', async(req, res) =>{
+
+ var order = new Orders({
+  _id: mongoose.Types.ObjectId(),
+  order_status: req.body.order_status,
+  total_cost: req.body.total_cost,
+  date_of_order: new Date(),
+  items : [{ //empty array, use for after array.push
+      name: req.body.items[0].name,
+      quantity: req.body.items[0].quantity,
+      stock: req.body.items[0].stock,
+      status: req.body.items[0].status
+    },
+    {
+      name: req.body.items[0].name,
+      quantity: req.body.items[0].quantity,
+      stock: 0,
+      status: 1
+    },
+  ]
+});
+
+// console.log("----------"+size(req.body.items));
+
+  order.save((err,doc)=>{
+    if(err) {console.log("Error occured"+JSON.stringify(err, undefined, 2));}
+    else{res.send(doc); console.log("No error found");}
+  });
+});
 
 app.get('/api/products', async (req, res) => {
   data = await Product.find();
