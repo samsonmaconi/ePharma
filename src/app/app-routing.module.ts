@@ -3,10 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UploadPrescriptionComponent} from './upload-prescription/upload-prescription.component';
+import { UploadPrescriptionComponent } from './upload-prescription/upload-prescription.component';
 import { ProductComponent } from './product/product.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { MainComponent } from './main/main.component';
+import { AuthGuard } from './services/auth-guard';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
       { path: 'catalog', component: CatalogComponent },
       { path : 'login', component: LoginComponent },
       { path : 'register', component: RegisterComponent },
-      { path : 'upload-prescription', component : UploadPrescriptionComponent }
+      { path : 'upload-prescription', component : UploadPrescriptionComponent },
+
     ]
   },
   {
@@ -32,6 +34,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {}

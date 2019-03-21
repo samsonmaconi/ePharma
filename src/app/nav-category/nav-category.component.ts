@@ -14,7 +14,7 @@ export class NavCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.data.getProductCategories()
-      .subscribe(data => { this.categories = data; });
+      .subscribe(data => { this.categories = data.sort().reverse(); });
   }
 
 }

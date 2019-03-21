@@ -20,6 +20,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   private routerSub: any;
   productID: string;
+  selectedQuantity = '1';
   starRating = 0;
 
   constructor(
@@ -50,6 +51,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   loadProduct() {
     this.routerSub = this.route.params.subscribe(async params => {
       this.productID = params.productId;
+      this.selectedQuantity =  '1';
 
       this.product = await this.http
         .get(this.data.productAPIURL + `/product?id=${this.productID}`)

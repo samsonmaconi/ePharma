@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-var ObjectId = require('mongoose').Types.ObjectId;
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const loginRegisterRoute = require('./routes/login-register-routes');
 
 const PORT = 1234;
 const DB_URI =
@@ -20,8 +20,44 @@ mongoose
   .catch(ERR => console.log(ERR));
 
 const Product = require('./models/products');
+const Orders = require('./models/orders');
 
 app.use(bodyParser.json());
+
+app.get('/api/admin/viewOrders', async(req, res) =>{
+  data = await Orders.find();
+  res.send(data);
+})
+
+app.post('/api/admin/saveOrders', async(req, res) =>{
+
+ var order = new Orders({
+  _id: mongoose.Types.ObjectId(),
+  order_status: req.body.order_status,
+  total_cost: req.body.total_cost,
+  date_of_order: new Date(),
+  items : [{ //empty array, use for after array.push
+      name: req.body.items[0].name,
+      quantity: req.body.items[0].quantity,
+      stock: req.body.items[0].stock,
+      status: req.body.items[0].status
+    },
+    {
+      name: req.body.items[0].name,
+      quantity: req.body.items[0].quantity,
+      stock: 0,
+      status: 1
+    },
+  ]
+});
+
+// console.log("----------"+size(req.body.items));
+
+  order.save((err,doc)=>{
+    if(err) {console.log("Error occured"+JSON.stringify(err, undefined, 2));}
+    else{res.send(doc); console.log("No error found");}
+  });
+});
 
 app.get('/api/products', async (req, res) => {
   data = await Product.find();
@@ -95,6 +131,7 @@ app.delete('/api/admin/products/:id', (req, res) => {
       else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }
   });
 });
+app.use(bodyParser.json());
 
 app.get('/api/products/:type', async (req, res) => {
   console.log(JSON.stringify(req.query));
@@ -107,7 +144,7 @@ app.get('/api/products/:type', async (req, res) => {
           { product_rating: { $gte: req.query.minrating } },
           { product_rating: { $lte: req.query.maxrating } }
         ]
-      });
+      }).sort({ product_rating: -1 });
       res.send(data);
       break;
     case 'catalog':
@@ -151,9 +188,57 @@ app.get('/api/products/:type', async (req, res) => {
           }
         ]
       });
-      res.send(data);
+
+      categoriesCount = await Product.aggregate([
+        {
+          $match: {
+            $or: [
+              {
+                product_name: {
+                  $regex: new RegExp(req.query.query),
+                  $options: 'i'
+                }
+              },
+              {
+                product_company: {
+                  $regex: new RegExp(req.query.query),
+                  $options: 'i'
+                }
+              },
+              {
+                product_description: {
+                  $regex: new RegExp(req.query.query),
+                  $options: 'i'
+                }
+              }
+            ]
+          }
+        },
+        {
+          $group: {
+            _id: '$product_category',
+            count: {
+              $sum: 1
+            }
+          }
+        },
+        {
+          $sort: {
+            _id: -1
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            category: '$_id',
+            count: '$count'
+          }
+        }
+      ]);
+
+      res.send([data, categoriesCount]);
       break;
   }
 });
-
+app.use("/api/user",loginRegisterRoute);
 app.listen(PORT, () => console.log('Server listening at port: ' + PORT));
