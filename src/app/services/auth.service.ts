@@ -40,7 +40,7 @@ export class AuthService {
       Address1: Address1, Address2: Address2, city: city, postalCode: postalCode
     };
 
-    this.http.post("http://localhost:1234/api/user/register", authData)
+    this.http.post("/api/user/register", authData)
       .subscribe(response => {
         console.log(response);
         this.router.navigate(['/login']);
@@ -53,7 +53,7 @@ export class AuthService {
   login(email: string, password: string) {
     const authData: Ilogin = { email: email, password: password };
 
-    this.http.post<{ token: string, fname: string, _id: string, expiresIn: number }>("http://localhost:1234/api/user/login", authData)
+    this.http.post<{ token: string, fname: string, _id: string, expiresIn: number }>("/api/user/login", authData)
       .subscribe(response => {
 
         const token = response.token;

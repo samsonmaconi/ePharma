@@ -22,10 +22,10 @@ mongoose
   .catch(ERR => console.log(ERR));
 
 const Product = require('./models/products');
-app.use(cors({
-  origin:['http://localhost:4200','http://127.0.0.1:4200'],
-  credentials: true
-}));
+// app.use(cors({
+//   origin:['http://localhost:4200','http://127.0.0.1:4200'],
+//   credentials: true
+// }));
 app.use(bodyParser.json());
 
 app.get('/api/products/:type', async (req, res) => {
