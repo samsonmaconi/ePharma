@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import { Component, OnInit, Input } from '@angular/core';
-=======
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
->>>>>>> feature_login
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,23 +8,14 @@ import { Router } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-<<<<<<< HEAD
-export class NavComponent implements OnInit {
-=======
 export class NavComponent implements OnInit, OnDestroy {
 
->>>>>>> feature_login
   isCollapsed = true;
   logo = '../../assets/images/logo.png';
   logoAltText = 'ePharma';
   cartItemCount = 0;
   searchString = '';
 
-<<<<<<< HEAD
-  constructor(private router: Router) {}
-
-  ngOnInit() {}
-=======
 
   private authListenerSubscription: Subscription;
   public IsUserAuth = false;
@@ -58,12 +45,11 @@ export class NavComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.authListenerSubscription.unsubscribe();
   }
->>>>>>> feature_login
 
   onSearchSubmit(e: any) {
     e.preventDefault();
     this.searchString = encodeURIComponent(this.searchString);
-    this.router.navigateByUrl('/catalog/search result/' + this.searchString);
+    this.route.navigateByUrl('/catalog/search result/' + this.searchString);
     this.searchString = '';
   }
 }

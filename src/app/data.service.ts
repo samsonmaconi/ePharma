@@ -24,16 +24,12 @@ export class DataService {
     );
   }
 
-<<<<<<< HEAD
   getFeaturedItems() {
     return this.featuredItems;
-=======
-  loadProductsData() {
-    return this.http.get(this.dataAPIURL);
-    
->>>>>>> feature_login
   }
-
+  loadProductsData() {
+    return this.http.get(this.productAPIURL);
+  }
   private setProductCategories() {
     this.productCategories = this.http.get(this.productAPIURL + `/category`);
   }
