@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   public firstname: string;
   isValid = true;
   private authSub: Subscription;
+  private rsub;
+  public IsUserAuth= false;
   constructor(private fb: FormBuilder, public authService: AuthService,private router: Router) {}
 
   ngOnInit() {
@@ -24,6 +26,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log("value",this.isValid);
       }
     );
+      this.rsub = this.router.events.subscribe(()=>{
+        this.IsUserAuth = this.authService.getIsAuth();
+        this.isValid = false;
+      })
     this.myform = this.fb.group({
       email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', Validators.required],

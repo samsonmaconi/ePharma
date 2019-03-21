@@ -29,7 +29,6 @@ export class AuthService {
     return this.firstname;
   }
   getAuthStatusListener() {
-    console.log("abc", this.authStatusListener.asObservable());
     return this.authStatusListener.asObservable();
 
   }
@@ -72,7 +71,7 @@ export class AuthService {
           this.localStorageToken(token, this.firstname, expiryDate);
           this.IsAuth = true;
           this.authStatusListener.next(true);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
           return token;
         }
 
@@ -104,7 +103,7 @@ export class AuthService {
     this.firstname = null;
     clearTimeout(this.Timer);
     this.clearLocalStorageToken();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
   private setTimer(duration: number) {
     console.log("Set timer" + duration);
