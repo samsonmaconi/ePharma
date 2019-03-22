@@ -20,7 +20,7 @@ export class SliderMultiComponent implements OnInit {
   ngOnInit() {
 
     this.data.getFeaturedItems()
-      .subscribe(data => { this.Products = data; console.log('Products loaded'); });
+      .subscribe(data => { this.Products = data;});
 
     this.sectionHeader = this.header ? this.header : 'Featured ' + this.category + ' Products';
   }
