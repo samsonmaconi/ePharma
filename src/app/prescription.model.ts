@@ -1,4 +1,4 @@
-export interface IPrescription{
+export interface IPrescription {
   orderNumber: number;
   name: string;
   email: string;
