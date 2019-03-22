@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-//import { PrescriptionService } from '../prescription.service';
+// import { PrescriptionService } from '../prescription.service';
 import { prepareProfile } from 'selenium-webdriver/firefox';
 import { HttpClient } from '@angular/common/http';
-//import { IPrescription } from '../prescription.model';
+// import { IPrescription } from '../prescription.model';
 
 @Component({
   selector: 'app-upload-prescription',
@@ -14,11 +14,12 @@ import { HttpClient } from '@angular/common/http';
 export class UploadPrescriptionComponent implements OnInit {
   fileToUpload: File = null;
   prescriptionForm: FormGroup;
+  public imageSrc: '';
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    //private prescriptionService: PrescriptionService,
+    // private prescriptionService: PrescriptionService,
     private http: HttpClient
   ) {}
 
@@ -41,11 +42,8 @@ export class UploadPrescriptionComponent implements OnInit {
   onSubmit(): void {
 
     if (this.prescriptionForm.valid) {
-      console.log('Signup Submitted Sucessfully');
       console.log(this.prescriptionForm.value);
-      alert('Registration Successful');
-      // this.prescriptionForm.reset();
-      // this.router.navigate(['/']);
+      alert('Prescription Successful');
 
       const data = new FormData();
       data.append('orderNumber', this.prescriptionForm.value.orderNumber);
@@ -54,14 +52,8 @@ export class UploadPrescriptionComponent implements OnInit {
       data.append('phoneNumber', this.prescriptionForm.value.phoneNumber);
       data.append('image', this.fileToUpload);
 
-
-      // const prescriptionData: IPrescription = {
-      //   orderNumber: this.prescriptionForm.value.orderNumber,
-      //   name: this.prescriptionForm.value.name,
-      //   email: this.prescriptionForm.value.email,
-      //   phoneNumber: this.prescriptionForm.value.phoneNumber,
-      //   imagePath: this.prescriptionForm.value.image };
-
+      this.prescriptionForm.reset();
+      this.imageSrc = '';
       this.http.post('/api/prescription', data)
       .subscribe(response => {
         console.log(response);
@@ -72,15 +64,6 @@ export class UploadPrescriptionComponent implements OnInit {
       this.markFormGroupTouched(this.prescriptionForm);
       console.log(this.prescriptionForm.value);
     }
-    // tslint:disable-next-line: max-line-length
-    // this.prescriptionService.createPrescription(
-    //   this.prescriptionForm.value.orderNumber,
-    //   this.prescriptionForm.value.name,
-    //   this.prescriptionForm.value.email,
-    //   this.prescriptionForm.value.phoneNumber,
-    //   this.imageSrc);
-    // this.prescriptionForm.reset();
-    // this.imageSrc = '';
 
   }
 

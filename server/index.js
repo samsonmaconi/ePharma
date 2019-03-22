@@ -2,11 +2,15 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const mongoose = require('mongoose');
+
 
 const loginRegisterRoute = require('./routes/login-register-routes');
 const productRoutes = require('./routes/products');
 const adminRoutes = require('./routes/admin');
+
+const mongoose = require("mongoose");
+const prescriptionRoute = require("./routes/prescription-routes");
+
 
 const PORT = 1234;
 const DB_URI =
@@ -29,4 +33,5 @@ app.use('/api/products', productRoutes);
 app.use('/api/admin', adminRoutes);
 app.use("/api/user",loginRegisterRoute);
 
-app.listen(PORT, () => console.log('Server listening at port: ' + PORT));
+app.use("/api",prescriptionRoute);
+app.listen(PORT, () => console.log("Server listening at port: " + PORT));
