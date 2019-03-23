@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { PasswordMatchValidation } from './password';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class RegisterComponent implements OnInit, OnDestroy {
   myform: FormGroup;
   private authStatusSub: Subscription;
-  constructor(private fb: FormBuilder, public authService: AuthService) { }
+  constructor(private fb: FormBuilder, public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe();
@@ -34,6 +35,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
         validators: PasswordMatchValidation.pwdmatch
 
       });
+      if(this.authService.getIsAuth()){
+        return this.router.navigate(['/']);
+      }
   }
   onSubmit() {
 

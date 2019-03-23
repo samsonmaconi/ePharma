@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: ['', Validators.required],
       remember: ['true']
     });
+    if(this.authService.getIsAuth()){
+      return this.router.navigate(['/']);
+    }
   }
 
   onSubmit() {
