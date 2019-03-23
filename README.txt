@@ -77,8 +77,8 @@ Files which shows Login and Registration part are below:
   \src\app\Login (HTML,ts,scss)
   \src\app\Registration (HTML,ts,scss)
   \src\app\services
-  \src\app\auth-data.models.ts
-  \src\app\auth-login.ts
+  \src\app\models\auth-data.models.ts
+  \src\app\models\auth-login.ts
   \server\routes\middleware\authentication.js
   \server\models\user.js
   \server\routes\login-register-routes.js
