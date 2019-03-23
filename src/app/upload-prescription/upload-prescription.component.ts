@@ -22,7 +22,12 @@ export class UploadPrescriptionComponent implements OnInit {
 
   ngOnInit() {
     this.prescriptionForm = this.fb.group({
-      orderNumber: ['', Validators.required],
+      orderNumber: ['',
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]*$')
+      ]
+    ],
       name: ['', Validators.required],
       email: [
         '',
@@ -31,7 +36,12 @@ export class UploadPrescriptionComponent implements OnInit {
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
         ]
       ],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['',
+            [
+        Validators.required,
+        Validators.pattern('^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')
+      ]
+    ],
       image: ['', Validators.required]
     });
   }
