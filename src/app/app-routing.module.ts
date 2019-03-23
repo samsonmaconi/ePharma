@@ -8,6 +8,8 @@ import { ProductComponent } from './product/product.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { MainComponent } from './main/main.component';
 import { AuthGuard } from './services/auth-guard';
+import { ManageProfileComponent } from './manage-profile/manage-profile.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -20,9 +22,11 @@ const routes: Routes = [
       { path: 'catalog/:category', component: CatalogComponent },
       { path: 'catalog/:category/:querystring', component: CatalogComponent },
       { path: 'catalog', component: CatalogComponent },
-      { path : 'login', component: LoginComponent },
-      { path : 'register', component: RegisterComponent },
-      { path : 'upload-prescription', component : UploadPrescriptionComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'upload-prescription', component: UploadPrescriptionComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'manage-profile', component: ManageProfileComponent }
     ]
   },
   {
@@ -36,4 +40,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

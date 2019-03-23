@@ -5,7 +5,7 @@
         <div class="col mr-auto">
           <div class="card  mdp shadow-lg p-3 mb-5 bg-white rounded " style="max-width: 30rem;">
             <div class="card-header text-info ">
-              <h4>Customer Login</h4>
+              <h4 class="color1">Customer Login</h4>
             </div>
             <div class="card-body text-info">
               <div class="alert alert-danger" *ngIf="!isValid">Invalid Credentials</div>
@@ -32,19 +32,15 @@
                     Invalid Password
                   </span>
                 </div>
-                <div class="custom-control custom-checkbox mb-3">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1">Remember me</label>
-                </div>
                 <div>
                   <button class="btn btn-primary btn-block" type="submit">Sign in</button>
                 </div>
-                <div style="text-align : center; padding: 2%">
-                  <a routerLink="/forgot-password">Forgot password?</a>
+                <div style="text-align : center; padding: 2%" >
+                  <a class = "nav-link " routerLink="/forgot-password">Forgot password?</a>
                 </div>
 
-                <div style="text-align : center">Not a member?
-                  <a routerLink="/register">Register</a>
+                <div style="text-align : center " class="container">Not a member?
+                  <a class = "nav-link login-nav-link" routerLink="/register">Register</a>
                 </div>
               </form>
             </div>

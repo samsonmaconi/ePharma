@@ -80,8 +80,8 @@ router.get('/:id',(req,res,next)=>{
     const id = req.params.id;
     User.findById(id).exec()
         .then(response =>{
-
             return res.status(200).json({response});
+            console.log(response);
         }).catch(err =>{
             console.log(err);
         });
