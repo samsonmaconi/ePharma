@@ -1,14 +1,27 @@
 const express = require('express');
+const mongoose = require("mongoose");
 const router = express.Router();
 
 const Orders = require('../models/orders');
+const Product = require('../models/products');
+const ObjectId = mongoose.Types.ObjectId;
 
-router.get('/api/admin/viewOrders', async(req, res) =>{
+router.get('/viewOrders/:id', async (req, res) => {
+  if (!ObjectId.isValid(req.params.id))
+      return res.status(400).send(`No record with given id : ${req.params.id}`);
+
+  Orders.findById(req.params.id, (err, doc) => {
+      if (!err) { res.send(doc); }
+      else { console.log('No order exists :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
+
+router.get('/viewOrders', async(req, res) =>{
   data = await Orders.find();
   res.send(data);
 })
 
-router.post('/api/admin/saveOrders', async(req, res) =>{
+router.post('/saveOrders', async(req, res) =>{
 
  var order = new Orders({
   _id: mongoose.Types.ObjectId(),
@@ -39,13 +52,13 @@ router.post('/api/admin/saveOrders', async(req, res) =>{
 });
 
 
-router.get('/api/admin/products', async (req, res) => {
+router.get('/products', async (req, res) => {
   data = await Product.find();
   res.send(data);
-  console.log('/api/admin/products' + ' response sent');
+  console.log('/products' + ' response sent');
 });
 
-router.get('/api/admin/products/:id', async (req, res) => {
+router.get('/products/:id', async (req, res) => {
   if (!ObjectId.isValid(req.params.id))
       return res.status(400).send(`No record with given id : ${req.params.id}`);
 
@@ -55,7 +68,7 @@ router.get('/api/admin/products/:id', async (req, res) => {
   });
 });
 
-router.post('/api/admin/products', async (req, res) => {
+router.post('/products', async (req, res) => {
   var product = new Product({
       _id : req.body._id,
       product_name : req.body.product_name,

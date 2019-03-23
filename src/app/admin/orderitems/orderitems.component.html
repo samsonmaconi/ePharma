@@ -1,0 +1,46 @@
+<div class="outer-dashboard-div">
+    <div id="admin-page-content-wrapper">
+      <h4 class="card-title">Orders</h4>
+      <div class="table-responsive">
+      <table class="table table-hover table table-striped">
+        <thead>
+
+          <tr>
+              <th scope="col">Medicine Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Status</th>
+              <th scope ="col">Prescription</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let item of jsonData">
+                  <input type="hidden" value="{{data.items[item].item_id | json}}">
+                  <td scope="row">{{data.items[item].name}}</td>
+                  <td scope="row">{{data.items[item].quantity | json}}</td>
+                  <td>
+
+                      <select (change)="selectChangeHandler($event)">
+                          <option class="btn-block drop-button" value="{{data.items[item].status | json}}">{{orderStatus[data.items[item].status | json]}}</option>
+                          <option class="btn-block drop-button" value="1">{{orderStatus[1]}}</option>
+                          <option class="btn-block drop-button" value="2">{{orderStatus[2]}}</option>
+
+                      </select>
+
+                      <!-- <div ngbDropdown>
+                          <div id="orderDropdown" ngbDropdownToggle></div>
+                          <select ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <option ngbDropdownItem class="btn-block drop-button" value=1>{{orderStatus[1]}}</option>
+                            <option ngbDropdownItem class="btn-block drop-button" value=2>{{orderStatus[2]}}</option>
+                          </select>
+                        </div> -->
+
+
+                  </td>
+                  <td scope="row">Prescription Required</td>
+            </tr>
+
+        </tbody>
+      </table>
+    </div>
+    </div>
