@@ -24,6 +24,7 @@ import { ErrorInterceptor } from './services/error-interceptor';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MainComponent } from './main/main.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CatalogComponent } from './catalog/catalog.component';
     ProductComponent,
     MainComponent,
     CatalogComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ManageProfileComponent
 
   ],
   imports: [
