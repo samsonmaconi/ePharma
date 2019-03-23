@@ -23,7 +23,7 @@ FEATURES WORKED ON
 
 1. Products Catalog - Samson Maconi (B00801169)
 2. Sign in and Registration - Saraiya Smit Ashish (B00811636)
-3.
+3. Upload-Prescription - Samarth Vyomeshchandra Raval (B00812673)
 4.
 5.
 
@@ -37,7 +37,7 @@ The Products Catalog consists of 2 main components: the `catalog` component and 
 Sign In and Registration
 ------------------------
 
-The login and registration components validates the user's authenticity and allows the user to purchase through e-Pharma. There are two seperate components for login and registration. Folder path : E_Pharma -> src -> app -> Login (for login component) and E_Pharma -> src -> app -> Registration (for Registration component). All the Html, scss, and .ts files are found inside the respective components. 
+The login and registration components validates the user's authenticity and allows the user to purchase through e-Pharma. There are two seperate components for login and registration. Folder path : E_Pharma -> src -> app -> Login (for login component) and E_Pharma -> src -> app -> Registration (for Registration component). All the Html, scss, and .ts files are found inside the respective components.
 
 For the new user : click new to e_Pharma on Customer sign in page and fill out the registration form. After successful registration and login the user will get access to the secure components of the website (such as Upload Prescription). In order to upload the prescription the user must be logged in into e_Pharma.
 
@@ -60,6 +60,33 @@ If any npm modules are not working (irrespective of the directories : app or ser
 The UI of Manage profile is ready with all the validations.
 The forgot password link will be redirected to the blank html page (which will be fixed later).
 
+Upload Prescription
+-------------------
+
+http://localhost:4200/upload-prescription
+Upload Prescription is an essential part of the website, it is used when the user wants to buy a drug which needs a doctor’s prescription.
+
+Files which shows Upload Prescription part are below:
+  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\src\app\upload-prescription (HTML,ts,scss) [3]
+  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\src\app\prescription.model.ts
+  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\server\routes\prescription.routes.js
+  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\server\models\prescription.js
+  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\server\images
+
+This feature helps user to upload prescription in the form of .jpeg .jpg or .png
+After adding all details data will be stored in collections named epharma/prescriptions. We used MEAN stack for our website development.
+Prescription images will be stored in a folder named server/images and the image name is the "_id number" which is unique every time. In the database, the location of the image will be stored, this technique is used to save the space in the database.
+All fields are mandatory in upload-prescription.
+  Order Number, Name, Email Address, Phone Number and upload-prescription are mandatory [2].
+  Validation on email will match a regular expression with incoming email. If both matches, then only it will allow submitting the prescription.
+  The user will able to see the preview of prescription after uploading it. It is mandatory to upload the image to complete the prescription form.
+
+To run the Upload-prescription feature user can simply click on Upload Prescription button on home page. It will redirect the user to login page.
+After login into system user will able to see the upload-prescription page.
+To use upload-prescription user needs to register first if they don't have a username and password.
+Dummy email address and password can be: samraval11@yahoo.com , samarth123
+
+
 IMAGE REFERENCES
 ----------------
 
@@ -72,6 +99,10 @@ Gaviscon Med Banner (Home Page Single Slider Component) - Source: ('https://www.
 REFERENCES
 ----------
 [1]"JWT.IO", Jwt.io, 2019. [Online]. Available: https://jwt.io/. [Accessed: 23- Mar- 2019].
+[2]"Upload Prescription - Pet Prescriptions", Petprescription.co.uk, 2019. [Online].
+Available: https://www.petprescription.co.uk/upload_prescription/. [Accessed: 23- Mar- 2019].
+[3]Image preview before upload in angular 5. [online] Stack Overflow.
+ Available at: https://stackoverflow.com/questions/50482814/image-preview-before-upload-in-angular-5 [Accessed 23 Mar. 2019].
 
 THE W3C FRONT-END VALIDATION TESTS
 ----------------------------------
