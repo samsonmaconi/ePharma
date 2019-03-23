@@ -6,15 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  pitch = 'The trusted online pharmacy for... Voluptate fugiat labore consectetur Lorem.' +
-  'Consectetur non dolor enim id ex dolor. Eu labore voluptate elit fug';
+  pitch =
+    'Your trusted online pharmacy for certified pharmaceutical grade medications and supplies within the Halifax Municipal Area. Established in 2019';
   tel = '+1 (902) 580-6278';
   address = '999 South Street, Halifax, B2A 1S9';
   email = 'info@epharmagroup.com';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
