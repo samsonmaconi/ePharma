@@ -22,7 +22,7 @@ FEATURES WORKED ON
 ------------------
 
 1. Products Catalog - Samson Maconi (B00801169)
-2.
+2. Sign in and Registration - Saraiya Smit Ashish (B00811636)
 3.
 4.
 5.
@@ -34,8 +34,31 @@ PRODUCT CATALOG
 The Products Catalog consists of 2 main components: the `catalog` component and the `product` component. The catalog component can be navigated to using the `header` category links (in the `nav-category` component), or by searching for a product using the search component within the `nav` component. The `product` component displays information relating to a specific product selected from the catalog. The catalog component displays all the products under the selected category
 
 
+Sign In and Registration
+------------------------
 
+The login and registration components validates the user's authenticity and allows the user to purchase through e-Pharma. There are two seperate components for login and registration. Folder path : E_Pharma -> src -> app -> Login (for login component) and E_Pharma -> src -> app -> Registration (for Registration component). All the Html, scss, and .ts files are found inside the respective components. 
 
+For the new user : click new to e_Pharma on Customer sign in page and fill out the registration form. After successful registration and login the user will get access to the secure components of the website (such as Upload Prescription). In order to upload the prescription the user must be logged in into e_Pharma.
+
+To validate the routes, there is Auth-guard under the service folder which blocks the access of secured pages unless the user is authenticated.
+
+To test the auth guard (type: http://localhost:4200/upload-prescription), if the user is logged in then it will allow to upload the prescription image and will not allow otherwise.
+
+To test login and registration:
+After successful registration and login (type: http://localhost:4200/registration) or (type: http://localhost:4200/login) the user will be redirected to the home page only.
+
+Session handling is done with the help of JWT(jsonwebtoken)[1]. With each api request the token will be passed to the front end and will get stored in the local storage. After successful login the token will remain in the local storage for 1 hour, so if the user wish to refresh the page then also the token will still remain in the storage and after one hour the user will be automatically logged out.
+
+**NOTE**
+If any npm modules are not working (irrespective of the directories : app or server) : run npm install command once again to install all the dependancies.
+
+-- Run npm start for the backend server first on port 1234.
+-- Run npm start in main project folder (http://localhost:4200/).
+
+** Additional Information:
+The UI of Manage profile is ready with all the validations.
+The forgot password link will be redirected to the blank html page (which will be fixed later).
 
 IMAGE REFERENCES
 ----------------
@@ -46,7 +69,9 @@ Pills in grey Background (Signin and Signup pages) - Source: ('https://images.un
 Vitamins Banner (Home Page Single Slider Component) - Source: ('https://www.m-medix.com/modules/homeslider/images/84e5d282edcd5febda7d5e46cfadce1f91724100_Vitamin%20C2.jpg')
 Gaviscon Med Banner (Home Page Single Slider Component) - Source: ('https://www.m-medix.com/modules/homeslider/images/5b13b9c3158712bb4b3dd30ba56fe02264f142a3_GAVISCON%20PEPPERMINT.png')
 
-
+REFERENCES
+----------
+[1]"JWT.IO", Jwt.io, 2019. [Online]. Available: https://jwt.io/. [Accessed: 23- Mar- 2019].
 
 THE W3C FRONT-END VALIDATION TESTS
 ----------------------------------
