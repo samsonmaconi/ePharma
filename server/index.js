@@ -3,10 +3,10 @@ const app = express();
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const loginRegisterRoute = require("./routes/login-register-routes");
-const productRoutes = require("./routes/products");
+const productRoutes = require("./routes/products.routes");
 const adminRoutes = require("./routes/admin");
 const mongoose = require("mongoose");
-const prescriptionRoute = require("./routes/prescription-routes");
+const prescriptionRoute = require("./routes/prescription.routes");
 const PORT = 1234;
 
 const DB_URI =

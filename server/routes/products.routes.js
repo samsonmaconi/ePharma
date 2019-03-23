@@ -3,6 +3,9 @@ const router = express.Router();
 
 const Product = require('../models/products');
 
+const dbErrorResponse =
+  'The requested resource is currently unavailable. Please try again later.';
+
 router.get('/:type', async (req, res) => {
   switch (req.params.type) {
     case 'featured':
@@ -11,21 +14,42 @@ router.get('/:type', async (req, res) => {
           { product_rating: { $gte: req.query.minrating } },
           { product_rating: { $lte: req.query.maxrating } }
         ]
-      }).sort({ product_rating: -1 });
+      })
+        .sort({ product_rating: -1 })
+        .catch(err => {
+          console.error(err);
+          res.status(503).send({ error: err, message: dbErrorResponse });
+          return 0;
+        });
       res.send(data);
       break;
     case 'catalog':
       data = await Product.find({
         product_category: { $in: req.query.category }
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(503).send({ error: err, message: dbErrorResponse });
+        return 0;
       });
       res.send(data);
       break;
     case 'category':
-      data = await Product.distinct('product_category');
+      data = await Product.distinct('product_category')
+      .catch(err => {
+        console.error(err);
+        res.status(503).send({ error: err, message: dbErrorResponse });
+        return 0;
+      });
       res.send(data);
       break;
     case 'product':
-      data = await Product.find({ _id: req.query.id });
+      data = await Product.find({ _id: req.query.id })
+      .catch(err => {
+        console.error(err);
+        res.status(503).send({ error: err, message: dbErrorResponse });
+        return 0;
+      });
       res.send(data);
       break;
     case 'search':
@@ -97,7 +121,12 @@ router.get('/:type', async (req, res) => {
             count: '$count'
           }
         }
-      ]);
+      ])
+      .catch(err => {
+        console.error(err);
+        res.status(503).send({ error: err, message: dbErrorResponse });
+        return 0;
+      });
 
       res.send([data, categoriesCount]);
       break;
