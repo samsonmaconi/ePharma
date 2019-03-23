@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const Product = require('../models/products');
 const Orders = require('../models/orders');
-<<<<<<< HEAD
 const Product = require('../models/products');
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -18,13 +17,9 @@ router.get('/viewOrders/:id', async (req, res) => {
 });
 
 router.get('/viewOrders', async(req, res) =>{
-=======
-const mongoose = require('mongoose');
-router.get('/api/admin/viewOrders', async(req, res) =>{
->>>>>>> d0b05626666364964889c0771898d49eea9ac9a4
   data = await Orders.find();
   res.send(data);
-})
+});
 
 router.post('/saveOrders', async(req, res) =>{
 
@@ -64,12 +59,9 @@ router.get('/products', async (req, res) => {
 });
 
 router.get('/products/:id', async (req, res) => {
-<<<<<<< HEAD
   if (!ObjectId.isValid(req.params.id))
       return res.status(400).send(`No record with given id : ${req.params.id}`);
 
-=======
->>>>>>> d0b05626666364964889c0771898d49eea9ac9a4
   Product.findById(req.params.id, (err, doc) => {
       if (!err) { res.send(doc); }
       else { console.log('Error in Retriving Employee :' + JSON.stringify(err, undefined, 2)); }
