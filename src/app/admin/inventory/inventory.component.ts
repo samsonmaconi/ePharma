@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-inventory',
@@ -9,9 +10,11 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class InventoryComponent implements OnInit {
   public product: any;
+  prod_id: any;
   productName: string;
+  productDescription:string;
   closeResult: string;
-
+  URL = '/api/admin/products/';
 
   constructor( private http: HttpClient, private modalService: NgbModal) {}
 
@@ -22,7 +25,6 @@ export class InventoryComponent implements OnInit {
   loadData() {
     this.http.get('/api/admin/products', {responseType: 'json'}).subscribe(
       response => {
-          console.log('product:' + response);
           this.product = response;
      });
   }
@@ -35,8 +37,12 @@ export class InventoryComponent implements OnInit {
     });
   }
 
-  save(content) {
-    this.http.put('/api/admin/products/', {responseType: 'json'}).subscribe(
+  onSubmit(productForm: NgForm) {
+    this.prod_id = JSON.stringify(productForm.value._id);
+    alert(this.prod_id);
+    console.log(productForm.value.productName);
+    console.log(productForm.value.productDescription);
+    this.http.put(this.URL + productForm.value._id, {responseType: 'json'}).subscribe(
       response => {
           console.log('product:' + response);
           this.product = response;
