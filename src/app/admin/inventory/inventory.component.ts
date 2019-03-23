@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
-
+import { Product } from '../../models/product.model';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
@@ -13,6 +13,7 @@ export class InventoryComponent implements OnInit {
   prod_id: any;
   productName: string;
   productDescription:string;
+  prod: Product;
   closeResult: string;
   URL = '/api/admin/products/';
 
@@ -42,11 +43,13 @@ export class InventoryComponent implements OnInit {
     alert(this.prod_id);
     console.log(productForm.value.productName);
     console.log(productForm.value.productDescription);
-    this.http.put(this.URL + productForm.value._id, {responseType: 'json'}).subscribe(
-      response => {
-          console.log('product:' + response);
-          this.product = response;
-     });
+    this.putProduct(productForm.value).subscribe((res) => {
+      alert('Updated successfully');
+    });
+  }
+
+   putProduct(prod: Product) {
+    return this.http.put(this.URL + `${prod._id}`, prod);
   }
 
   private getDismissReason(reason: any): string {
