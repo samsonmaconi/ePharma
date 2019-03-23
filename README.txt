@@ -36,7 +36,7 @@ FEATURES WORKED ON
 1. Products Catalog - Samson Maconi (B00801169)
 2. Sign in and Registration - Saraiya Smit Ashish (B00811636)
 3. Upload-Prescription - Samarth Vyomeshchandra Raval (B00812673)
-4.
+4. Pharmacist/Admin Panel - dashboard and order management - Navneet Prakash Singh (B00810744)
 5.
 
 
@@ -103,6 +103,28 @@ To run the Upload-prescription feature user can simply click on Upload Prescript
 After login into system user will able to see the upload-prescription page.
 To use upload-prescription user needs to register first if they don't have a username and password.
 Dummy email address and password can be: samraval11@yahoo.com , samarth123
+
+
+PHARMACIST/ADMIN PANEL - DASHBOARD AND ORDER MANAGEMENT
+----------------
+Admin panel is the portal which would be available only to the pharmacist and is designed by keeping the mindset of pharmacist in mind. We wanted to display the important information directly infront of the pharmacist, therefore using a side nav bar, thereby, adhering to the usability of the application.
+When the pharmacist navigates to the dashboard page, certain information like pending orders, revenue generated, completed orders, thus displaying the vital information that the pharmacist needs.
+Pharmacist panel is available at 'localhost:<port number>/admin/dashboard' page of the application.
+
+Another important feature for the pharmacist is the orders management, where the pharmacist is able to view the items related to the order, change the status related to the order.
+When the pharmacist would navigate to the orders page, they can view the orders along with their status, and by clicking the view order, they can view the items related to the order and update the status of the item accordingly.
+Pharmacist order panel is available at 'localhost:<port number>/admin/order' page of the application.
+
+Files covered under this module include:
+/src/app/admin/admin-main/ : Files related to the main UI, routes of the admin Panel
+/src/app/admin/adminlogin/ : Files related to the login UI, routes of the admin Panel
+/src/app/admin/adminnavbar/: Files related to the navbar UI, routes of the admin Panel
+/src/app/admin/dashboard/ : Files related to the dashboard UI, routes of the admin Panel
+/src/app/admin/orderitems/ : Files related to the order items UI, routes of the admin Panel
+/src/app/admin/orders/ : Files related to the order UI, routes of the admin Panel
+/src/app/admin/sidebar/: Files related to the sidebar UI, routes of the admin Panel
+/routes/admin.js: Files related to the backend node logic of the admin Panel
+
 
 
 IMAGE REFERENCES
