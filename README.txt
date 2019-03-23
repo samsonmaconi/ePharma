@@ -73,6 +73,16 @@ After successful registration and login (type: http://localhost:4200/registratio
 
 Session handling is done with the help of JWT(jsonwebtoken)[1]. With each api request the token will be passed to the front end and will get stored in the local storage. After successful login the token will remain in the local storage for 1 hour, so if the user wish to refresh the page then also the token will still remain in the storage and after one hour the user will be automatically logged out.
 
+Files which shows Login and Registration part are below:
+  \src\app\Login (HTML,ts,scss)
+  \src\app\Registration (HTML,ts,scss)
+  \src\app\services
+  \src\app\auth-data.models.ts
+  \src\app\auth-login.ts
+  \server\routes\middleware\authentication.js
+  \server\models\user.js
+  \server\routes\login-register-routes.js
+
 ** Additional Information:
 The UI of Manage profile is ready with all the validations.
 The forgot password link will be redirected to the blank html page (which will be fixed later).
