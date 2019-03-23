@@ -23,13 +23,14 @@ export class InventoryComponent implements OnInit {
     this.loadData();
 
   }
+  //By default load the page with data
   loadData() {
     this.http.get('/api/admin/products', {responseType: 'json'}).subscribe(
       response => {
           this.product = response;
      });
   }
-
+//Display modal form on clicking the edit button
   edit(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -37,7 +38,7 @@ export class InventoryComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-
+  //Handling edit form functionality
   onSubmit(productForm: NgForm) {
     this.prod_id = JSON.stringify(productForm.value._id);
     alert(this.prod_id);
@@ -47,7 +48,6 @@ export class InventoryComponent implements OnInit {
       alert('Updated successfully');
     });
   }
-
    putProduct(prod: Product) {
     return this.http.put(this.URL + `${prod._id}`, prod);
   }

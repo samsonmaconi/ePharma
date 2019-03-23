@@ -25,7 +25,7 @@
           <div class="form-group">
               <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="prod._id">
             <div class="col form-label-group">
-              <input  (input) = "productName = $event.target.value" type="text" class="form-control"  value={{prod.product_name}} placeholder="Product name" id="pname"
+              <input  type="text"  (input) = "productName = $event.target.value" class="form-control"  value={{prod.product_name}} placeholder="Product name" id="pname"
                 name="productName" #product_name="ngModel" [(ngModel)]="prod.product_name"/>
                 <label for="pname">Product Name</label>
             </div>
