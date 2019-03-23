@@ -12,7 +12,8 @@
                 <div class="card-body p-md-4">
                   <h3
                     class="card-title text-center font-weight-bold color1 mb-md-4"
-                  >Upload Prescription
+                  >
+                    Upload Prescription
                   </h3>
 
                   <p style="color:black">
@@ -24,7 +25,6 @@
                     uploading the prescription please call us on 01761 258517
                     and we can make sure it has made it's way to us.
                   </p>
-
 
                   <p style="color:black">
                     <b>Why do I need a Written Prescription?</b>
@@ -52,7 +52,7 @@
                     6 months. Prescriptions for some scheduled drugs, such as
                     Epiphen, are only valid for 28 days.
                   </p>
-              </div>
+                </div>
               </div>
             </div>
           </div>
@@ -74,16 +74,28 @@
                     Upload Prescription
                   </h3>
                   <form [formGroup]="prescriptionForm" (ngSubmit)="onSubmit()">
-                    <div class="form-label-group">
+                    <div
+                      class="form-label-group"
+                      [ngClass]="{
+                        'has-error':
+                          prescriptionForm.controls.orderNumber.errors &&
+                          (prescriptionForm.controls.orderNumber.touched ||
+                            prescriptionForm.controls.orderNumber.dirty)
+                      }"
+                    >
                       <input
                         type="text"
                         id="orderNumber"
                         class="form-control"
                         placeholder="Order Number"
                         formControlName="orderNumber"
+                        required
                         autofocus
                       />
-                      <label for="inputOrderNumber">Order Number</label>
+                      <label for="inputOrderNumber">Order Number*</label>
+                      <span class="invalid-feedback"
+                        >Order Number is required</span
+                      >
                     </div>
 
                     <div
@@ -102,7 +114,6 @@
                         placeholder="Name"
                         formControlName="name"
                         required
-                        autofocus
                       />
                       <label for="inputName">Name*</label>
                       <span class="invalid-feedback">Name is required</span>
@@ -127,14 +138,9 @@
                         required
                       />
                       <label for="inputEmail">Email address*</label>
-                      <!--
-                          <ng-container *ngIf="prescriptionForm.controls.email.errors">
-                            <span *ngIf="prescriptionForm.controls.email.errors.pattern" class="invalid-feedback">Must be a valid email
-                              address</span>
-                            <span *ngIf="prescriptionForm.controls.email.errors.required" class="invalid-feedback">Your E-mail is
-                              required</span>
-                          </ng-container>
-                          -->
+                      <span class="invalid-feedback"
+                        >Your Email is required</span
+                      >
                     </div>
 
                     <div
@@ -159,12 +165,7 @@
                         >Your Phone Number is required</span
                       >
                     </div>
-                    <!--
-                        <div class="form-label-group">
-                          <button mat-stroked-button type="button" (click)="filePicker.click()">Prescription File</button>
-                          <input type="file" accept="image/*" #filePicker (change)="handleFileInput($event)">
-                        </div>
-                        -->
+
                     <div class="form-label-group">
                       <span class="titleUpload"
                         >Upload Prescription(only .png & .jpg)*:</span
@@ -172,10 +173,6 @@
                     </div>
 
                     <div class="image-upload">
-                      <!-- <img
-                        [src]="imageSrc"
-                        style="max-width:300px;max-height:300px"
-                      /> -->
                       <button type="button" #hover (click)="filePicker.click()">
                         Prescription
                       </button>
@@ -186,8 +183,21 @@
                         (change)="onFileChanged($event)"
                         formControlName="image"
                         #filePicker
+                        required
                       />
                     </div>
+
+                    <div
+                      class="form-label-group"
+                      class="image-preview"
+                      *ngIf="imagePreview !== '' && imagePreview"
+                    >
+                      <img
+                        [src]="imagePreview"
+                        [alt]="prescriptionForm.value.inputOrderNumber"
+                      />
+                    </div>
+
                     <div class="form-label-group">
                       <button
                         class="btn btn-register bg-color1 btn-primary btn-block "
