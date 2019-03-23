@@ -17,29 +17,23 @@
             <div class="card bg-success text-color-white">
               <div class="card-body">
                 <h5 class="card-title">Completed Orders</h5>
-                <p class="card-text">Total number of completed orders are: </p>
+                <p class="card-text">Total number of completed orders are: {{completedOrderCount}} </p>
               </div>
             </div>
           </div>
       </div>
 
+      <div class="row">
+        <div class="col-sm-6 text-color-white">
+          <div class="card bg-primary">
+            <div class="card-body">
+              <h5 class="card-title">Revenue Generated</h5>
+              <p class="card-text">Total revenue generated is: $ {{totalReveueGenerated}}</p>
+            </div>
+          </div>
+        </div>
+        </div>
 
-
-      <table>
-          <thead>
-            <tr>
-              <td>Key</td>
-              <td>ID</td>
-              <td>Name</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor ="let d of data;">
-              <td>{{d.order_id}}</td>
-              <td>{{d.order_status}}</td>
-            </tr>
-          </tbody>
-        </table>
   </div>
 </div> <!-- /#page-content-wrapper -->
 </div>

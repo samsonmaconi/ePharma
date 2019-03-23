@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public data: any ;
   public pendingOrders: any;
   public pendingOrderCount: any;
+  public completedOrderCount: any;
+  public totalReveueGenerated: any;
   private routerSub: any;
   productID: string;
   starRating = 0;
@@ -41,7 +43,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   checkConnection() {
-    this.http.get('https://api.myjson.com/bins/10xt9u', {responseType: 'json'}).subscribe(
+    this.http.get('/api/admin/viewOrders/', {responseType: 'json'}).subscribe(
       response => {
           console.log('data :' + response);
           this.data = response;
@@ -53,13 +55,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   calculatePendingOrders() {
     let countPendingOrders = 0;
+    let completedOrders = 0;
+    let revenueGenerated = 0;
     console.log('Inside pending orders');
     for ( let results of this.data) {
+      revenueGenerated = revenueGenerated + results.total_cost;
       if ( results.order_status === 0) {
           countPendingOrders  = countPendingOrders + 1;
+      }else{
+        completedOrders = completedOrders + 1;
       }
     }
+    this.completedOrderCount = completedOrders;
     this.pendingOrderCount = countPendingOrders;
+    this.totalReveueGenerated = revenueGenerated;
   }
 
   ngOnDestroy() {
