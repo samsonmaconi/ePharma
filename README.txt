@@ -18,6 +18,18 @@ For this project, we will be using the required Angular folder structure.
 The `server` folder is where the backend node server for this application is implemented as a subproject with its own `package.json` implementation. It holds a `models` folder for all the models used for the mongoose library for accessing the collections in the Mongo Database. It also holds a `routes` folder for all the routes used for different modules of the application
 
 
+NECESSARY CONNECTION PARAMETERS TO EXPLORE THE DB USING MONGODB COMPASS
+-----------------------------------------------------------------------
+
+Hostname: cluster0-me8ny.mongodb.net
+SRV Record: on
+Username: epharma_admin
+Password: epharma_admin
+Authentication Database: admin
+SSL: System CA / Atlad Depl
+SSH: None
+
+
 FEATURES WORKED ON
 ------------------
 
@@ -31,10 +43,21 @@ FEATURES WORKED ON
 PRODUCT CATALOG
 ---------------
 
-The Products Catalog consists of 2 main components: the `catalog` component and the `product` component. The catalog component can be navigated to using the `header` category links (in the `nav-category` component), or by searching for a product using the search component within the `nav` component. The `product` component displays information relating to a specific product selected from the catalog. The catalog component displays all the products under the selected category
+The Products Catalog consists of 2 primary components: the `catalog` component (`\src\app\catalog`) and the `product` component (`\src\app\product`).
+
+The catalog component can be navigated to using the `header` category links (in the `nav-category` component, `\src\app\nav-category`),
+or by searching for a product using the search component within the `nav` component, `\src\app\nav`.
+
+The `product` component displays information relating to a specific product selected from the catalog.
+
+The catalog component displays all the products under the selected category. It allows sorting, filtering, ang pagination of the result set.
+
+The backend routes for the catalog are all under the `/api/products` access point (see `\server\routes\products.routes.js` for the directives).
+
+** N.B: The PRODUCT CATALOG implements presentation. The SHOPPING CART is a seperate component to be integrated later.
 
 
-Sign In and Registration
+SIGN IN AND REGISTRATION
 ------------------------
 
 The login and registration components validates the user's authenticity and allows the user to purchase through e-Pharma. There are two seperate components for login and registration. Folder path : E_Pharma -> src -> app -> Login (for login component) and E_Pharma -> src -> app -> Registration (for Registration component). All the Html, scss, and .ts files are found inside the respective components.
@@ -50,28 +73,23 @@ After successful registration and login (type: http://localhost:4200/registratio
 
 Session handling is done with the help of JWT(jsonwebtoken)[1]. With each api request the token will be passed to the front end and will get stored in the local storage. After successful login the token will remain in the local storage for 1 hour, so if the user wish to refresh the page then also the token will still remain in the storage and after one hour the user will be automatically logged out.
 
-**NOTE**
-If any npm modules are not working (irrespective of the directories : app or server) : run npm install command once again to install all the dependancies.
-
--- Run npm start for the backend server first on port 1234.
--- Run npm start in main project folder (http://localhost:4200/).
-
 ** Additional Information:
 The UI of Manage profile is ready with all the validations.
 The forgot password link will be redirected to the blank html page (which will be fixed later).
 
-Upload Prescription
+
+UPLOAD PRESCRIPTION
 -------------------
 
 http://localhost:4200/upload-prescription
 Upload Prescription is an essential part of the website, it is used when the user wants to buy a drug which needs a doctor’s prescription.
 
 Files which shows Upload Prescription part are below:
-  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\src\app\upload-prescription (HTML,ts,scss) [3]
-  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\src\app\prescription.model.ts
-  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\server\routes\prescription.routes.js
-  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\server\models\prescription.js
-  C:\Users\Samarth\Documents\Winter-2019\Web Development\web_project\epharma_dal\server\images
+  \src\app\upload-prescription (HTML,ts,scss) [3]
+  \src\app\prescription.model.ts
+  \server\routes\prescription.routes.js
+  \server\models\prescription.js
+  \server\images
 
 This feature helps user to upload prescription in the form of .jpeg .jpg or .png
 After adding all details data will be stored in collections named epharma/prescriptions. We used MEAN stack for our website development.
@@ -96,13 +114,16 @@ Pills in grey Background (Signin and Signup pages) - Source: ('https://images.un
 Vitamins Banner (Home Page Single Slider Component) - Source: ('https://www.m-medix.com/modules/homeslider/images/84e5d282edcd5febda7d5e46cfadce1f91724100_Vitamin%20C2.jpg')
 Gaviscon Med Banner (Home Page Single Slider Component) - Source: ('https://www.m-medix.com/modules/homeslider/images/5b13b9c3158712bb4b3dd30ba56fe02264f142a3_GAVISCON%20PEPPERMINT.png')
 
+
 REFERENCES
 ----------
+
 [1]"JWT.IO", Jwt.io, 2019. [Online]. Available: https://jwt.io/. [Accessed: 23- Mar- 2019].
 [2]"Upload Prescription - Pet Prescriptions", Petprescription.co.uk, 2019. [Online].
 Available: https://www.petprescription.co.uk/upload_prescription/. [Accessed: 23- Mar- 2019].
 [3]Image preview before upload in angular 5. [online] Stack Overflow.
  Available at: https://stackoverflow.com/questions/50482814/image-preview-before-upload-in-angular-5 [Accessed 23 Mar. 2019].
+
 
 THE W3C FRONT-END VALIDATION TESTS
 ----------------------------------
