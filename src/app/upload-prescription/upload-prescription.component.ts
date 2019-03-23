@@ -12,7 +12,6 @@ import { HttpClient } from '@angular/common/http';
 export class UploadPrescriptionComponent implements OnInit {
   fileToUpload: File = null;
   prescriptionForm: FormGroup;
-  public imageSrc: '';
   imagePreview: string;
 
   constructor(
@@ -51,7 +50,7 @@ export class UploadPrescriptionComponent implements OnInit {
       data.append('image', this.fileToUpload);
 
       this.prescriptionForm.reset();
-      this.imageSrc = '';
+      this.imagePreview = '';
       this.http.post('/api/prescription', data)
       .subscribe(response => {
         console.log(response);

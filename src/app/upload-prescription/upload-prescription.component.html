@@ -139,7 +139,7 @@
                       />
                       <label for="inputEmail">Email address*</label>
                       <span class="invalid-feedback"
-                        >Your Email is required</span
+                        >Invalid Email Address</span
                       >
                     </div>
 
@@ -162,7 +162,7 @@
                       />
                       <label for="inputPhoneNumber">Phone Number*</label>
                       <span class="invalid-feedback"
-                        >Your Phone Number is required</span
+                        >Phone Number is required</span
                       >
                     </div>
 
@@ -173,7 +173,7 @@
                     </div>
 
                     <div class="image-upload">
-                      <button type="button" #hover (click)="filePicker.click()">
+                      <button type="button" #hover (click)="filePicker.click()" required>
                         Prescription
                       </button>
                       <input
@@ -183,7 +183,6 @@
                         (change)="onFileChanged($event)"
                         formControlName="image"
                         #filePicker
-                        required
                       />
                     </div>
 
