@@ -22,10 +22,12 @@
           font-size: 20px; color: #1972A4;">Welcome {{firstname}} </span>
         <ul class="navbar-nav d-none d-md-inline-flex">
           <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!IsUserAuth">
-            <a class="nav-link" routerLink="/login"><i class="fa fa-user" aria-hidden="true"> </i> Sign In</a>
+            <a class="nav-link" routerLink="/login"><i class="fa fa-user" aria-hidden="true"> </i>
+              Sign In</a>
           </li>
-          <li ngbDropdown class= "nav-item" *ngIf="IsUserAuth" [routerLinkActive]="['active']">
-            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle  routerLink="" ><i class="fa fa-user" aria-hidden="true"> </i>My Profile</a>
+          <li class= "nav-item ml-auto" ngbDropdown *ngIf="IsUserAuth" [routerLinkActive]="['active']">
+            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user" aria-hidden="true"> </i>
+              My Profile</a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button ngbDropdownItem class="btn-block drop-button" routerLink="/manage-profile">Manage Profile</button>
               <button ngbDropdownItem class="btn-block drop-button" routerLink="/home"

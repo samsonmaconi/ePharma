@@ -9,15 +9,12 @@
               </div>
               <div class="card-body text-info">
                 <form [formGroup]="myform" (ngSubmit)="onSubmit()">
-
-
                   <div class="form-group form-row">
                     <div class="col form-label-group">
-
                       <input type="text" class="form-control" formControlName="firstName" placeholder="First name" id="fname"
                         name="firstName"
                         [ngClass]="{ 'is-invalid' : myform.controls.firstName.errors && (myform.controls.firstName.touched || myform.controls.firstName.dirty)}"
-                        required >
+                        required autofocus >
                         <label for="fname">First Name</label>
                       <span class="invalid-feedback"
                         *ngIf="{ 'is-invalid' : myform.controls.firstName.errors && (myform.controls.firstName.touched || myform.controls.firstName.dirty)}">
