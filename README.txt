@@ -14,7 +14,7 @@ INSTALLATION AND STARTUP INSTRUCTIONS
 FOLDER STRUCTURE
 ----------------
 
-For this project, we will be using the required Angular folder.
+For this project, we will be using the required Angular folder structure.
 The `server` folder is where the backend node server for this application is implemented as a subproject with its own `package.json` implementation. It holds a `models` folder for all the models used for the mongoose library for accessing the collections in the Mongo Database. It also holds a `routes` folder for all the routes used for different modules of the application
 
 
