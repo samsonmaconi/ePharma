@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const router = express.Router();
-const Product = require('../models/products');
 const Orders = require('../models/orders');
 const Product = require('../models/products');
 const ObjectId = mongoose.Types.ObjectId;
@@ -112,6 +111,23 @@ router.delete('/products/:id', (req, res) => {
   Product.findByIdAndRemove(req.params.id, (err, doc) => {
       if (!err) { res.send(doc); }
       else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
+
+router.put('/UpdateOrders/', (req, res) => {
+  console.log("----------");
+  console.log(req.params.id);
+  var order = {
+    _id: "5c9284464642ad110fc517c3",
+    items : [{item_id : "5c92856e4642ad110fc517c4", status: 12}]
+  };
+
+  Orders.findByIdAndUpdate(req.params.id, { $set: order }, { new: true }, (err, doc) => {
+      if (!err) {
+        res.send(doc); }
+      else {
+        console.log(req.body._id);
+        console.log('Error in Order Update :' + JSON.stringify(err, undefined, 2)); }
   });
 });
 
