@@ -129,6 +129,7 @@
         ></ng-container>
       </div>
       <div class="w-100"></div>
+      <span *ngIf="productsFiltered.length==0" class="w-100 text-center text-uppercase large font-weight-bolder">No Relevant Products Available at this time</span>
       <ng-container
         *ngFor="
           let item of (productsFiltered
