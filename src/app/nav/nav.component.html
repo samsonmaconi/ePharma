@@ -18,39 +18,31 @@
       </div>
 
       <div class="pt-3 row no-gutters w-100 justify-content-end align-bottom">
-        <span *ngIf="IsUserAuth" _ngcontent-c3="" class="nav-item p-2" style="
-          padding-right: 25% !important;
-          font-size: 28px; color: #1972A4;">Welcome {{firstname}} </span>
+        <span *ngIf="IsUserAuth" _ngcontent-c3="" class="nav-item p-2 mr-auto" style="
+          font-size: 20px; color: #1972A4;">Welcome {{firstname}} </span>
         <ul class="navbar-nav d-none d-md-inline-flex">
           <li class="nav-item" [routerLinkActive]="['active']" *ngIf="!IsUserAuth">
-            <a class="nav-link" routerLink="/login"><i class="fa fa-user" aria-hidden="true"> </i> Sign In</a>
+            <a class="nav-link" routerLink="/login"><i class="fa fa-user" aria-hidden="true"> </i>
+              Sign In</a>
           </li>
-          <div ngbDropdown class="d-inline-block" *ngIf="IsUserAuth">
-            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>My Profile</button>
+          <li class= "nav-item ml-auto" ngbDropdown *ngIf="IsUserAuth" [routerLinkActive]="['active']">
+            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user" aria-hidden="true"> </i>
+              My Profile</a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button ngbDropdownItem class="btn-block drop-button" routerLink="/">Manage Profile</button>
+              <button ngbDropdownItem class="btn-block drop-button" routerLink="/manage-profile">Manage Profile</button>
               <button ngbDropdownItem class="btn-block drop-button" routerLink="/home"
                 (click)="onLogout()">Logout</button>
             </div>
-          </div>
+          </li>
 
           <li class="nav-item ml-auto" [routerLinkActive]="['active']">
             <a class="nav-link" routerLink="shoppingcart"><i class="fa fa-shopping-cart" aria-hidden="true"> </i>
               Shopping Cart (<span class="cart-itemcount">{{ cartItemCount }}</span>) </a>
           </li>
         </ul>
-
-        <div class="d-block w-100 d-md-none">
-          <a class="btn col-12 block" routerLink="signin"><i class="fa fa-user" aria-hidden="true"> </i> Sign In</a>
-          <a class="btn col-12 block mt-3" routerLink="shoppingcart"><i class="fa fa-shopping-cart" aria-hidden="true"> </i>
-            Shopping Cart (<span class="">{{ cartItemCount }}</span>) </a>
-        </div>
       </div>
     </div>
-
   </div>
-
-
 </nav>
 <form [formGroup]="" (keydown.enter)="onSearchSubmit($event)" class="form-inline col-12 py-4 bg-light d-md-none">
   <input class="form-control product-search" type="search" placeholder="Search for prescription medicine and OTC products" [value]="searchString" (keydown)="searchString=searchInput2.value" #searchInput2 autocomplete="off">

@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const router = express.Router();
-
+const Product = require('../models/products');
 const Orders = require('../models/orders');
+<<<<<<< HEAD
 const Product = require('../models/products');
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -17,6 +18,10 @@ router.get('/viewOrders/:id', async (req, res) => {
 });
 
 router.get('/viewOrders', async(req, res) =>{
+=======
+const mongoose = require('mongoose');
+router.get('/api/admin/viewOrders', async(req, res) =>{
+>>>>>>> d0b05626666364964889c0771898d49eea9ac9a4
   data = await Orders.find();
   res.send(data);
 })
@@ -59,9 +64,12 @@ router.get('/products', async (req, res) => {
 });
 
 router.get('/products/:id', async (req, res) => {
+<<<<<<< HEAD
   if (!ObjectId.isValid(req.params.id))
       return res.status(400).send(`No record with given id : ${req.params.id}`);
 
+=======
+>>>>>>> d0b05626666364964889c0771898d49eea9ac9a4
   Product.findById(req.params.id, (err, doc) => {
       if (!err) { res.send(doc); }
       else { console.log('Error in Retriving Employee :' + JSON.stringify(err, undefined, 2)); }
@@ -88,12 +96,8 @@ router.post('/products', async (req, res) => {
   })
 })
 
-router.put('/api/admin/products/:id', (req, res) => {
-  if (!ObjectId.isValid(req.params.id))
-      return res.status(400).send(`No record with given id : ${req.params.id}`);
-
+router.put('/products/:id', (req, res) => {
   var product = {
-    _id : req.body._id,
     product_name : req.body.product_name,
     product_description: req.body.product_description,
     product_company: req.body.product_company,
@@ -104,15 +108,15 @@ router.put('/api/admin/products/:id', (req, res) => {
     product_quantity: req.body.product_quantity,
   };
   Product.findByIdAndUpdate(req.params.id, { $set: product }, { new: true }, (err, doc) => {
-      if (!err) { res.send(doc); }
-      else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }
+      if (!err) {
+        res.send(doc); }
+      else {
+        console.log(req.body._id);
+        console.log('Error in Product Update :' + JSON.stringify(err, undefined, 2)); }
   });
 });
 
-router.delete('/api/admin/products/:id', (req, res) => {
-  if (!ObjectId.isValid(req.params.id))
-      return res.status(400).send(`No record with given id : ${req.params.id}`);
-
+router.delete('/products/:id', (req, res) => {
   Product.findByIdAndRemove(req.params.id, (err, doc) => {
       if (!err) { res.send(doc); }
       else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }

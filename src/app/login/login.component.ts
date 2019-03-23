@@ -14,12 +14,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   myform: FormGroup;
   public firstname: string;
   isValid = true;
+  isLoading = false;
   private authSub: Subscription;
   private rsub;
   public IsUserAuth= false;
   constructor(private fb: FormBuilder, public authService: AuthService,private router: Router) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.authSub = this.authService.getAuthStatusListener().subscribe(
       authStatus=>{
         this.isValid = false;
@@ -28,13 +30,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
       this.rsub = this.router.events.subscribe(()=>{
         this.IsUserAuth = this.authService.getIsAuth();
-        this.isValid = false;
       })
     this.myform = this.fb.group({
       email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', Validators.required],
       remember: ['true']
     });
+    if(this.authService.getIsAuth()){
+      return this.router.navigate(['/']);
+    }
   }
 
   onSubmit() {
@@ -43,6 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     this.authService.login(this.myform.value.email,this.myform.value.password)
 // Display user name to front end
+    this.isLoading = false;
     this.firstname = this.authService.getUsernName();
     this.myform.reset();
 

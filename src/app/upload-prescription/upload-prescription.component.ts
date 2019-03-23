@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { PrescriptionService } from '../prescription.service';
 import { prepareProfile } from 'selenium-webdriver/firefox';
 import { HttpClient } from '@angular/common/http';
-// import { IPrescription } from '../prescription.model';
 
 @Component({
   selector: 'app-upload-prescription',
@@ -14,18 +12,17 @@ import { HttpClient } from '@angular/common/http';
 export class UploadPrescriptionComponent implements OnInit {
   fileToUpload: File = null;
   prescriptionForm: FormGroup;
-  public imageSrc: '';
+  imagePreview: string;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    // private prescriptionService: PrescriptionService,
     private http: HttpClient
   ) {}
 
   ngOnInit() {
     this.prescriptionForm = this.fb.group({
-      orderNumber: [''],
+      orderNumber: ['', Validators.required],
       name: ['', Validators.required],
       email: [
         '',
@@ -53,16 +50,16 @@ export class UploadPrescriptionComponent implements OnInit {
       data.append('image', this.fileToUpload);
 
       this.prescriptionForm.reset();
-      this.imageSrc = '';
+      this.imagePreview = '';
       this.http.post('/api/prescription', data)
       .subscribe(response => {
         console.log(response);
       });
 
     } else {
-      console.log('Signup Submision Failed');
+      console.log('Prescription Submision Failed');
       this.markFormGroupTouched(this.prescriptionForm);
-      console.log(this.prescriptionForm.value);
+      console.log('samarth' + this.prescriptionForm.value);
     }
 
   }
@@ -70,6 +67,12 @@ export class UploadPrescriptionComponent implements OnInit {
   onFileChanged(e) {
     this.fileToUpload = e.target.files[0];
     console.log(this.fileToUpload);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(this.fileToUpload);
+
   }
 
   markFormGroupTouched(formGroup: FormGroup) {

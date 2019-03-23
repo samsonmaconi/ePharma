@@ -5,19 +5,16 @@
           <div class="col mr-auto">
             <div class="card  mdp shadow-lg p-3 mb-5 bg-white rounded " style="max-width: 30rem;">
               <div class="card-header text-info ">
-                <h4>Registration</h4>
+                <h4 class="color1">Registration</h4>
               </div>
               <div class="card-body text-info">
                 <form [formGroup]="myform" (ngSubmit)="onSubmit()">
-  
-  
                   <div class="form-group form-row">
                     <div class="col form-label-group">
-  
                       <input type="text" class="form-control" formControlName="firstName" placeholder="First name" id="fname"
                         name="firstName"
                         [ngClass]="{ 'is-invalid' : myform.controls.firstName.errors && (myform.controls.firstName.touched || myform.controls.firstName.dirty)}"
-                        required >
+                        required autofocus >
                         <label for="fname">First Name</label>
                       <span class="invalid-feedback"
                         *ngIf="{ 'is-invalid' : myform.controls.firstName.errors && (myform.controls.firstName.touched || myform.controls.firstName.dirty)}">
@@ -25,7 +22,7 @@
                       </span>
                     </div>
                     <div class="col form-label-group">
-  
+
                       <input type="text" class="form-control" formControlName="lastName" placeholder="Last name" id="lname"
                         name="lastName"
                         [ngClass]="{ 'is-invalid' : myform.controls.lastName.errors && (myform.controls.lastName.touched || myform.controls.lastName.dirty)}"
@@ -94,7 +91,7 @@
                   </div>
                   <div class="form-group form-row">
                     <div class="col form-label-group">
-  
+
                       <input type="text" class="form-control" formControlName="city" placeholder="City" name="city" id="city"
                         [ngClass]="{ 'is-invalid' : myform.controls.city.errors && (myform.controls.city.touched || myform.controls.city.dirty)}"
                         required />
@@ -105,7 +102,7 @@
                       </span>
                     </div>
                     <div class="col form-label-group">
-  
+
                       <input type="text" class="form-control" formControlName="pc" placeholder="Postal-Code" name="pc" id="pc"
                         [ngClass]="{ 'is-invalid' : myform.controls.pc.errors && (myform.controls.pc.touched || myform.controls.pc.dirty)}"
                         required />
@@ -119,13 +116,13 @@
                   <div>
                     <button class="btn btn-primary btn-block" type="submit">Register </button>
                   </div>
-  
+
                   <div style="text-align : center; padding: 2%"> Already have an Account
-                    <a routerLink="/login">Login</a>
+                    <a class ="nav-link reg-nav-link" routerLink="/login">Login</a>
                   </div>
-  
+
                 </form>
-  
+
               </div>
             </div>
           </div>
