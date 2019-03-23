@@ -12,6 +12,7 @@ export class OrdersComponent implements OnInit {
 
   orderObjectValue = [];
   public data: any;
+  orderId: string;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -27,13 +28,11 @@ export class OrdersComponent implements OnInit {
     this.http.get('http://localhost:4200/api/admin/viewOrders', {responseType: 'json'}).subscribe(
       response => {
           this.data = response;
-          // console.log(this.data);
-          // for ( const results of this.data ) {
-          //   for (const itemDetails of results.items) {
-
-          //   }
-          // }
      });
   }
+
+  itemsPage() {
+    this.router.navigate(['admin/orderitems'],{queryParams:{orderId:this.orderId}});
+  };
 
 }

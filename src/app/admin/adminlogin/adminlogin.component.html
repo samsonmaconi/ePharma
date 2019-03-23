@@ -1,0 +1,22 @@
+<!-- no additional media querie or css is required -->
+<div class="admin-login-background">
+  <div class="container">
+    <div class="row justify-content-center align-items-center" style="height:100vh">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" autocomplete="off">
+                        <div class="form-group">
+                            <input (input)="username=$event.target.value"  type="text" class="form-control" name="username">
+                        </div>
+                        <div class="form-group">
+                            <input (input)="password=$event.target.value" type="password" class="form-control" name="password">
+                        </div>
+                        <div id="sendlogin" class="btn btn-primary" (click)="login()">login</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

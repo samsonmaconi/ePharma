@@ -1,14 +1,26 @@
 const express = require('express');
+const mongoose = require("mongoose");
 const router = express.Router();
-const Product = require('../models/products');
 const Orders = require('../models/orders');
-const mongoose = require('mongoose');
-router.get('/api/admin/viewOrders', async(req, res) =>{
+const Product = require('../models/products');
+const ObjectId = mongoose.Types.ObjectId;
+
+router.get('/viewOrders/:id', async (req, res) => {
+  if (!ObjectId.isValid(req.params.id))
+      return res.status(400).send(`No record with given id : ${req.params.id}`);
+
+  Orders.findById(req.params.id, (err, doc) => {
+      if (!err) { res.send(doc); }
+      else { console.log('No order exists :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
+
+router.get('/viewOrders', async(req, res) =>{
   data = await Orders.find();
   res.send(data);
-})
+});
 
-router.post('/api/admin/saveOrders', async(req, res) =>{
+router.post('/saveOrders', async(req, res) =>{
 
  var order = new Orders({
   _id: mongoose.Types.ObjectId(),
@@ -42,10 +54,13 @@ router.post('/api/admin/saveOrders', async(req, res) =>{
 router.get('/products', async (req, res) => {
   data = await Product.find();
   res.send(data);
-  console.log('/api/admin/products' + ' response sent');
+  console.log('/products' + ' response sent');
 });
 
 router.get('/products/:id', async (req, res) => {
+  if (!ObjectId.isValid(req.params.id))
+      return res.status(400).send(`No record with given id : ${req.params.id}`);
+
   Product.findById(req.params.id, (err, doc) => {
       if (!err) { res.send(doc); }
       else { console.log('Error in Retriving Employee :' + JSON.stringify(err, undefined, 2)); }
@@ -96,6 +111,23 @@ router.delete('/products/:id', (req, res) => {
   Product.findByIdAndRemove(req.params.id, (err, doc) => {
       if (!err) { res.send(doc); }
       else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
+
+router.put('/UpdateOrders/', (req, res) => {
+  console.log("----------");
+  console.log(req.params.id);
+  var order = {
+    _id: "5c9284464642ad110fc517c3",
+    items : [{item_id : "5c92856e4642ad110fc517c4", status: 12}]
+  };
+
+  Orders.findByIdAndUpdate(req.params.id, { $set: order }, { new: true }, (err, doc) => {
+      if (!err) {
+        res.send(doc); }
+      else {
+        console.log(req.body._id);
+        console.log('Error in Order Update :' + JSON.stringify(err, undefined, 2)); }
   });
 });
 
