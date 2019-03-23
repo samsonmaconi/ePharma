@@ -26,11 +26,11 @@
               <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="prod._id">
             <div class="col form-label-group">
               <input  (input) = "productName = $event.target.value" type="text" class="form-control"  value={{prod.product_name}} placeholder="Product name" id="pname"
-                name="productName" #product_name="ngModel" [(ngModel)]="productName"/>
+                name="productName" #product_name="ngModel" [(ngModel)]="prod.product_name"/>
                 <label for="pname">Product Name</label>
             </div>
             <div class="col form-label-group">
-                <input type="text" (input) = "productDescription  = $event.target.value"  #product_description="ngModel" [(ngModel)]="productDescription" class="form-control" placeholder="Product description" id="pdescription"
+                <input type="text" (input) = "productDescription  = $event.target.value"  #product_description="ngModel" [(ngModel)]="prod.description" class="form-control" placeholder="Product description" id="pdescription"
                   name="productDescription" value = {{prod.product_description}}/>
                   <label for="pdescription">Product description</label>
               </div>
