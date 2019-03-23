@@ -9,7 +9,42 @@
     </thead>
             <tr *ngFor ="let prod of product;">
                 <td>{{prod.product_name}}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                <td class="text-center"><button class='btn btn-info btn-xs' (click)="edit(content)"><span class="glyphicon glyphicon-edit"></span> Edit</button> <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</button></td>
             </tr>
     </table>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Product</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+
+            <div class="col form-label-group">
+              <input  (input) = "productName = $event.target.value" type="text" class="form-control" formControlName="productName" placeholder="Product name" id="pname"
+                name="productName"/>
+                <label for="pname">Product Name</label>
+            </div>
+            <div class="col form-label-group">
+                <input type="text" (input) = "productDescription  = $event.target.value" class="form-control" formControlName="productDescription" placeholder="Product description" id="pdescription"
+                  name="productDescription"/>
+                  <label for="pdescription">Product description</label>
+              </div>
+
+            <div class="input-group">
+              <div class="input-group-append">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="save(content)">Save</button>
+      </div>
+    </ng-template>
+
+    <!-- <button class="btn btn-lg btn-outline-primary" (click)="edit(content)">Launch demo modal</button> -->
 </div>
