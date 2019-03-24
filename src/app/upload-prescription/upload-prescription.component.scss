@@ -4,9 +4,9 @@
   display: block !important;
 }
 
-input[type="file"] {
-  visibility: hidden;
-}
+// input[type="file"] {
+//   visibility: hidden;
+// }
 
 .btn-register {
   &:hover {
@@ -49,4 +49,8 @@ button:hover {
 
 .image-preview img {
   height: 100%;
+}
+
+input, button, select, optgroup, textarea {
+  margin: 6px !important;
 }
