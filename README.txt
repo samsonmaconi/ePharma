@@ -36,8 +36,8 @@ FEATURES WORKED ON
 1. Products Catalog - Samson Maconi (B00801169)
 2. Sign in and Registration - Saraiya Smit Ashish (B00811636)
 3. Upload-Prescription - Samarth Vyomeshchandra Raval (B00812673)
-4.
-5.
+4. Pharmacist/Admin Panel - dashboard and order management - Navneet Prakash Singh (B00810744)
+5. Pharmacist/Admin Panel - Inventory management - Sudarshan Suresh Srikant (B00808452)
 
 
 PRODUCT CATALOG
@@ -73,6 +73,16 @@ After successful registration and login (type: http://localhost:4200/registratio
 
 Session handling is done with the help of JWT(jsonwebtoken)[1]. With each api request the token will be passed to the front end and will get stored in the local storage. After successful login the token will remain in the local storage for 1 hour, so if the user wish to refresh the page then also the token will still remain in the storage and after one hour the user will be automatically logged out.
 
+Files which shows Login and Registration part are below:
+  \src\app\Login (HTML,ts,scss)
+  \src\app\Registration (HTML,ts,scss)
+  \src\app\services
+  \src\app\models\auth-data.models.ts
+  \src\app\models\auth-login.ts
+  \server\routes\middleware\authentication.js
+  \server\models\user.js
+  \server\routes\login-register-routes.js
+
 ** Additional Information:
 The UI of Manage profile is ready with all the validations.
 The forgot password link will be redirected to the blank html page (which will be fixed later).
@@ -103,6 +113,92 @@ To run the Upload-prescription feature user can simply click on Upload Prescript
 After login into system user will able to see the upload-prescription page.
 To use upload-prescription user needs to register first if they don't have a username and password.
 Dummy email address and password can be: samraval11@yahoo.com , samarth123
+
+
+PHARMACIST/ADMIN PANEL - DASHBOARD AND ORDER MANAGEMENT
+----------------
+Admin panel is the portal which would be available only to the pharmacist and is designed by keeping the mindset of pharmacist in mind. We wanted to display the important information directly infront of the pharmacist, therefore using a side nav bar, thereby, adhering to the usability of the application.
+When the pharmacist navigates to the dashboard page, certain information like pending orders, revenue generated, completed orders, thus displaying the vital information that the pharmacist needs.
+Pharmacist panel is available at 'localhost:<port number>/admin/dashboard' page of the application.
+
+Another important feature for the pharmacist is the orders management, where the pharmacist is able to view the items related to the order, change the status related to the order.
+When the pharmacist would navigate to the orders page, they can view the orders along with their status, and by clicking the view order, they can view the items related to the order and update the status of the item accordingly.
+Pharmacist order panel is available at 'localhost:<port number>/admin/order' page of the application.
+
+Files covered under this module include:
+/src/app/admin/admin-main/ : Files related to the main UI, routes of the admin Panel
+/src/app/admin/adminlogin/ : Files related to the login UI, routes of the admin Panel
+/src/app/admin/adminnavbar/: Files related to the navbar UI, routes of the admin Panel
+/src/app/admin/dashboard/ : Files related to the dashboard UI, routes of the admin Panel
+/src/app/admin/orderitems/ : Files related to the order items UI, routes of the admin Panel
+/src/app/admin/orders/ : Files related to the order UI, routes of the admin Panel
+/src/app/admin/sidebar/: Files related to the sidebar UI, routes of the admin Panel
+/routes/admin.js: Files related to the backend node logic of the admin Panel
+
+
+
+PHARMACIST/ADMIN PANEL INVENTORY MANAGEMENT
+---------------------------------------------------------------------------------------------------------------------
+
+The admin inventory section handles all the CRUD operations related to creating, updating, deleting and reading of products in the inventory.
+The admin inventory lets the pharmacist or the admin to uplaod new medicines, update and delete medicines.
+
+----------------------------------------Running the code------------------------------------------------------------
+
+Step - 1: Navigate to the server folder (ePharma_dal/server/) and then type npm start.
+
+Step - 2: At the root of the app (ePharma_dal/), type npm start.
+
+Step - 3: Go to http://localhost:4200/admin/inventory/ to view the admin inventory page.
+
+---------------------------------------Checking REST API implementation----------------------------------------------
+
+The following REST API's have been developed using Node.js to perform different CRUD operations:
+
+1) Reading (Obtaining) products: http://localhost:4200/api/admin/products - This REST API endpoint provides the admin/pharmacist with all current products in the inventory.
+An HTTP GET is made to retrieve all products that are currently available in the database.
+
+2) Reading specific products: http://localhost:4200/api/admin/products/?_id=product_id - This REST API endpoint provides the admin/pharmacist with specific products in the inventory.
+An HTTP GET is made along with the product id. The specific product is returned in the response.
+
+3) Updating products: http://localhost:4200/api/admin/products/?_id=product_id - This REST API endpoint provides the admin/pharmacist the option of updating current products in the inventory.
+An HTTP PUT request is made to update an exisitng product in the database. In order to update a product, a modal form is created when the admin clicks on the edit button.
+
+4) Deleting products: http://localhost:4200/api/admin/products/?_id=product_id - This REST API endpoint provides the admin/pharmacist to delete a product from the inventory.
+An HTTP delete request is made by passing a specific id to the delete request.
+
+5) Creating products: http://localhost:4200/api/admin/products/ - This REST API endpoint provides the admin/pharmacist to create new products and insert them into the database.
+An HTTP POST request is made to create new products in the inventory.
+
+
+----------------------------------------Folder Structure and files included------------------------------------------
+
+The admin inventory folder is present under the admin route with the following structure:
+
+/src/app/admin/admin-main/ : Files related to the main UI, routes of the admin Panel
+/src/app/admin/inventory/ : Files related to the inventory items UI, routes of the admin Panel
+/src/app/admin/orders/ : Files related to the order UI, routes of the admin Panel
+/src/app/admin/sidebar/: Files related to the sidebar UI, routes of the admin Panel
+/routes/admin.js: Files related to the backend node logic of the admin Panel
+
+The inventory contains the following files:
+
+inventory.component.html
+inventory.component.scss
+inventory.component.spec.ts
+inventory.component.ts
+
+----------------------------------------Error handling mechanism------------------------------------------
+
+Errors mainly related to http requests are handled in a way that the developer can understand the structure of the error by passing in the required parameters.
+
+console.log() statements have been placed in crucial places for checking log values
+
+----------------------------------------Usability---------------------------------------------------------
+
+Buttons do not have icons, but rather have plain texts such as 'Edit', 'Delete' to make it easier for the admin to use the website.
+Certain alert messages are thrown when a user performs critical operations such as deleting of a product, etc.
+
 
 
 IMAGE REFERENCES

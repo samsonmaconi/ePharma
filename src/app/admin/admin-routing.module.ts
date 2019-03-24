@@ -5,6 +5,8 @@ import { AdminMainComponent } from './admin-main/admin-main.component';
 import { UserComponent } from './user/user.component';
 import { OrdersComponent } from './orders/orders.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { OrderitemsComponent } from './orderitems/orderitems.component';
 
 const routes: Routes = [
   {
@@ -14,9 +16,11 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'order', component: OrdersComponent },
       { path: 'inventory', component: InventoryComponent },
-      { path: 'user', component: UserComponent }
+      { path: 'user', component: UserComponent },
+      { path: 'orderitems', component: OrderitemsComponent }
     ]
-  }
+  },
+  { path: 'login', component: AdminloginComponent}
 ];
 
 @NgModule({

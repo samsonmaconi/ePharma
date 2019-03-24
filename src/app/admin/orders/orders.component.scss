@@ -11,9 +11,17 @@
   padding: 2%;
 }
 
+.table-responsive{
+  overflow-x: unset;
+}
+
 @media (max-width: 768px) {
   #admin-page-content-wrapper{
     margin-left: 5px;
     margin-right: 0px;
+  }
+
+  .table-responsive{
+    overflow-x: auto;
   }
 }

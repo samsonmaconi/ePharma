@@ -94,7 +94,7 @@
                       />
                       <label for="inputOrderNumber">Order Number*</label>
                       <span class="invalid-feedback"
-                        >Order Number is required</span
+                        >OrderNumber is required(Numbers only)</span
                       >
                     </div>
 
@@ -116,7 +116,9 @@
                         required
                       />
                       <label for="inputName">Name*</label>
-                      <span class="invalid-feedback">Name is required</span>
+                      <span class="invalid-feedback"
+                        >Name is required(Only Alphabets)</span
+                      >
                     </div>
 
                     <div
@@ -162,20 +164,20 @@
                       />
                       <label for="inputPhoneNumber">Phone Number*</label>
                       <span class="invalid-feedback"
-                        >Phone Number is required</span
+                        >Phone Number is required(10 digits)</span
                       >
                     </div>
 
                     <div class="form-label-group">
                       <span class="titleUpload"
-                        >Upload Prescription(only .png & .jpg)*:</span
+                        >Upload Prescription(only.png&.jpg)*:</span
                       >
                     </div>
 
                     <div class="image-upload">
-                      <button type="button" #hover (click)="filePicker.click()" required>
+                      <!-- <button type="button" #hover (click)="filePicker.click()" required>
                         Prescription
-                      </button>
+                      </button> -->
                       <input
                         name="imageUrl"
                         type="file"
@@ -183,6 +185,7 @@
                         (change)="onFileChanged($event)"
                         formControlName="image"
                         #filePicker
+                        required
                       />
                     </div>
 

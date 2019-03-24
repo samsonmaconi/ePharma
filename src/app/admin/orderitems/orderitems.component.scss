@@ -6,15 +6,12 @@
   padding:2%;
 }
 
-.text-color-white{
-  color: white;
-}
 .outer-dashboard-div{
   background: rgba(203, 203, 210, 0.15);
+  padding: 2%;
 }
-
-.col-sm-6{
-  margin-top: 20px;
+.table-responsive{
+  overflow-x: unset;
 }
 
 @media (max-width: 768px) {
@@ -22,4 +19,9 @@
     margin-left: 5px;
     margin-right: 0px;
   }
+
+  .table-responsive{
+    overflow-x: auto;
+  }
+
 }
