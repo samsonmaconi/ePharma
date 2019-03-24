@@ -15,7 +15,8 @@
         <tbody>
 
             <tr *ngFor="let item of jsonData">
-                  <input type="hidden" value="{{data.items[item].item_id | json}}">
+                <input #myInput type='hidden' id='itemId' value='{{data.items[item].item_id | json}}'>
+                <input type="hidden" ng-model="record.usersId" value='{{data.items[item].item_id | json}}' ng-init="record.usersId=user.userId"/>
                   <td scope="row">{{data.items[item].name}}</td>
                   <td scope="row">{{data.items[item].quantity | json}}</td>
                   <td>
