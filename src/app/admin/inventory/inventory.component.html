@@ -15,8 +15,6 @@
     </div>
     <div class="modal-body" id="modal-two">
 
-<!----->
-
       <form #addProductForm="ngForm" (ngSubmit)="onAddSubmit(addProductForm)">
         <div class="form-group">
             <div class="col form-label-group">
@@ -60,10 +58,10 @@
               <div class="col form-label-group">
                   <input
                   ngModel
-                  type="text"
+                  type="number"
                   (input)="product_price = $event.target.value"
                   class="form-control"
-                  placeholder="Product price"
+                  placeholder="Product price (Enter a number)"
                   id="pprice"
                   name="product_price"
                 />
@@ -96,10 +94,10 @@
               <div class="col form-label-group">
                   <input
                   ngModel
-                  type="text"
+                  type="number"
                   (input)="product_rating = $event.target.value"
                   class="form-control"
-                  placeholder="Product rating"
+                  placeholder="Product rating (Enter a number)"
                   id="prating"
                   name="product_rating"
                 />
@@ -108,10 +106,10 @@
               <div class="col form-label-group">
                   <input
                   ngModel
-                  type="text"
+                  type="number"
                   (input)="product_quantity = $event.target.value"
                   class="form-control"
-                  placeholder="Product quantity"
+                  placeholder="Product quantity (Enter a number)"
                   id="pquantity"
                   name="product_quantity"
                 />
@@ -232,11 +230,11 @@
             <div class="col form-label-group">
                 <input
                 ngModel
-                type="text"
+                type="number"
                 (input)="product_price = $event.target.value"
                 class="form-control"
                 value="{{ prod.product_price }}"
-                placeholder="Product price"
+                placeholder="Product price (Enter a number)"
                 id="pprice"
                 name="product_price"
               />
@@ -271,11 +269,11 @@
             <div class="col form-label-group">
                 <input
                 ngModel
-                type="text"
+                type="number"
                 (input)="product_rating = $event.target.value"
                 class="form-control"
                 value="{{ prod.product_rating }}"
-                placeholder="Product rating"
+                placeholder="Product rating (Enter a number)"
                 id="prating"
                 name="product_rating"
               />
@@ -284,11 +282,11 @@
             <div class="col form-label-group">
                 <input
                 ngModel
-                type="text"
+                type="number"
                 (input)="product_quantity = $event.target.value"
                 class="form-control"
                 value="{{ prod.product_quantity}}"
-                placeholder="Product quantity"
+                placeholder="Product quantity (Enter a number)"
                 id="pquantity"
                 name="product_quantity"
               />
