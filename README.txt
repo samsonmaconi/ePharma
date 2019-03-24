@@ -151,6 +151,8 @@ Step - 2: At the root of the app (ePharma_dal/), type npm start.
 
 Step - 3: Go to http://localhost:4200/admin/inventory/ to view the admin inventory page.
 
+Note: Auto-refresh has not been implemented, hence after updating product details, please refresh the page manually!!
+
 ---------------------------------------Checking REST API implementation----------------------------------------------
 
 The following REST API's have been developed using Node.js to perform different CRUD operations:
