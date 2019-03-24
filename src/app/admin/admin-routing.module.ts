@@ -13,6 +13,7 @@ const routes: Routes = [
     path: '',
     component: AdminMainComponent,
     children: [
+      { path: '', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'order', component: OrdersComponent },
       { path: 'inventory', component: InventoryComponent },
