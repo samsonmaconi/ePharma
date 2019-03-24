@@ -28,7 +28,11 @@ export class UploadPrescriptionComponent implements OnInit {
         Validators.pattern('^[0-9]*$')
       ]
     ],
-      name: ['', Validators.required],
+      name: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z ]{2,30}$')
+      ]
+    ],
       email: [
         '',
         [
@@ -76,6 +80,9 @@ export class UploadPrescriptionComponent implements OnInit {
 
   onFileChanged(e) {
     this.fileToUpload = e.target.files[0];
+    if (this.fileToUpload) {
+      console.log('File is not selected');
+    }
     console.log(this.fileToUpload);
     const reader = new FileReader();
     reader.onload = () => {
