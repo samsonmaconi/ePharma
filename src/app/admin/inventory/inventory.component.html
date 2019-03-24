@@ -1,5 +1,7 @@
-<div class="container" >
-  <button class="btn btn-primary center-block" data-toggle="modal" data-target="#modal-two" (click)="add(addContent)"> Add new categories</button>
+<div class="outer-dashboard-div">
+<div id="admin-page-content-wrapper">
+<div class="container-fluid custom-margin" >
+  <button class="btn btn-primary center-block" data-toggle="modal" data-target="#modal-two" (click)="add(addContent)"> Add new product</button>
   <ng-template #addContent let-modal>
     <div class="modal-header" id="modal-two">
       <h4 class="modal-title" id="modal-basic-title-add">Add Product</h4>
@@ -62,8 +64,8 @@
 <table class="table table-striped custab">
   <thead>
     <tr>
-      <th>ID</th>
-      <th class="text-center">Action</th>
+      <th></th>
+      <th>Action</th>
     </tr>
   </thead>
 </table>
@@ -143,5 +145,6 @@
 
 
   </ng-template>
-
+</div>
+</div>
 </div>
