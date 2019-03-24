@@ -22,8 +22,17 @@ export class UploadPrescriptionComponent implements OnInit {
 
   ngOnInit() {
     this.prescriptionForm = this.fb.group({
-      orderNumber: ['', Validators.required],
-      name: ['', Validators.required],
+      orderNumber: ['',
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]*$')
+      ]
+    ],
+      name: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z ]{2,30}$')
+      ]
+    ],
       email: [
         '',
         [
@@ -31,7 +40,12 @@ export class UploadPrescriptionComponent implements OnInit {
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
         ]
       ],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['',
+            [
+        Validators.required,
+        Validators.pattern('^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')
+      ]
+    ],
       image: ['', Validators.required]
     });
   }
@@ -66,6 +80,9 @@ export class UploadPrescriptionComponent implements OnInit {
 
   onFileChanged(e) {
     this.fileToUpload = e.target.files[0];
+    if (this.fileToUpload) {
+      console.log('File is not selected');
+    }
     console.log(this.fileToUpload);
     const reader = new FileReader();
     reader.onload = () => {
