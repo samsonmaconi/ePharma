@@ -5,6 +5,7 @@ const Orders = require('../models/orders');
 const Product = require('../models/products');
 const ObjectId = mongoose.Types.ObjectId;
 
+// view all the orders for dashboard from id
 router.get('/viewOrders/:id', async (req, res) => {
   if (!ObjectId.isValid(req.params.id))
       return res.status(400).send(`No record with given id : ${req.params.id}`);
@@ -15,13 +16,14 @@ router.get('/viewOrders/:id', async (req, res) => {
   });
 });
 
+//view all the orders in orders dashboard
 router.get('/viewOrders', async(req, res) =>{
   data = await Orders.find();
   res.send(data);
 });
 
+//save order for orders dashboard
 router.post('/saveOrders', async(req, res) =>{
-
  var order = new Orders({
   _id: mongoose.Types.ObjectId(),
   order_status: req.body.order_status,
@@ -115,20 +117,20 @@ router.delete('/products/:id', (req, res) => {
   });
 });
 
-router.put('/UpdateOrders/', (req, res) => {
-  console.log("----------");
-  console.log(req.params.id);
+//route for update order
+router.put('/UpdateOrders/:orderId/:itemId/:status', (req, res) => {
   var order = {
-    _id: "5c9284464642ad110fc517c3",
-    items : [{item_id : "5c92856e4642ad110fc517c4", status: 12}]
+    _id: req.params.orderId,
+    items : [{item_id : req.params.itemId, status: req.params.status}]
   };
 
-  Orders.findByIdAndUpdate(req.params.id, { $set: order }, { new: true }, (err, doc) => {
+  Orders.findByIdAndUpdate(req.params.orderId, { $set: order }, { new: true }, (err, doc) => {
       if (!err) {
-        res.send(doc); }
+        res.send("1");
+      }
       else {
-        console.log(req.body._id);
-        console.log('Error in Order Update :' + JSON.stringify(err, undefined, 2)); }
+        res.send("0")
+      }
   });
 });
 
