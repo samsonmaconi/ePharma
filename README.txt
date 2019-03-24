@@ -88,7 +88,7 @@ The UI of Manage profile is ready with all the validations.
 The forgot password link will be redirected to the blank html page (which will be fixed later).
 
 
-UPLOAD PRESCRIPTION
+UPLOAD-PRESCRIPTION
 -------------------
 
 http://localhost:4200/upload-prescription
@@ -114,6 +114,7 @@ After login into system user will able to see the upload-prescription page.
 To use upload-prescription user needs to register first if they don't have a username and password.
 Dummy email address and password can be: samraval11@yahoo.com , samarth123
 
+Git link for upload_prescription:- https://git.cs.dal.ca/maconi/epharma_dal/tree/Feature_prescription
 
 PHARMACIST/ADMIN PANEL - DASHBOARD AND ORDER MANAGEMENT
 ----------------
