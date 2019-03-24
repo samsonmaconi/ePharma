@@ -1,0 +1,29 @@
+<div class="outer-dashboard-div">
+<div id="admin-page-content-wrapper">
+  <h4 class="card-title">Orders</h4>
+  <div class="table-responsive">
+  <table class="table table-hover table table-striped">
+    <thead>
+
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Order Status</th>
+        <th scope="col">Total Cost</th>
+        <th scope="col">Option</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor ="let d of data;">
+        <input (input)="orderId=$event.target.value"  type="hidden" class="form-control" name="orderId">
+        <th scope="row">{{d._id}}</th>
+        <td ng-if="">{{d.order_status ? 'Pending':'Completed'}}</td>
+        <td>{{d.total_cost}}</td>
+        <td> <a [routerLink]="['/admin/orderitems/']" [queryParams]="{orderId: d._id}" >View Items</a></td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>

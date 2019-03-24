@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab|Proza+Libre');
 @import url('https://use.fontawesome.com/releases/v5.7.1/css/all.css');
 @import 'color-palette.scss';
+@import '../node_modules/flickity/css/flickity.css';
 
 .bg-color1{
     background-color: $color1;
@@ -55,24 +56,33 @@ body{
 .btn {
     border-radius: 1.078em;
     font-weight: bold;
-  
+
     &-lg {
       border-radius: 2.688em;
     }
-  
+
     &-sm {
       border-radius: 0.844em;
       font-size: 0.688em;
     }
-    
+
     color: white;
-    background-color: $color2;
+    background-color: $color1;
     &:hover{
         color: white;
         background-color: $color4;
     }
 }
 
+.drop-button{
+    background-color: white;
+    color: black;
+    border: none;
+}
+.drop-button:hover {
+    background-color: $color4;
+    color: white;
+  }
 
 
 //Cards================

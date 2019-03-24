@@ -1,14 +1,14 @@
 <nav>
-  <ul class="nav bg-color4 justify-content-center p-2 d-none d-md-flex">
+  <ul class="nav bg-color1 justify-content-center p-2 d-none d-md-flex">
     <li *ngFor="let category of categories; index as i;" class="nav-item">
-      <a class="nav-link" [routerLinkActive]="['active']" routerLink="category{{i}}">{{ category }}</a>
+      <a class="nav-link mx-3" [routerLinkActive]="['active']" routerLink="/catalog/{{ category }}">{{ category }}</a>
     </li>
   </ul>
   <div class="d-block d-md-none">
-      <div ngbDropdown class="bg-color4 w-100 d-inline-block p-3">
+      <div ngbDropdown class="bg-color1 w-100 d-inline-block p-3">
         <button class="btn w-100 btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Browse Product Category</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button *ngFor="let category of categories; index as i;" class="dropdown-item" [routerLinkActive]="['active']" routerLink="category{{i}}">{{ category }}</button>
+          <button *ngFor="let category of categories; index as i;" class="dropdown-item text-uppercase" [routerLinkActive]="['active']" routerLink="/catalog/{{ category }}">{{ category }}</button>
         </div>
       </div>
     </div>

@@ -1,0 +1,198 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2 pt-3 px-1 sidebar">
+      <header>
+        <h6 class="p-3"><i class="fas fa-filter"></i> Refine by</h6>
+      </header>
+      <div
+        *ngIf="category == 'search result' && searchResultMeta.length > 0"
+        class="filter-group category"
+      >
+        <h6 class="card-header">Category</h6>
+        <div class="card-body">
+          <ng-container *ngFor="let item of searchResultMeta; index as i">
+            <div class="custom-control custom-checkbox">
+              <!-- <span class="float-right badge badge-light round">{{ item.count }}</span> -->
+              <input
+                [(ngModel)]="categoryFilterArr[i]"
+                (change)="filterProducts()"
+                type="checkbox"
+                class="custom-control-input"
+                id="{{ item.category }}"
+              />
+              <label class="custom-control-label" for="{{ item.category }}">{{
+                item.category | titlecase
+              }}</label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="filter-group rating">
+        <h6 class="card-header">Product Rating</h6>
+        <div class="card-body">
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              name="ratingFilter"
+              class="custom-control-input"
+              id="star4"
+              value="7"
+              [(ngModel)]="ratingFilter"
+              (change)="filterProducts()"
+            />
+            <label class="custom-control-label" for="star4"
+              ><span class="stars">★ ★ ★ ★ ☆</span> & up</label
+            >
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              name="ratingFilter"
+              class="custom-control-input"
+              id="star3"
+              value="5"
+              [(ngModel)]="ratingFilter"
+              (change)="filterProducts()"
+            />
+            <label class="custom-control-label" for="star3"
+              ><span class="stars">★ ★ ★ ☆ ☆</span> & up</label
+            >
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              name="ratingFilter"
+              class="custom-control-input"
+              id="star2"
+              value="3"
+              [(ngModel)]="ratingFilter"
+              (change)="filterProducts()"
+            />
+            <label class="custom-control-label" for="star2"
+              ><span class="stars">★ ★ ☆ ☆ ☆</span> & up</label
+            >
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              name="ratingFilter"
+              class="custom-control-input"
+              id="star1"
+              value="1"
+              [(ngModel)]="ratingFilter"
+              (change)="filterProducts()"
+            />
+            <label class="custom-control-label" for="star1"
+              ><span class="stars">★ ☆ ☆ ☆ ☆</span> & up</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-10 d-flex p-3 flex-wrap">
+      <nav class="w-100" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item active">
+            {{ category | titlecase }}
+            {{ searchstringlabel }}
+          </li>
+        </ol>
+      </nav>
+      <div class="mb-3 ml-auto">
+        <div class="label-group sort d-inline">
+          <label for="sort">Sort by</label>
+          <select
+            [(ngModel)]="sortCriteria"
+            (ngModelChange)="sortList()"
+            class="ml-1"
+            name="sort"
+          >
+            <option value="name_0">Name - A to Z</option>
+            <option value="name_1">Name - Z to A</option>
+            <option value="price_0">Price - Low to High</option>
+            <option value="price_1">Price - High to Low</option>
+          </select>
+        </div>
+        <ng-container *ngIf="productsFiltered">
+          <ngb-pagination
+            size="sm"
+            class="d-inline-flex ml-3"
+            [collectionSize]="productsFiltered.length"
+            [pageSize]="pageSize"
+            [(page)]="page"
+            [boundaryLinks]="true"
+            aria-label="Default pagination"
+            (pageChange)="onPageChange($event)"
+          ></ngb-pagination
+        ></ng-container>
+      </div>
+      <div class="w-100"></div>
+      <span *ngIf="productsFiltered && productsFiltered.length==0" class="w-100 text-center text-uppercase large font-weight-bolder">No Relevant Products Available at this time</span>
+      <ng-container
+        *ngFor="
+          let item of (productsFiltered
+            | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize);
+          index as i
+        "
+      >
+        <div class="col-lg-3 col-md-4 col-6">
+          <a routerLink="/product/{{ item._id }}" class="card m-3">
+            <div class="card-body">
+              <img
+                src="{{ item.product_image }}"
+                class="card-img-top"
+                alt="..."
+              />
+            </div>
+            <div class="card-body">
+              <ng-template #popContent
+                ><span class="title">{{ item.product_name | titlecase }}</span>
+                by {{ item.product_company | titlecase }}</ng-template
+              >
+              <p
+                class="card-title text-capitalize truncate"
+                [ngbPopover]="popContent"
+                triggers="mouseenter:mouseleave"
+              >
+                {{ item.product_name | lowercase }}
+              </p>
+              <p class="card-text price">C$ {{ item.product_price }}</p>
+              <span class="d-flex justify-content-between">
+                <a
+                  routerLink="/product/{{ item._id }}"
+                  class="btn d-md-inline d-none"
+                  >View</a
+                >
+                <a href="#" class="btn"
+                  ><i class="fas fa-shopping-cart"></i> Add to Cart</a
+                >
+              </span>
+            </div>
+            <div
+              *ngIf="item.product_category == 'prescription meds'"
+              class="card-footer alert-warning p-1 text-center small"
+            >
+              Requires Prescription
+            </div>
+          </a>
+        </div>
+      </ng-container>
+      <div class="w-100 mt-5">
+        <ng-container *ngIf="productsFiltered">
+          <ngb-pagination
+            size="sm"
+            class="d-flex justify-content-center"
+            [collectionSize]="productsFiltered.length"
+            [pageSize]="pageSize"
+            [(page)]="page"
+            [boundaryLinks]="true"
+            aria-label="Default pagination"
+            (pageChange)="onPageChange($event)"
+          ></ngb-pagination
+        ></ng-container>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+@import "../../color-palette.scss";
+
+.d-flex {
+  display: block !important;
+}
+
+// input[type="file"] {
+//   visibility: hidden;
+// }
+
+.btn-register {
+  &:hover {
+    background-color: $color4;
+  }
+}
+
+button[type="button"] {
+  background-color: #1972a4;
+  padding: 0.5em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 6px;
+  color: #fff;
+  font-family: "Oswald";
+  font-size: 17px;
+  text-decoration: none;
+  border: none;
+}
+
+button:hover {
+  border: none;
+  background: $color4;
+  box-shadow: 0px 0px 1px #777;
+}
+.btn {
+  font-size: 1em;
+}
+
+.bg-image {
+  background-image: url("https://images.unsplash.com/photo-1521453510357-5c7a77db7074?ixlib=rb-1.2.1&auto=format&fit=crop&w=2175&q=80");
+  background-size: cover;
+  background-position: center;
+}
+
+.image-preview {
+  height: 11rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
+}
+
+input, button, select, optgroup, textarea {
+  margin: 6px !important;
+}

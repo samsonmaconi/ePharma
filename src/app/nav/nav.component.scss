@@ -12,12 +12,11 @@
 }
 
 .btn{
-    background-color: $color2;
+    background-color: $color1;
     color: white;
     &:hover{
         background-color: $color4;
     }
-    // font-weight: bold;
 }
 
 input.product-search{
@@ -27,7 +26,7 @@ input.product-search{
     padding-left:45px;
     border-radius: 1.078em;
     border: solid 1px;
-    border-color: $color2;
+    border-color: $color1;
     &:focus{
         border-color: $color4;
         border-width: 2px;
@@ -35,7 +34,7 @@ input.product-search{
 }
 
 .or{
-    color: $color2;
+    color: $color1;
     text-transform: uppercase;
     font-weight: bold;
     line-height: 38px;

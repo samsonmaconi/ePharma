@@ -1,0 +1,34 @@
+@import '../../color-palette.scss';
+
+img{
+    border-radius: 100%;
+}
+
+a{
+    text-decoration: none;
+
+    &.addtocart{
+        font-size: 1em;
+    }
+}
+
+.price {
+  color: rgb(151, 0, 0);
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.stars {
+  color: $color5;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  a {
+    color: #414040;
+  }
+}
+
+.nooutline {
+  border: none;
+}

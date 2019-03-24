@@ -1,51 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import {Router} from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  
+
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  myForm : FormGroup;
-  constructor(private fb :FormBuilder ) { }
-  
+export class LoginComponent implements OnInit, OnDestroy {
+  myform: FormGroup;
+  public firstname: string;
+  isValid = true;
+  isLoading = false;
+  private authSub: Subscription;
+  private rsub;
+  public IsUserAuth= false;
+  constructor(private fb: FormBuilder, public authService: AuthService,private router: Router) {}
+
   ngOnInit() {
-    this.myForm = this.fb.group({
-      email : ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      password : ['',Validators.required],
-      remember : ['true']
+    this.isLoading = true;
+    this.authSub = this.authService.getAuthStatusListener().subscribe(
+      authStatus=>{
+        this.isValid = false;
+        console.log("value",this.isValid);
+      }
+    );
+      this.rsub = this.router.events.subscribe(()=>{
+        this.IsUserAuth = this.authService.getIsAuth();
+      })
+    this.myform = this.fb.group({
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      password: ['', Validators.required],
+      remember: ['true']
     });
-      
-  }
-  
-  onSubmit() : void
-  {
-    
-    if(this.myForm.valid){
-      console.log(this.myForm.value);
-      alert("Welcome to ePharma");
-      this.myForm.reset();
-
+    if(this.authService.getIsAuth()){
+      return this.router.navigate(['/']);
     }
-    else{
-      console.log("Sign-in fail");
-    // this.markFormGroupTouched(this.myForm);
-      console.log(this.myForm.value);
-    }
-    
   }
-  
-  // markFormGroupTouched(formGroup: FormGroup) {
-  //   (Object as any).values(formGroup.controls).forEach(control => {
-  //     control.markAsTouched();
 
-  //     if (control.controls) {
-  //       this.markFormGroupTouched(control);
-  //     }
-  //   });
-  // }
+  onSubmit() {
+    if (this.myform.invalid) {
+    return;
+    }
+    this.authService.login(this.myform.value.email,this.myform.value.password)
+// Display user name to front end
+    this.isLoading = false;
+    this.firstname = this.authService.getUsernName();
+    this.myform.reset();
+
+
+  }
+  ngOnDestroy(){
+    this.authSub.unsubscribe();
+  }
 
 }
+

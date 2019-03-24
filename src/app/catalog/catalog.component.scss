@@ -1,0 +1,86 @@
+@import '../../color-palette.scss';
+
+a.card {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0.2rem transparentize(black, $amount: 0.9);
+  background: #ffffff66;
+  text-decoration: none;
+  color: black;
+  img {
+    border-radius: 100%;
+    width: 50%;
+    height: auto;
+  }
+  &:hover {
+    box-shadow: 0 0 10px 0.2rem transparentize(black, $amount: 0.8);
+  }
+
+  .card-title,
+  .title {
+    color: $color1;
+    font-weight: 600;
+  }
+}
+
+.price {
+  color: rgb(151, 0, 0);
+  font-weight: 600;
+}
+
+.stars {
+  color: $color5;
+}
+
+.filter-group .custom-control {
+  &:hover {
+    font-weight: 800;
+    color: $color4;
+    .stars {
+      color: lighten($color5, $amount: 15) ;
+    }
+  }
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  a {
+    color: #414040;
+  }
+}
+
+.sort.label-group {
+  font-size: 0.9em;
+  color: #535353;
+  select {
+    color: #535353;
+  }
+}
+
+.sidebar {
+  background-color: aliceblue;
+}
+
+/deep/ {
+  .pagination {
+    .page-item.active .page-link {
+      background-color: $color4;
+      color: white;
+      border-color: transparent;
+    }
+    .page-item:not(.active) .page-link {
+      color: gray;
+      &:hover {
+        color: $color4;
+      }
+    }
+  }
+}

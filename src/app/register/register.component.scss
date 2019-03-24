@@ -5,11 +5,14 @@
 }
 h4{
     text-align: center;
-    
+
 }
 .image{
     background-image: url("../../assets/images/signin_bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+.reg-nav-link{
+    display: inline-block;
 }
