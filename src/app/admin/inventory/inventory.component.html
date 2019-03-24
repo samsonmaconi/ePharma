@@ -1,48 +1,147 @@
-<div class =""><a href="#" class="btn btn-primary center-block"> Add new categories</a></div>
-<div class="container" *ngFor ="let prod of product;">
-    <table class="table table-striped custab">
-      <thead>
-        <tr>
-            <th>ID</th>
-            <th class="text-center">Action</th>
-        </tr>
-    </thead>
-            <tr>
-                <td> {{prod._id}} </td>
-                <td>  {{prod.product_name}} </td>
-                <td class="text-center"><button class='btn btn-info btn-xs' (click)="edit(content)"><span class="glyphicon glyphicon-edit"></span> Edit</button> <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</button></td>
-            </tr>
-    </table>
-    <ng-template #content let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Edit Product</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
-          <div class="form-group">
-              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="prod._id">
-            <div class="col form-label-group">
-              <input  type="text"  (input) = "productName = $event.target.value" class="form-control"  value={{prod.product_name}} placeholder="Product name" id="pname"
-                name="productName" #product_name="ngModel" [(ngModel)]="prod.product_name"/>
-                <label for="pname">Product Name</label>
-            </div>
-            <div class="col form-label-group">
-                <input type="text" (input) = "productDescription  = $event.target.value"  #product_description="ngModel" [(ngModel)]="prod.description" class="form-control" placeholder="Product description" id="pdescription"
-                  name="productDescription" value = {{prod.product_description}}/>
-                  <label for="pdescription">Product description</label>
-              </div>
+<div class="container" >
+  <button class="btn btn-primary center-block" data-toggle="modal" data-target="#modal-two" (click)="add(addContent)"> Add new categories</button>
+  <ng-template #addContent let-modal>
+    <div class="modal-header" id="modal-two">
+      <h4 class="modal-title" id="modal-basic-title-add">Add Product</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-two">
 
-            <div class="input-group">
-              <div class="input-group-append">
-              </div>
-            </div>
+<!----->
+
+      <form #addProductForm="ngForm" (ngSubmit)="onAddSubmit(addProductForm)">
+        <div class="form-group">
+          <div class="col form-label-group">
+            <input
+              ngModel
+              type="text"
+              (input)="product_name = $event.target.value"
+              class="form-control"
+              placeholder="Product name"
+              id="pname"
+              name="product_name"
+            />
+            <label for="pname">Product Name</label>
           </div>
-          <div class="modal-footer">
-              <button type="submit" class="btn btn-outline-dark">Save</button>
-            </div>
-        </form>
-      </div>
-    </ng-template>
+          <div class="col form-label-group">
+            <input
+              type="text"
+              (input)="productDescription = $event.target.value"
+              #product_description="ngModel"
+              ngModel
+              class="form-control"
+              placeholder="Product description"
+              id="pdescription"
+              name="productDescription"
+            />
+            <label for="pdescription">Product description</label>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-append"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-dark">Save</button>
+        </div>
+      </form>
+
+    </div>
+  </ng-template>
+
+
+</div>
+
+
+<table class="table table-striped custab">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th class="text-center">Action</th>
+    </tr>
+  </thead>
+</table>
+<div class="container"  *ngFor="let prod of product">
+  <table class="table table-striped custab">
+    <tr>
+      <td>{{ prod._id }}</td>
+      <td>{{ prod.product_name }}</td>
+      <td class="text-center">
+        <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-one" (click)="edit(editContent)">
+          <span class="glyphicon glyphicon-edit"></span> Edit
+        </button>
+        <button class="btn btn-danger btn-xs" (click)="delete(prod._id)">
+          <span class="glyphicon glyphicon-remove" ></span> Del
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <ng-template #editContent let-modal>
+    <div class="modal-header" id="modal-one">
+      <h4 class="modal-title" id="modal-basic-title">Edit Product</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-one">
+      <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+        <div class="form-group">
+          <input
+            type="hidden"
+            name="_id"
+            #_id="ngModel"
+            [(ngModel)]="prod._id"
+          />
+          <div class="col form-label-group">
+            <input
+              ngModel
+              type="text"
+              (input)="product_name = $event.target.value"
+              class="form-control"
+              value="{{ prod.product_name }}"
+              placeholder="Product name"
+              id="pname"
+              name="product_name"
+            />
+            <label for="pname">Product Name</label>
+          </div>
+          <div class="col form-label-group">
+            <input
+              type="text"
+              (input)="productDescription = $event.target.value"
+              #product_description="ngModel"
+              ngModel
+              class="form-control"
+              placeholder="Product description"
+              id="pdescription"
+              name="productDescription"
+              value="{{ prod.product_description }}"
+            />
+            <label for="pdescription">Product description</label>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-append"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-dark">Save</button>
+        </div>
+      </form>
+    </div>
+
+
+  </ng-template>
+
+</div>

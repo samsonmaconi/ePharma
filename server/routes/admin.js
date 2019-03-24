@@ -73,6 +73,7 @@ router.post('/products', async (req, res) => {
 })
 
 router.put('/products/:id', (req, res) => {
+  console.log(req.body);
   var product = {
     product_name : req.body.product_name,
     product_description: req.body.product_description,
