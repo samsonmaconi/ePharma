@@ -37,3 +37,19 @@
     margin-right: 0px;
   }
 }
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+
+tr {
+  text-align: center;
+  width: 25% ;
+}
+
+th {
+  text-align: left;
+  width: 50% ;
+}
+
