@@ -4,6 +4,7 @@ const router = express.Router();
 const Orders = require('../models/orders');
 const Product = require('../models/products');
 const ObjectId = mongoose.Types.ObjectId;
+const nodemailer = require('nodemailer');
 
 // view all the orders for dashboard from id
 router.get('/viewOrders/:id', async (req, res) => {
@@ -16,10 +17,53 @@ router.get('/viewOrders/:id', async (req, res) => {
   });
 });
 
+//view all the orders in orders dashboard by page number
+router.get('/viewAllOrders/:page/:status', async(req, res) =>{
+  if(req.params.status == "0" || req.params.status == "1"){
+    data = await Orders.find({ order_status : {$eq: req.params.status} }).skip(2*(req.params.page-1)).limit(2);
+  }else{
+    data = await Orders.find().skip(2*(req.params.page-1)).limit(2);
+  }
+  res.send(data);
+});
+
 //view all the orders in orders dashboard
-router.get('/viewOrders', async(req, res) =>{
+router.get('/viewOrders/', async(req, res) =>{
   data = await Orders.find();
   res.send(data);
+});
+
+//view order by date range
+router.get('/viewOrderByDateRange/:startDate/:endDate',async(req,res)=>{
+  console.log(req.params.startDate);
+  data = await Orders.find({date_of_order : {
+    $gte: new Date(req.params.startDate),
+    $lt: new Date(req.params.endDate)
+  }});
+  res.send(data);
+})
+
+//view all the orders in orders dashboard
+router.get('/viewAllOrderDetails/', async(req, res) =>{
+  data = await Orders.find();
+  res.send(data);
+});
+
+//view all the pending orders in dashboard
+router.get('/viewAllPendingOrders/', async(req, res) =>{
+  data = await Orders.find({ order_status : {$eq: 0} });
+  res.send(data);
+});
+
+
+//get order count in dashboard
+router.get('/getOrderCount/:status', async(req, res) =>{
+  if(req.params.status === "0" || req.param.status === "1"){
+    data = await Orders.find({ order_status : {$eq: req.params.status} }).count();
+  }else{
+    data = await Orders.find().count();
+  }
+  res.send(String(data));
 });
 
 //save order for orders dashboard
@@ -132,6 +176,32 @@ router.put('/UpdateOrders/:orderId/:itemId/:status', (req, res) => {
         res.send("0")
       }
   });
+});
+
+router.post('/sendMail', function(req, res) {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'navneet.singh.web@gmail.com',
+      pass: 'navneet12345'
+    }
+  });
+  var data = req.body;
+  var mailOptions = {
+    from: 'navneet.singh.web@gmail.com',
+    to: 'navneet_prakash_singh@live.com',
+    subject: 'Email sent by ' + 'Navneet Singh',
+    text: 'Test data message sent'
+  };
+
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+    console.log('Data:' + data.contactName);
+  });
+  res.json(data);
 });
 
 module.exports = router;
