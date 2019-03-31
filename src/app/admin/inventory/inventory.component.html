@@ -15,35 +15,106 @@
     </div>
     <div class="modal-body" id="modal-two">
 
-<!----->
-
       <form #addProductForm="ngForm" (ngSubmit)="onAddSubmit(addProductForm)">
         <div class="form-group">
-          <div class="col form-label-group">
-            <input
-              ngModel
-              type="text"
-              (input)="product_name = $event.target.value"
-              class="form-control"
-              placeholder="Product name"
-              id="pname"
-              name="product_name"
-            />
-            <label for="pname">Product Name</label>
-          </div>
-          <div class="col form-label-group">
-            <input
-              type="text"
-              (input)="productDescription = $event.target.value"
-              #product_description="ngModel"
-              ngModel
-              class="form-control"
-              placeholder="Product description"
-              id="pdescription"
-              name="productDescription"
-            />
-            <label for="pdescription">Product description</label>
-          </div>
+            <div class="col form-label-group">
+                <input
+                  ngModel
+                  type="text"
+                  (input)="product_name = $event.target.value"
+                  class="form-control"
+                  placeholder="Product name"
+                  id="pname"
+                  name="product_name"
+                />
+                <label for="pname">Product Name</label>
+              </div>
+              <div class="col form-label-group">
+                  <input
+                  ngModel
+                  type="text"
+                  (input)="product_description = $event.target.value"
+                  class="form-control"
+                  placeholder="Product description"
+                  id="pdescription"
+                  name="product_description"
+                />
+                <label for="pdescription">Product description</label>
+              </div>
+
+              <div class="col form-label-group">
+                  <input
+                  ngModel
+                  type="text"
+                  (input)="product_company = $event.target.value"
+                  class="form-control"
+                  placeholder="Product company"
+                  id="pcompany"
+                  name="product_company"
+                />
+                <label for="pcompany">Product company</label>
+              </div>
+
+              <div class="col form-label-group">
+                  <input
+                  ngModel
+                  type="number"
+                  (input)="product_price = $event.target.value"
+                  class="form-control"
+                  placeholder="Product price (Enter a number)"
+                  id="pprice"
+                  name="product_price"
+                />
+                <label for="pprice">Product price</label>
+              </div>
+              <div class="col form-label-group">
+                  <input
+                  ngModel
+                  type="text"
+                  (input)="product_image = $event.target.value"
+                  class="form-control"
+                  placeholder="Product image"
+                  id="pimage"
+                  name="product_image"
+                />
+                <label for="pimage">Product image</label>
+              </div>
+              <div class="col form-label-group">
+                  <input
+                  ngModel
+                  type="text"
+                  (input)="product_category= $event.target.value"
+                  class="form-control"
+                  placeholder="Product category"
+                  id="pcategory"
+                  name="product_category"
+                />
+                <label for="pcategory">Product category</label>
+              </div>
+              <div class="col form-label-group">
+                  <input
+                  ngModel
+                  type="number"
+                  (input)="product_rating = $event.target.value"
+                  class="form-control"
+                  placeholder="Product rating (Enter a number)"
+                  id="prating"
+                  name="product_rating"
+                />
+                <label for="prating">Product rating</label>
+              </div>
+              <div class="col form-label-group">
+                  <input
+                  ngModel
+                  type="number"
+                  (input)="product_quantity = $event.target.value"
+                  class="form-control"
+                  placeholder="Product quantity (Enter a number)"
+                  id="pquantity"
+                  name="product_quantity"
+                />
+                <label for="pquantity">Product quantity</label>
+              </div>
 
           <div class="input-group">
             <div class="input-group-append"></div>
@@ -64,16 +135,20 @@
 <table class="table table-hover table table-striped">
   <thead>
     <tr>
-      <th></th>
-      <th>Action</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
     </tr>
   </thead>
 </table>
 <div class="container"  *ngFor="let prod of product">
   <table class="table table-hover table table-striped">
     <tr>
-      <td>{{ prod._id }}</td>
       <td>{{ prod.product_name }}</td>
+      <td>{{ prod.product_description }}</td>
+      <td>{{ prod.product_price}}</td>
+      <td>{{ prod.product_quantity }}</td>
       <td class="text-center">
         <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-one" (click)="edit(editContent)">
           <span class="glyphicon glyphicon-edit"></span> Edit
@@ -106,32 +181,111 @@
             [(ngModel)]="prod._id"
           />
           <div class="col form-label-group">
-            <input
-              ngModel
-              type="text"
-              (input)="product_name = $event.target.value"
-              class="form-control"
-              value="{{ prod.product_name }}"
-              placeholder="Product name"
-              id="pname"
-              name="product_name"
-            />
-            <label for="pname">Product Name</label>
-          </div>
-          <div class="col form-label-group">
-            <input
-              type="text"
-              (input)="productDescription = $event.target.value"
-              #product_description="ngModel"
-              ngModel
-              class="form-control"
-              placeholder="Product description"
-              id="pdescription"
-              name="productDescription"
-              value="{{ prod.product_description }}"
-            />
-            <label for="pdescription">Product description</label>
-          </div>
+              <input
+                ngModel
+                type="text"
+                (input)="product_name = $event.target.value"
+                class="form-control"
+                value="{{ prod.product_name }}"
+                placeholder="Product name"
+                id="pname"
+                name="product_name"
+              />
+              <label for="pname">Product Name</label>
+            </div>
+            <div class="col form-label-group">
+                <input
+                ngModel
+                type="text"
+                (input)="product_description = $event.target.value"
+                class="form-control"
+                value="{{ prod.product_description }}"
+                placeholder="Product description"
+                id="pdescription"
+                name="product_description"
+              />
+              <label for="pdescription">Product description</label>
+            </div>
+
+            <div class="col form-label-group">
+                <input
+                ngModel
+                type="text"
+                (input)="product_company = $event.target.value"
+                class="form-control"
+                value="{{ prod.product_company }}"
+                placeholder="Product company"
+                id="pcompany"
+                name="product_company"
+              />
+              <label for="pcompany">Product company</label>
+            </div>
+
+            <div class="col form-label-group">
+                <input
+                ngModel
+                type="number"
+                (input)="product_price = $event.target.value"
+                class="form-control"
+                value="{{ prod.product_price }}"
+                placeholder="Product price (Enter a number)"
+                id="pprice"
+                name="product_price"
+              />
+              <label for="pprice">Product price</label>
+            </div>
+            <div class="col form-label-group">
+                <input
+                ngModel
+                type="text"
+                (input)="product_image = $event.target.value"
+                class="form-control"
+                value="{{ prod.product_image }}"
+                placeholder="Product image"
+                id="pimage"
+                name="product_image"
+              />
+              <label for="pimage">Product image</label>
+            </div>
+            <div class="col form-label-group">
+                <input
+                ngModel
+                type="text"
+                (input)="product_category= $event.target.value"
+                class="form-control"
+                value="{{ prod.product_category }}"
+                placeholder="Product category"
+                id="pcategory"
+                name="product_category"
+              />
+              <label for="pcategory">Product category</label>
+            </div>
+            <div class="col form-label-group">
+                <input
+                ngModel
+                type="number"
+                (input)="product_rating = $event.target.value"
+                class="form-control"
+                value="{{ prod.product_rating }}"
+                placeholder="Product rating (Enter a number)"
+                id="prating"
+                name="product_rating"
+              />
+              <label for="prating">Product rating</label>
+            </div>
+            <div class="col form-label-group">
+                <input
+                ngModel
+                type="number"
+                (input)="product_quantity = $event.target.value"
+                class="form-control"
+                value="{{ prod.product_quantity}}"
+                placeholder="Product quantity (Enter a number)"
+                id="pquantity"
+                name="product_quantity"
+              />
+              <label for="pquantity">Product quantity</label>
+            </div>
 
           <div class="input-group">
             <div class="input-group-append"></div>

@@ -16,6 +16,7 @@ export class AuthService {
   public firstname: string;
   public id: string;
   private Timer: any;
+  private fetchedEmail: string;
   constructor(private http: HttpClient, private router: Router) { }
 
   getToken() {
@@ -53,7 +54,7 @@ export class AuthService {
   login(email: string, password: string) {
     const authData: Ilogin = { email: email, password: password };
 
-    this.http.post<{ token: string, fname: string, _id: string, expiresIn: number }>("/api/user/login", authData)
+    this.http.post<{ token: string, fname: string, _id: string, expiresIn: number, email: string }>("/api/user/login", authData)
       .subscribe(response => {
 
         const token = response.token;
@@ -65,10 +66,11 @@ export class AuthService {
           this.id = response._id;
           this.firstname = response.fname;
           const tokenEpiryTime = response.expiresIn;
+          this.fetchedEmail = response.email;
           this.setTimer(tokenEpiryTime);
           const currentDate = new Date;
           const expiryDate = new Date(currentDate.getTime() + tokenEpiryTime * 1000);
-          this.localStorageToken(token, this.firstname, expiryDate);
+          this.localStorageToken(token, this.firstname, expiryDate, this.fetchedEmail);
           this.IsAuth = true;
           this.authStatusListener.next(true);
           this.router.navigate(['/']);
@@ -91,6 +93,7 @@ export class AuthService {
       this.token = currentAuthUser.token;
       this.IsAuth = true;
       this.firstname = currentAuthUser.firstname;
+      this.fetchedEmail = currentAuthUser.fetchedEmail;
       this.setTimer(expiry / 1000);
       this.authStatusListener.next(true);
     }
@@ -101,6 +104,7 @@ export class AuthService {
     this.IsAuth = false;
     this.authStatusListener.next(false);
     this.firstname = null;
+    this.fetchedEmail = null;
     clearTimeout(this.Timer);
     this.clearLocalStorageToken();
     this.router.navigate(['/']);
@@ -114,22 +118,25 @@ export class AuthService {
   }
 
   // Store the token in local storage on front side
-  private localStorageToken(token: string, firstname: string, expiryDate: Date) {
+  private localStorageToken(token: string, firstname: string, expiryDate: Date, fetchedEmail: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('expiry', expiryDate.toISOString());
     localStorage.setItem('firstname', firstname);
+    localStorage.setItem('fetchedEmail', fetchedEmail);
 
   }
   private clearLocalStorageToken() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiry');
     localStorage.removeItem('firstname');
+    localStorage.removeItem('fetchedEmail');
   }
 
   private getTokenData() {
     const token = localStorage.getItem('token');
     const expiryDate = localStorage.getItem('expiry');
     const firstname = localStorage.getItem('firstname');
+    const fetchedEmail = localStorage.getItem('fetchedEmail');
 
     if (!token || !expiryDate) {
       return;
@@ -137,7 +144,8 @@ export class AuthService {
     return {
       token: token,
       expiryDate: new Date(expiryDate),
-      firstname: firstname
+      firstname: firstname,
+      fetchedEmail: fetchedEmail
     }
   }
 }

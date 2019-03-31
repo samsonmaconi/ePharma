@@ -103,7 +103,7 @@ router.get('/products/:id', async (req, res) => {
 
 router.post('/products', async (req, res) => {
   var product = new Product({
-      _id : req.body._id,
+      _id : mongoose.Types.ObjectId(),
       product_name : req.body.product_name,
       product_description: req.body.product_description,
       product_company: req.body.product_company,

@@ -116,7 +116,7 @@ Dummy email address and password can be: samraval11@yahoo.com , samarth123
 
 
 PHARMACIST/ADMIN PANEL - DASHBOARD AND ORDER MANAGEMENT
-----------------
+-------------------------------------------------------
 Admin panel is the portal which would be available only to the pharmacist and is designed by keeping the mindset of pharmacist in mind. We wanted to display the important information directly infront of the pharmacist, therefore using a side nav bar, thereby, adhering to the usability of the application.
 When the pharmacist navigates to the dashboard page, certain information like pending orders, revenue generated, completed orders, thus displaying the vital information that the pharmacist needs.
 Pharmacist panel is available at 'localhost:<port number>/admin/dashboard' page of the application.
@@ -145,29 +145,31 @@ The admin inventory lets the pharmacist or the admin to uplaod new medicines, up
 
 ----------------------------------------Running the code------------------------------------------------------------
 
-Step - 1: Navigate to the server folder (ePharma_dal/server/) and then type npm start.
+Step - 1: Navigate to the server folder (ePharma_dal/server/) and then run `npm start`.
 
-Step - 2: At the root of the app (ePharma_dal/), type npm start.
+Step - 2: At the root of the app (ePharma_dal/), run `npm start`.
 
 Step - 3: Go to http://localhost:4200/admin/inventory/ to view the admin inventory page.
+
+Note: Auto-refresh has not been implemented, hence after updating product details, please refresh the page manually!!
 
 ---------------------------------------Checking REST API implementation----------------------------------------------
 
 The following REST API's have been developed using Node.js to perform different CRUD operations:
 
-1) Reading (Obtaining) products: http://localhost:4200/api/admin/products - This REST API endpoint provides the admin/pharmacist with all current products in the inventory.
+1) Reading (Obtaining) products: http://localhost:1234/api/admin/products - This REST API endpoint provides the admin/pharmacist with all current products in the inventory.
 An HTTP GET is made to retrieve all products that are currently available in the database.
 
-2) Reading specific products: http://localhost:4200/api/admin/products/?_id=product_id - This REST API endpoint provides the admin/pharmacist with specific products in the inventory.
+2) Reading specific products: http://localhost:1234/api/admin/products/?_id=product_id - This REST API endpoint provides the admin/pharmacist with specific products in the inventory.
 An HTTP GET is made along with the product id. The specific product is returned in the response.
 
-3) Updating products: http://localhost:4200/api/admin/products/?_id=product_id - This REST API endpoint provides the admin/pharmacist the option of updating current products in the inventory.
+3) Updating products: http://localhost:1234/api/admin/products/?_id=product_id - This REST API endpoint provides the admin/pharmacist the option of updating current products in the inventory.
 An HTTP PUT request is made to update an exisitng product in the database. In order to update a product, a modal form is created when the admin clicks on the edit button.
 
-4) Deleting products: http://localhost:4200/api/admin/products/?_id=product_id - This REST API endpoint provides the admin/pharmacist to delete a product from the inventory.
+4) Deleting products: http://localhost:1234/api/admin/products/?_id=product_id - This REST API endpoint provides the admin/pharmacist to delete a product from the inventory.
 An HTTP delete request is made by passing a specific id to the delete request.
 
-5) Creating products: http://localhost:4200/api/admin/products/ - This REST API endpoint provides the admin/pharmacist to create new products and insert them into the database.
+5) Creating products: http://localhost:1234/api/admin/products/ - This REST API endpoint provides the admin/pharmacist to create new products and insert them into the database.
 An HTTP POST request is made to create new products in the inventory.
 
 
