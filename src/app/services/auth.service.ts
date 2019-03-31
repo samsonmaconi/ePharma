@@ -14,15 +14,19 @@ export class AuthService {
   private IsAuth = false;
   private authStatusListener = new Subject<boolean>();
   public firstname: string;
-  public id: string;
+  private id: string;
   private Timer: any;
   private fetchedEmail: string;
+  private fetchedData: any = {} ;
   constructor(private http: HttpClient, private router: Router) { }
 
   getToken() {
     return this.token;
   }
 
+  getUserId(){
+    return localStorage.getItem('id');
+  }
   getIsAuth() {
     return this.IsAuth;
   }
@@ -70,7 +74,7 @@ export class AuthService {
           this.setTimer(tokenEpiryTime);
           const currentDate = new Date;
           const expiryDate = new Date(currentDate.getTime() + tokenEpiryTime * 1000);
-          this.localStorageToken(token, this.firstname, expiryDate, this.fetchedEmail);
+          this.localStorageToken(token, this.firstname, expiryDate, this.fetchedEmail, this.id);
           this.IsAuth = true;
           this.authStatusListener.next(true);
           this.router.navigate(['/']);
@@ -118,11 +122,12 @@ export class AuthService {
   }
 
   // Store the token in local storage on front side
-  private localStorageToken(token: string, firstname: string, expiryDate: Date, fetchedEmail: string) {
+  private localStorageToken(token: string, firstname: string, expiryDate: Date, fetchedEmail: string, id: any) {
     localStorage.setItem('token', token);
     localStorage.setItem('expiry', expiryDate.toISOString());
     localStorage.setItem('firstname', firstname);
     localStorage.setItem('fetchedEmail', fetchedEmail);
+    localStorage.setItem('id', id);
 
   }
   private clearLocalStorageToken() {
@@ -130,6 +135,7 @@ export class AuthService {
     localStorage.removeItem('expiry');
     localStorage.removeItem('firstname');
     localStorage.removeItem('fetchedEmail');
+    localStorage.removeItem('id');
   }
 
   private getTokenData() {
@@ -137,6 +143,7 @@ export class AuthService {
     const expiryDate = localStorage.getItem('expiry');
     const firstname = localStorage.getItem('firstname');
     const fetchedEmail = localStorage.getItem('fetchedEmail');
+    const id = localStorage.getItem('id');
 
     if (!token || !expiryDate) {
       return;
@@ -145,7 +152,9 @@ export class AuthService {
       token: token,
       expiryDate: new Date(expiryDate),
       firstname: firstname,
-      fetchedEmail: fetchedEmail
+      fetchedEmail: fetchedEmail,
+      id: id
+
     }
   }
 }
