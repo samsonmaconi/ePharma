@@ -25,6 +25,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { MainComponent } from './main/main.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ManageProfileComponent } from './manage-profile/manage-profile.componen
     MainComponent,
     CatalogComponent,
     ForgotPasswordComponent,
-    ManageProfileComponent
+    ManageProfileComponent,
+    CartComponent
 
   ],
   imports: [

@@ -73,19 +73,7 @@ router.post('/saveOrders', async(req, res) =>{
   order_status: req.body.order_status,
   total_cost: req.body.total_cost,
   date_of_order: new Date(),
-  items : [{ //empty array, use for after array.push
-      name: req.body.items[0].name,
-      quantity: req.body.items[0].quantity,
-      stock: req.body.items[0].stock,
-      status: req.body.items[0].status
-    },
-    {
-      name: req.body.items[0].name,
-      quantity: req.body.items[0].quantity,
-      stock: 0,
-      status: 1
-    },
-  ]
+  items : req.body.items
 });
 
 // console.log("----------"+size(req.body.items));
