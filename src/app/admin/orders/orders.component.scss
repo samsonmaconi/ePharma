@@ -15,6 +15,11 @@
   overflow-x: unset;
 }
 
+.custom-navigation{
+  margin-right: auto;
+  margin-left: auto;
+}
+
 @media (max-width: 768px) {
   #admin-page-content-wrapper{
     margin-left: 5px;

@@ -14,6 +14,8 @@ const DB_URI =
   "mongodb+srv://epharma_admin:epharma_admin@cluster0-me8ny.mongodb.net/epharma?retryWrites=true";
 const MONGOOSE_OPTIONS = {
   useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
   socketTimeoutMS: 0,
   connectTimeoutMS: 0
 };

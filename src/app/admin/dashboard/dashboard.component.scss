@@ -5,9 +5,22 @@
 .custom-margin{
   padding:2%;
 }
+a:active{
+  text-decoration: none;
+}
 
+a:hover{
+  text-decoration: none;
+}
+
+
+.custom-classes-icons{
+  float: right;
+  font-size: 50px;
+}
 .text-color-white{
   color: white;
+
 }
 .outer-dashboard-div{
   background: rgba(203, 203, 210, 0.15);
