@@ -76,10 +76,16 @@ a, a:hover, a:focus {
     background: #fff;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #34495e;
-}
+// #sidebar ul li a:active {
+//   color: #34495e;
+//   background: #fff;
+// }
+
+
+// #sidebar ul li.active > a, a[aria-expanded="true"] {
+//     color: #fff;
+//     background: #34495e;
+// }
 
 
 a[data-toggle="collapse"] {
