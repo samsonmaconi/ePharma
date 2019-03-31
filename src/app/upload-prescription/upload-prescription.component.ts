@@ -80,9 +80,6 @@ export class UploadPrescriptionComponent implements OnInit {
 
   onFileChanged(e) {
     this.fileToUpload = e.target.files[0];
-    if (this.fileToUpload) {
-      console.log('File is not selected');
-    }
     console.log(this.fileToUpload);
     const reader = new FileReader();
     reader.onload = () => {

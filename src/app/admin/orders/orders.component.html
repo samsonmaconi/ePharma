@@ -17,7 +17,7 @@
       <tr *ngFor ="let d of data;">
         <input (input)="orderId=$event.target.value"  type="hidden" class="form-control" name="orderId">
         <th scope="row">{{d._id}}</th>
-        <td ng-if="">{{d.order_status ? 'Pending':'Completed'}}</td>
+        <td ng-if="">{{d.order_status ? 'Completed':'Pending'}}</td>
         <td>{{d.total_cost}}</td>
         <td> <a [routerLink]="['/admin/orderitems/']" [queryParams]="{orderId: d._id}" >View Items</a></td>
 
@@ -25,5 +25,12 @@
 
     </tbody>
   </table>
+  <div class="row">
+    <nav aria-label="Page navigation example" class="custom-navigation" *ngIf="showPagination">
+      <ul class="pagination">
+        <li *ngFor="let element of pagination" class="page-item"><a class="page-link" [routerLink]="['/admin/order/']" [queryParams]="{page: element+1,status: pageId}">{{element+1}}</a></li>
+      </ul>
+    </nav>
+  </div>
 </div>
 </div>

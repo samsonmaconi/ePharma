@@ -9,6 +9,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit, OnDestroy {
+
+  public showMyMessage = false;
+  public showUpdateMessage = false;
   product;
   productName: string;
   productDescription: string;
@@ -22,6 +25,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   productID: string;
   selectedQuantity = '1';
   starRating = 0;
+
+
 
   constructor(
     private data: DataService,
@@ -79,5 +84,48 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.routerSub.unsubscribe();
   }
 
-  addToCart() {}
+  addToCart() {
+    var cartItems = JSON.parse(localStorage.getItem('cartProducts'));
+    if(!cartItems){
+      const cartItem = [this.productID];
+      const cartQty = [this.selectedQuantity];
+      localStorage.setItem('cartProducts', JSON.stringify(cartItem));
+      localStorage.setItem('cartQuantity', JSON.stringify(cartQty));
+      this.showMyMessage = true;
+    }else{
+      this.showUpdateMessage = true;
+      let found =0;
+      let cartItemIndex = 0;
+      for(let cartValues of cartItems) {
+        if(cartValues === this.productID){
+          found =1;
+          break;
+        }
+        cartItemIndex = cartItemIndex + 1;
+     }
+
+      if(found){
+        const productCartIndex = cartItemIndex;
+        console.log(productCartIndex);
+        let cartQuantity = JSON.parse(localStorage.getItem('cartQuantity'));
+        cartQuantity[productCartIndex] = this.selectedQuantity;
+        console.log(cartQuantity);
+        localStorage.setItem('cartQuantity', JSON.stringify(cartQuantity));
+    } else{
+      var cartItems = JSON.parse(localStorage.getItem('cartProducts'));
+      let cartQuantity = JSON.parse(localStorage.getItem('cartQuantity'));
+
+      cartItems.push(this.productID);
+      cartQuantity.push(this.selectedQuantity);
+
+      localStorage.setItem('cartProducts', JSON.stringify(cartItems));
+      localStorage.setItem('cartQuantity', JSON.stringify(cartQuantity));
+    }
+      // test.append(this.productID);
+    }
+    // const value = ["aa","bb","cc"];
+    // localStorage.setItem("testKey", JSON.stringify(value));
+
+    // alert(test);
+  }
 }

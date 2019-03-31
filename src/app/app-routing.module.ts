@@ -1,3 +1,4 @@
+import { CartComponent } from './cart/cart.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -10,6 +11,7 @@ import { MainComponent } from './main/main.component';
 import { AuthGuard } from './services/auth-guard';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { CheckoutDeliveryComponent } from './checkout-delivery/checkout-delivery.component';
 
 const routes: Routes = [
   {
@@ -26,7 +28,9 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'upload-prescription', component: UploadPrescriptionComponent, canActivate: [AuthGuard] },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'manage-profile', component: ManageProfileComponent, canActivate: [AuthGuard] }
+      { path: 'manage-profile', component: ManageProfileComponent },
+      { path: 'checkout-delivery', component: CheckoutDeliveryComponent },
+      { path: 'cart', component: CartComponent }
     ]
   },
   {
