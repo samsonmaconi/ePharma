@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'upload-prescription', component: UploadPrescriptionComponent, canActivate: [AuthGuard] },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'manage-profile', component: ManageProfileComponent },
+      { path: 'manage-profile', component: ManageProfileComponent, canActivate: [AuthGuard]  },
       { path: 'checkout-delivery', component: CheckoutDeliveryComponent, canActivate: [AuthGuard]  },
       { path: 'cart', component: CartComponent }
     ]

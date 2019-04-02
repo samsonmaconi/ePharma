@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { DataService } from "../data.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
+=======
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DataService } from '../data.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+>>>>>>> Dev
 
 @Component({
   selector: "app-checkout-delivery",
@@ -31,8 +38,13 @@ export class CheckoutDeliveryComponent implements OnInit {
 
   loadProductsForCart() {
     this.routerSub = this.route.params.subscribe(async params => {
+<<<<<<< HEAD
       var cartItems = JSON.parse(localStorage.getItem("cartProducts"));
       var cartQuantity = JSON.parse(localStorage.getItem("cartQuantity"));
+=======
+      var cartItems = JSON.parse(localStorage.getItem('cartProducts'));
+      var cartQuantity = JSON.parse(localStorage.getItem('cartQuantity'));
+>>>>>>> Dev
       if (cartItems) {
         let count = 0;
         for (let cartValues of cartItems) {
