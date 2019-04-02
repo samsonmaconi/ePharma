@@ -29,6 +29,7 @@ router.post('/register',(req,res,next) => {
                     });
                 })
                 .catch(err => {
+                    console.log(err);
                     res.status(500).json({
                         error: err
                     });
@@ -81,11 +82,45 @@ router.get('/:id',(req,res,next)=>{
     const id = req.params.id;
     User.findById(id).exec()
         .then(response =>{
-            return res.status(200).json({response});
-            console.log(response);
+            res.status(200).json(response);
+            //console.log(response);
         }).catch(err =>{
             console.log(err);
         });
 });
+
+router.get('/',(req,res,next)=> {
+    User.find((err,user)=>{
+        if(!err){
+            res.send(user);
+        }
+        else {
+            console.log("error in getting data");
+            res.send(err);
+        }
+    });
+});
+router.put('/:id', (req,res) => {
+    console.log("Update data");
+    var userData = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        Address1: req.body.Address1,
+        Address2: req.body.Address2,
+        city: req.body.city,
+        postalCode: req.body.postalCode
+    };
+    User.findByIdAndUpdate(req.params.id,{$set: userData}, {new: true},(err, updatedData)=>{
+        if(!err){
+            res.send(updatedData);
+        }
+        else{
+            console.log("err");
+            res.send(err);
+        }
+    });
+});
+
 
 module.exports = router;

@@ -29,11 +29,8 @@ const routes: Routes = [
       { path: 'upload-prescription', component: UploadPrescriptionComponent, canActivate: [AuthGuard] },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'manage-profile', component: ManageProfileComponent },
-<<<<<<< HEAD
-      { path: 'checkout-delivery', component: CheckoutDeliveryComponent }
-=======
+      { path: 'checkout-delivery', component: CheckoutDeliveryComponent },
       { path: 'cart', component: CartComponent }
->>>>>>> c061a67dcf8fe670210fdc69ea0d2b54408dc87e
     ]
   },
   {
