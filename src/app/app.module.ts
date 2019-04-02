@@ -63,7 +63,7 @@ import { CheckoutDeliveryComponent } from './checkout-delivery/checkout-delivery
     FormsModule
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS, useClass:AuthenticationInterceptor, multi: true
+    provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
   }],
   bootstrap: [AppComponent]
 
