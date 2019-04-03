@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +9,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit, OnDestroy {
+
+  message: string = 'updateCartValue';
+  @Output() messageEvent = new EventEmitter<string>();
 
   public showMyMessage = false;
   public showUpdateMessage = false;
@@ -54,6 +57,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   loadProduct() {
+
     this.routerSub = this.route.params.subscribe(async params => {
       this.productID = params.productId;
       this.selectedQuantity =  '1';
@@ -84,7 +88,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.routerSub.unsubscribe();
   }
 
-  addToCart() {
+    addToCart() {
+    this.messageEvent.emit(this.message);
     var cartItems = JSON.parse(localStorage.getItem('cartProducts'));
     if(!cartItems){
       const cartItem = [this.productID];
