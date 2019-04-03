@@ -30,9 +30,9 @@ const routes: Routes = [
       { path: 'upload-prescription', component: UploadPrescriptionComponent, canActivate: [AuthGuard] },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'manage-profile', component: ManageProfileComponent, canActivate: [AuthGuard] },
-      {path: 'cart', component: CartComponent},
-      {path: 'reset-pwd', component: ResetPwdComponent}
-
+      {path: 'reset-pwd', component: ResetPwdComponent},
+      { path: 'checkout-delivery', component: CheckoutDeliveryComponent, canActivate: [AuthGuard]  },
+      { path: 'cart', component: CartComponent }
     ]
   },
   {

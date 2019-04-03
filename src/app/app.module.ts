@@ -65,7 +65,7 @@ import { ResetPwdComponent } from './reset-pwd/reset-pwd.component';
     FormsModule
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS, useClass:AuthenticationInterceptor, multi: true
+    provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
   }],
   bootstrap: [AppComponent]
 
