@@ -5,6 +5,7 @@ const Orders = require('../models/orders');
 const Product = require('../models/products');
 const ObjectId = mongoose.Types.ObjectId;
 const nodemailer = require('nodemailer');
+const User = require('../models/user')
 
 // view all the orders for dashboard from id
 router.get('/viewOrders/:id', async (req, res) => {
@@ -145,7 +146,7 @@ router.put('/products/:id', (req, res) => {
 router.delete('/products/:id', (req, res) => {
   Product.findByIdAndRemove(req.params.id, (err, doc) => {
       if (!err) { res.send(doc); }
-      else { console.log('Error in Employee Update :' + JSON.stringify(err, undefined, 2)); }
+      else { console.log('Error in Product Update :' + JSON.stringify(err, undefined, 2)); }
   });
 });
 
@@ -192,4 +193,16 @@ router.post('/sendMail', function(req, res) {
   res.json(data);
 });
 
+router.get('/users', async (req, res) => {
+  data = await User.find();
+  res.send(data);
+  console.log('/users' + ' response sent');
+});
+
+router.delete('/users/:id', (req, res) => {
+  User.findByIdAndRemove(req.params.id, (err, doc) => {
+      if (!err) { res.send(doc); }
+      else { console.log('Error in User Update :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
 module.exports = router;

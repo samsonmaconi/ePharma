@@ -1,0 +1,54 @@
+.custab{
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-left: 250px;
+  box-shadow: 3px 3px 2px #ccc;
+  transition: 0.5s;
+  }
+  .btn-info {
+    color: #fff;
+    background-color: #607D8B;
+    border-color: #9E9E9E;
+}
+.btn-primary {
+  color: #fff;
+  align-items: center;
+  -webkit-box-align: right;
+  align-self: right;
+  margin-left: 50%;
+  border-color: #007bff;
+}
+
+#admin-page-content-wrapper{
+  margin-left: 250px;
+  margin-right: 40px;
+}
+.custom-margin{
+  padding:2%;
+}
+
+.outer-dashboard-div{
+  background: rgba(203, 203, 210, 0.15);
+}
+
+@media (max-width: 1000px) {
+  #admin-page-content-wrapper{
+    margin-left: 5px;
+    margin-right: 0px;
+  }
+}
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+
+tr {
+  text-align: center;
+  width: 25% ;
+}
+
+th {
+  text-align: left;
+  width: 100% ;
+}

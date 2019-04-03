@@ -1,1 +1,27 @@
-
+<div class="outer-dashboard-div">
+<div id="admin-page-content-wrapper">
+<table class="table table-hover table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>City</th>
+    </tr>
+  </thead>
+</table>
+<div class="container"  *ngFor="let user of users">
+  <table class="table table-hover table table-striped">
+    <tr>
+      <td>{{ user.firstName }} {{ user.lastName}}</td>
+      <td>{{ user.email}}</td>
+      <td>{{ user.city }}</td>
+      <td class="text-center">
+        <button class="btn btn-danger btn-xs" (click)="delete(user._id)">
+          <span class="glyphicon glyphicon-remove" ></span> Del
+        </button>
+      </td>
+    </tr>
+  </table>
+  </div>
+  </div>
+  </div>
