@@ -1,0 +1,56 @@
+<div class="d-flex flex-row-reverse image">
+  <div class="col-md-5 ">
+    <div class="container">
+      <div class="row">
+        <div class="col mr-auto">
+          <div class="card  mdp shadow-lg p-3 mb-5 bg-white rounded " style="max-width: 30rem;">
+            <div class="card-header text-info ">
+              <h4 class="color1">Reset Password</h4>
+            </div>
+            <div class="card-body text-info">
+
+              <form [formGroup]="myform" (ngSubmit)="onSubmit(content)">
+                  <ng-template #content let-modal>
+                      <div class="modal-body">
+                        <h4>Successfully reset the password</h4>
+                        <br>
+                        <h4>Please Log in again</h4>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+                      </div>
+                    </ng-template>
+                <div class="form-group form-row ">
+                  <div class="col form-label-group">
+                    <input type="password" class="form-control" formControlName="password" placeholder="New Password" id = "pwd"
+                      name="password"
+                      [ngClass]="{ 'is-invalid' : myform.controls.password.errors && (myform.controls.password.touched || myform.controls.password.dirty)}"
+                      required autofocus />
+                      <label for="pwd">Password</label>
+                      <span class="invalid-feedback"
+                      *ngIf="{ 'is-invalid' : myform.controls.password.errors && (myform.controls.password.touched || myform.controls.password.dirty)}">
+                      Password is required and should be minimum 8 characters
+                    </span>
+                  </div>
+                  <div class="col form-label-group">
+                    <input type="password" class="form-control" formControlName="confirmPassword" id="cfpwd"
+                      placeholder="Confirm Password" name="confirmPassword"
+                      [ngClass]="{ 'is-invalid' : myform.controls.confirmPassword.errors && (myform.controls.confirmPassword.touched || myform.controls.confirmPassword.dirty)}">
+                      <label for="cfpwd">Confirm Password</label>
+                      <span class="invalid-feedback"
+                      *ngIf="{ 'is-invalid' : myform.controls.confirmPassword.errors?.MatchPassword}">
+                      Password and confirm password should be same
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <button class="btn btn-primary btn-block" type="submit">Reset</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
