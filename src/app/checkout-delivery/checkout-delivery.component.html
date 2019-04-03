@@ -1,0 +1,143 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="container">
+        <div class="row">
+          <section class="col p-3 mb-3">
+            <div class="table-responsive row">
+              <table class="table table-hover table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Shipping Address</th>
+                    <th scope="col">Payment method</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <td>
+                    <p>{{ name }}</p>
+                    <p>{{ address }}</p>
+                    <p>{{ city }}</p>
+                    <p>Canada</p>
+                  </td>
+                  <td>Payment on delivery</td>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col p-3">
+            Confirm Items
+
+            <div class="table-responsive row">
+              <table class="table table-hover table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let d of pushCartItemArray">
+                    <th scope="row">
+                      <img src="{{ d.productImage }}" class="ImageStyle" />
+                    </th>
+                    <td>
+                      <p>{{ d.productName }}</p>
+                    </td>
+                    <td>{{ d.productPrice }}</td>
+                    <td>{{ d.productQuantity }}</td>
+                    <td>{{ d.productAmount | number: "1.2-2" }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <section class="col mb-3 p-3">
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title">Placed Order</h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Your order is successfully placed</p>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-light"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span routerLink="/" ng-click="showModal = true">Close</span>
+            </button>
+          </div>
+        </ng-template>
+        <h4>
+          <b>Order Summary:-</b>
+        </h4>
+
+        <span layout="row"
+          ><hr flex/>
+
+          <div class="d-flex">
+            <div>Items:</div>
+            <div class="ml-auto">CDN$ {{ totalAmount | number: "1.2-2" }}</div>
+          </div>
+
+          <div class="d-flex">
+            <div>Shipping & Handling:</div>
+            <div class="ml-auto">
+              CDN$ {{ shippingCharges | number: "1.2-2" }}
+            </div>
+          </div>
+
+          <hr flex
+        /></span>
+        <span layout="row"
+          ><hr flex/>
+          <div class="d-flex">
+            <div>Total before tax:</div>
+            <div class="ml-auto">CDN$ {{ totalAmount | number: "1.2-2" }}</div>
+          </div>
+
+          <div class="d-flex">
+            <div>Estimated GST/HST:</div>
+            <div class="ml-auto">CDN$ {{ tax | number: "1.2-2" }}</div>
+          </div>
+
+          <hr flex
+        /></span>
+        <h5 class="right-float-total clear-div">
+          <div class="d-flex">
+            <div>Order Total:</div>
+            <div class="ml-auto">CDN$ {{ finalTotal | number: "1.2-2" }}</div>
+          </div>
+        </h5>
+        <div class="text-center p-3">
+          <button
+            type="button"
+            class="clear-div btn  btn-primary btn-rounded waves-effect waves-light right-float-total bottom-margin-div"
+            (click)="openVerticallyCentered(content)"
+          >
+            Place the order
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

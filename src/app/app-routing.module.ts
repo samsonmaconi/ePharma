@@ -11,6 +11,8 @@ import { MainComponent } from './main/main.component';
 import { AuthGuard } from './services/auth-guard';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { CheckoutDeliveryComponent } from './checkout-delivery/checkout-delivery.component';
+import { ResetPwdComponent } from './reset-pwd/reset-pwd.component';
 
 const routes: Routes = [
   {
@@ -27,7 +29,9 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'upload-prescription', component: UploadPrescriptionComponent, canActivate: [AuthGuard] },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'manage-profile', component: ManageProfileComponent },
+      { path: 'manage-profile', component: ManageProfileComponent, canActivate: [AuthGuard] },
+      {path: 'reset-pwd', component: ResetPwdComponent},
+      { path: 'checkout-delivery', component: CheckoutDeliveryComponent, canActivate: [AuthGuard]  },
       { path: 'cart', component: CartComponent }
     ]
   },

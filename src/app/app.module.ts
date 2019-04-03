@@ -27,6 +27,8 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { CartComponent } from './cart/cart.component';
 import { ChatComponent } from './chat/chat.component';
+import { CheckoutDeliveryComponent } from './checkout-delivery/checkout-delivery.component';
+import { ResetPwdComponent } from './reset-pwd/reset-pwd.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +48,10 @@ import { ChatComponent } from './chat/chat.component';
     CatalogComponent,
     ForgotPasswordComponent,
     ManageProfileComponent,
+    ChatComponent,
+    CheckoutDeliveryComponent,
     CartComponent,
-    ChatComponent
+    ResetPwdComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,7 @@ import { ChatComponent } from './chat/chat.component';
     FormsModule
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS, useClass:AuthenticationInterceptor, multi: true
+    provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
   }],
   bootstrap: [AppComponent]
 
