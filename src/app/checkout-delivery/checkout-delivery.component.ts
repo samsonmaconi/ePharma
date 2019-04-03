@@ -1,13 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-checkout-delivery',
   templateUrl: './checkout-delivery.component.html',
   styleUrls: ['./checkout-delivery.component.scss']
 })
+
 export class CheckoutDeliveryComponent implements OnInit {
   pushCartItemArray: any = [];
   productID: any;
@@ -17,16 +20,34 @@ export class CheckoutDeliveryComponent implements OnInit {
   public tax: any = 0;
   public finalTotal: any = 0;
   public shippingCharges: any = 0;
+  public name: string;
+  public address: string;
+  public city: string;
 
   constructor(
     private data: DataService,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private authServie: AuthService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
     this.loadProductsForCart();
+    const id = this.authServie.getUserId();
+    this.http.get('/api/user/' + id).subscribe(res => {
+      console.log(res);
+      //console.log(res['firstName']);
+      //console.log(res['Address1']);
+      this.name = res['firstName'] + ' ' + res['lastName'];
+      this.address = res['Address1'] + ' ' + res['Address2'];
+      this.city = res['city'] + ', ' + res['postalCode'];
+
+    });
+  }
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
   }
 
   loadProductsForCart() {
@@ -72,4 +93,5 @@ export class CheckoutDeliveryComponent implements OnInit {
       }
     });
   }
+
 }
