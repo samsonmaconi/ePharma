@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { Iuser } from '../models/User.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ManageProfileComponent implements OnInit {
   private id;
   private editString: string = "Edit";
   private temp: boolean = true;
-  constructor(private fb: FormBuilder, private http: HttpClient, private authServcie: AuthService, private route: Router) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private authServcie: AuthService, private route: Router,private modalService: NgbModal) { }
 
   ngOnInit() {
     this.myform = this.fb.group({
@@ -44,11 +45,12 @@ export class ManageProfileComponent implements OnInit {
 
     });
   }
-  onSubmit() {
+  onSubmit(content) {
     console.log("update called");
     this.userData(this.myform.value).subscribe(()=>{
       console.log("success");
-      alert("updated");
+      this.modalService.open(content, { centered: true });
+
     });
   }
 

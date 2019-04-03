@@ -4,13 +4,19 @@
       <div class="row">
         <div class="col mr-auto">
           <div class="card  mdp shadow-lg p-3 mb-5 bg-white rounded " style="max-width: 30rem;">
+              <ng-template #content let-modal>
+                  <div class="modal-body">
+                    <p>Update successful</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+                  </div>
+                </ng-template>
             <div class="card-header text-info ">
               <h4 class="color1">Edit Profile</h4>
             </div>
             <div class="card-body text-info">
-              <form [formGroup]="myform" (ngSubmit)="onSubmit()">
-
-
+              <form [formGroup]="myform" (ngSubmit)="onSubmit(content)">
                 <div class="form-group form-row">
                   <div class="col form-label-group">
 
