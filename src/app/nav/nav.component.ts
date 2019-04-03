@@ -13,7 +13,7 @@ export class NavComponent implements OnInit, OnDestroy {
   isCollapsed = true;
   logo = '../../assets/images/logo.png';
   logoAltText = 'ePharma';
-  cartItemCount = 0;
+  public cartItemCount = 0;
   searchString = '';
 
 
@@ -42,6 +42,10 @@ export class NavComponent implements OnInit, OnDestroy {
       });
   }
 
+  receiveMessage($event){
+    this.cartItemCount = this.cartItemCount + 1;
+    alert(this.cartItemCount);
+  }
 
   onLogout() {
     this.authService.logout();

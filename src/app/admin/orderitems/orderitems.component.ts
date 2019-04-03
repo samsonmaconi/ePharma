@@ -28,6 +28,7 @@ export class OrderitemsComponent implements OnInit {
   public data: any;
   orderId: any;
   getUrl: any;
+  getEmailUrl: any;
   Object = Object;
   itemId: string;
   public jsonData: any;
@@ -64,15 +65,28 @@ export class OrderitemsComponent implements OnInit {
   selectChangeHandler(event: any) {
     this.itemId = event.target.options[event.target.options.selectedIndex].id;
     this.selectedValue = event.target.value;
+    const sendString = 'Your order status for Medicine1 has been updated to ' + this.selectedValue;
     this.getUrl = '/api/admin/UpdateOrders/' + this.orderId + '/' + this.itemId + '/' + this.selectedValue;
     this.http.put(this.getUrl, {responseType: 'json'}).subscribe(
       response => {
-          if(response == 1){
+          if(response === 1){
             this.showMyMessage = true;
-          }else{
+          } else {
 
           }
+          this.sendEmail(this.itemId, sendString);
      });
+  }
+  sendEmail(itemId: string, stringMessage: string): any {
+    const data = new FormData();
+    data.append('userEmail', 'navneet_prakash_singh@live.com');
+    data.append('bodyMessage', stringMessage);
+
+    this.getEmailUrl = '/api/admin/sendMail';
+    this.http.post(this.getEmailUrl, data)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 
 }
