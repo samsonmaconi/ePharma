@@ -70,6 +70,7 @@ router.get('/getOrderCount/:status', async(req, res) =>{
 router.post('/saveOrders', async(req, res) =>{
  var order = new Orders({
   _id: mongoose.Types.ObjectId(),
+  user_email:req.body.user_email,
   order_status: req.body.order_status,
   total_cost: req.body.total_cost,
   date_of_order: new Date(),
@@ -153,7 +154,7 @@ router.delete('/products/:id', (req, res) => {
 router.put('/UpdateOrders/:orderId/:itemId/:status', (req, res) => {
   var order = {
     _id: req.params.orderId,
-    items : [{item_id : req.params.itemId, status: req.params.status}]
+    items : [{_id : req.params._id, status: req.params.status}]
   };
 
   Orders.findByIdAndUpdate(req.params.orderId, { $set: order }, { new: true }, (err, doc) => {
@@ -166,6 +167,7 @@ router.put('/UpdateOrders/:orderId/:itemId/:status', (req, res) => {
   });
 });
 
+
 router.post('/sendMail', function(req, res) {
   var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -175,20 +177,21 @@ router.post('/sendMail', function(req, res) {
     }
   });
   var data = req.body;
-  var mailOptions = {
-    from: 'navneet.singh.web@gmail.com',
-    to: 'navneet_prakash_singh@live.com',
-    subject: 'Email sent by ' + 'Navneet Singh',
-    text: 'Test data message sent'
-  };
+  console.log("User emails is",req.body.userEmail);
+  // var mailOptions = {
+  //   from: 'navneet.singh.web@gmail.com',
+  //   to: req.body.userEmail,
+  //   subject: 'Update in Your Order | e-Pharma',
+  //   text: req.body.bodyMessage,
+  // };
 
-  transporter.sendMail(mailOptions, function(error, info) {
-    if (error) {
-      return console.log(error);
-    }
-    console.log('Message sent: ' + info.response);
-    console.log('Data:' + data.contactName);
-  });
+  // transporter.sendMail(mailOptions, function(error, info) {
+  //   if (error) {
+  //     return console.log(error);
+  //   }
+  //   console.log('Message sent: ' + info.response);
+  //   console.log('Data:' + data.contactName);
+  // });
   res.json(data);
 });
 
