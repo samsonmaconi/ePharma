@@ -4,9 +4,9 @@
       <h1>Dashboard</h1>
 
       <div class="row">
-          <select (change)="selectChangeHandlerFilter($event)">
+          <!-- <select (change)="selectChangeHandlerFilter($event)">
               <option *ngFor="let filterValues of filterValue | keyvalue" id='' class="btn-block drop-button" value="1">{{filterValues.value.name}}</option>
-          </select>
+          </select> -->
       </div>
       <div class="row">
         <div class="col-sm-6 ">
@@ -38,7 +38,7 @@
           <div class="card bg-primary">
             <div class="card-body">
               <h5 class="card-title">Revenue Generated</h5>
-              <p class="card-text">Total revenue generated is: $ {{totalReveueGenerated}}</p>
+              <p class="card-text">Total revenue generated is: $ {{totalReveueGenerated | number : '1.2-2'}}</p>
             </div>
           </div>
         </div>

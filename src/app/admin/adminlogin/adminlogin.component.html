@@ -7,10 +7,10 @@
                 <div class="card-body">
                     <form action="" autocomplete="off">
                         <div class="form-group">
-                            <input (input)="username=$event.target.value"  type="text" class="form-control" name="username">
+                            <input (input)="username=$event.target.value"  type="text" class="form-control" name="username" placeholder="Enter Username">
                         </div>
                         <div class="form-group">
-                            <input (input)="password=$event.target.value" type="password" class="form-control" name="password">
+                            <input (input)="password=$event.target.value" type="password" class="form-control" name="password" placeholder="Enter Password">
                         </div>
                         <div id="sendlogin" class="btn btn-primary" (click)="login()">login</div>
                     </form>

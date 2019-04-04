@@ -73,30 +73,16 @@
                   >
                     Upload Prescription
                   </h3>
-                  <form [formGroup]="prescriptionForm" (ngSubmit)="onSubmit()">
-                    <div
-                      class="form-label-group"
-                      [ngClass]="{
-                        'has-error':
-                          prescriptionForm.controls.orderNumber.errors &&
-                          (prescriptionForm.controls.orderNumber.touched ||
-                            prescriptionForm.controls.orderNumber.dirty)
-                      }"
-                    >
-                      <input
-                        type="text"
-                        id="orderNumber"
-                        class="form-control"
-                        placeholder="Order Number"
-                        formControlName="orderNumber"
-                        required
-                        autofocus
-                      />
-                      <label for="inputOrderNumber">Order Number*</label>
-                      <span class="invalid-feedback"
-                        >OrderNumber is required(Numbers only)</span
-                      >
-                    </div>
+                  <form [formGroup]="prescriptionForm" (ngSubmit)="onSubmit(content)">
+                      <ng-template #content let-modal>
+                          <div class="modal-body">
+                            <h4>Image Successfully Uploaded</h4>
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/cart">Proceed</button>
+                          </div>
+                        </ng-template>
 
                     <div
                       class="form-label-group"
@@ -144,40 +130,7 @@
                         >Invalid Email Address</span
                       >
                     </div>
-
-                    <div
-                      class="form-label-group"
-                      [ngClass]="{
-                        'has-error':
-                          prescriptionForm.controls.phoneNumber.errors &&
-                          (prescriptionForm.controls.phoneNumber.touched ||
-                            prescriptionForm.controls.phoneNumber.dirty)
-                      }"
-                    >
-                      <input
-                        type="text"
-                        id="inputPhoneNumber"
-                        class="form-control"
-                        placeholder="Phone Number"
-                        formControlName="phoneNumber"
-                        required
-                      />
-                      <label for="inputPhoneNumber">Phone Number*</label>
-                      <span class="invalid-feedback"
-                        >Phone Number is required(10 digits)</span
-                      >
-                    </div>
-
-                    <div class="form-label-group">
-                      <span class="titleUpload"
-                        >Upload Prescription(only.png&.jpg)*:</span
-                      >
-                    </div>
-
-                    <div class="image-upload">
-                      <!-- <button type="button" #hover (click)="filePicker.click()" required>
-                        Prescription
-                      </button> -->
+                    <div>
                       <input
                         name="imageUrl"
                         type="file"
