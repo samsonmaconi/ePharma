@@ -21,9 +21,9 @@ router.get('/viewOrders/:id', async (req, res) => {
 //view all the orders in orders dashboard by page number
 router.get('/viewAllOrders/:page/:status', async(req, res) =>{
   if(req.params.status == "0" || req.params.status == "1"){
-    data = await Orders.find({ order_status : {$eq: req.params.status} }).skip(2*(req.params.page-1)).limit(2);
+    data = await Orders.find({ order_status : {$eq: req.params.status} }).skip(7*(req.params.page-1)).limit(7);
   }else{
-    data = await Orders.find().skip(2*(req.params.page-1)).limit(2);
+    data = await Orders.find().skip(7*(req.params.page-1)).limit(7);
   }
   res.send(data);
 });
@@ -71,7 +71,7 @@ router.get('/getOrderCount/:status', async(req, res) =>{
 router.post('/saveOrders', async(req, res) =>{
  var order = new Orders({
   _id: mongoose.Types.ObjectId(),
-  user_email:req.body.user_email,
+  user_email:req.body.email,
   order_status: req.body.order_status,
   total_cost: req.body.total_cost,
   date_of_order: new Date(),
@@ -178,21 +178,20 @@ router.post('/sendMail', function(req, res) {
     }
   });
   var data = req.body;
-  console.log("User emails is",req.body.userEmail);
-  // var mailOptions = {
-  //   from: 'navneet.singh.web@gmail.com',
-  //   to: req.body.userEmail,
-  //   subject: 'Update in Your Order | e-Pharma',
-  //   text: req.body.bodyMessage,
-  // };
+  var mailOptions = {
+    from: 'navneet.singh.web@gmail.com',
+    to: 'navneet_prakash_singh@live.com',
+    subject: 'Update in Your Order | e-Pharma',
+    text: 'Your order status has been update from Pending to Shipped!',
+  };
 
-  // transporter.sendMail(mailOptions, function(error, info) {
-  //   if (error) {
-  //     return console.log(error);
-  //   }
-  //   console.log('Message sent: ' + info.response);
-  //   console.log('Data:' + data.contactName);
-  // });
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+    console.log('Data:' + data.contactName);
+  });
   res.json(data);
 });
 

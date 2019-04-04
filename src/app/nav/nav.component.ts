@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +14,6 @@ export class NavComponent implements OnInit, OnDestroy {
   isCollapsed = true;
   logo = '../../assets/images/logo.png';
   logoAltText = 'ePharma';
-  public cartItemCount = 0;
   searchString = '';
 
 
@@ -24,7 +24,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
   private routeSub;
 
-  constructor(private authService: AuthService, private route: Router) { }
+  constructor(private authService: AuthService, private route: Router, private data: DataService) { }
 
   ngOnInit() {
 
@@ -40,11 +40,6 @@ export class NavComponent implements OnInit, OnDestroy {
         this.IsUserAuth = IsAuthenticated;
 
       });
-  }
-
-  receiveMessage($event){
-    this.cartItemCount = this.cartItemCount + 1;
-    alert(this.cartItemCount);
   }
 
   onLogout() {

@@ -37,7 +37,7 @@
 
           <li class="nav-item ml-auto" [routerLinkActive]="['active']">
             <a class="nav-link" routerLink="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"> </i>
-              Shopping Cart (<span class="cart-itemcount" (messageEvent)="receiveMessage($event)" >{{ cartItemCount }}</span>) </a>
+              Shopping Cart (<span class="cart-itemcount">{{ data.numberOfItemsInCart }}</span>) </a>
           </li>
         </ul>
       </div>
