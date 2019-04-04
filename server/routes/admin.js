@@ -193,10 +193,15 @@ router.post('/sendMail', function(req, res) {
   res.json(data);
 });
 
-router.get('/users', async (req, res) => {
-  data = await User.find();
+router.get('/users/:page', async (req, res) => {
+  data = await User.find().skip(5*(req.params.page-1)).limit(5);
   res.send(data);
   console.log('/users' + ' response sent');
+});
+
+router.get('/getUserCount/', async(req, res) =>{
+  data = await User.find().count();
+  res.send(String(data));
 });
 
 router.delete('/users/:id', (req, res) => {

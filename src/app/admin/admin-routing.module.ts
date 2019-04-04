@@ -21,6 +21,7 @@ const routes: Routes = [
       { path: 'orderitems', component: OrderitemsComponent },
       { path: 'order/:page', component: OrdersComponent },
       { path: 'order/:page/:status', component: OrdersComponent },
+      { path: 'user/:page/', component: UserComponent }
     ]
   },
   { path: 'login', component: AdminloginComponent}

@@ -23,5 +23,12 @@
     </tr>
   </table>
   </div>
+  <div class="row">
+      <nav aria-label="Page navigation example" class="custom-navigation" *ngIf="showPagination">
+        <ul class="pagination">
+          <li *ngFor="let element of pagination" class="page-item"><a class="page-link" [routerLink]="['/admin/user/']" [queryParams]="{page: element+1}">{{element+1}}</a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
   </div>
