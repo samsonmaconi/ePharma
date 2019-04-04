@@ -25,7 +25,6 @@
 
                       <select (change)="selectChangeHandler($event)">
                           <option id='{{data.items[item]._id}}' class="btn-block drop-button" value="{{data.items[item].status | json}}">{{orderStatus[data.items[item].status | json]}}</option>
-                          <option id='{{data.items[item]._id}}' class="btn-block drop-button" value="1">{{orderStatus[1]}}</option>
                           <option id='{{data.items[item]._id}}' class="btn-block drop-button" value="2">{{orderStatus[2]}}</option>
 
                       </select>
@@ -40,7 +39,7 @@
 
 
                   </td>
-                  <td scope="row">Prescription Required</td>
+                  <td scope="row">Prescription Not Required</td>
             </tr>
 
         </tbody>

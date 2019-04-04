@@ -76,7 +76,7 @@ export class OrdersComponent implements OnInit {
 
   generateCountArray(){
     // console.log(Number(this.paginationCount) % 2);
-    this.totalNumberOfPages = Number(this.paginationCount)/2;
+    this.totalNumberOfPages = Number(this.paginationCount)/7;
     this.count = 0;
     while(this.count < Number(this.totalNumberOfPages)){
       this.pagination[this.count] = this.count;
