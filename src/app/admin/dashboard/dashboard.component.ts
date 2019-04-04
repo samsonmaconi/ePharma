@@ -68,8 +68,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     }
     this.completedOrderCount = completedOrders;
-    this.pendingOrderCount = countPendingOrders;
-    this.totalReveueGenerated = revenueGenerated;
+    this.pendingOrderCount = Number(countPendingOrders);
+    this.totalReveueGenerated = Number(revenueGenerated);
   }
 
   selectChangeHandlerFilter(event: any) {

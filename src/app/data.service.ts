@@ -9,6 +9,7 @@ export class DataService {
   featuredItems;
   productCategories;
   featuredItemsRating = [8, 10]; // [min, max]
+  numberOfItemsInCart =0;
 
   constructor(private http: HttpClient) {
     this.setFeaturedItems();
