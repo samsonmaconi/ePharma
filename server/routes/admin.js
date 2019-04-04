@@ -70,7 +70,7 @@ router.get('/getOrderCount/:status', async(req, res) =>{
 router.post('/saveOrders', async(req, res) =>{
  var order = new Orders({
   _id: mongoose.Types.ObjectId(),
-  user_email:req.body.user_email,
+  user_email:req.body.email,
   order_status: req.body.order_status,
   total_cost: req.body.total_cost,
   date_of_order: new Date(),

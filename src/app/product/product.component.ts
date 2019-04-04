@@ -28,14 +28,14 @@ export class ProductComponent implements OnInit, OnDestroy {
   productID: string;
   selectedQuantity = '1';
   starRating = 0;
-
+  totalQuantity = 0;
 
 
   constructor(
     private data: DataService,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
 
   ngOnInit() {
@@ -57,7 +57,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   loadProduct() {
-
+    this.data.numberOfItemsInCart =this.totalNumberOfItems();
     this.routerSub = this.route.params.subscribe(async params => {
       this.productID = params.productId;
       this.selectedQuantity =  '1';
@@ -89,6 +89,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
     addToCart() {
+    this.data.numberOfItemsInCart =this.totalNumberOfItems();
     this.messageEvent.emit(this.message);
     var cartItems = JSON.parse(localStorage.getItem('cartProducts'));
     if(!cartItems){
@@ -132,5 +133,16 @@ export class ProductComponent implements OnInit, OnDestroy {
     // localStorage.setItem("testKey", JSON.stringify(value));
 
     // alert(test);
+  }
+  totalNumberOfItems(){
+    let cartQuantity = JSON.parse(localStorage.getItem('cartQuantity'));
+    console.log(cartQuantity);
+    if(cartQuantity) {
+      for(let cartValues in cartQuantity){
+        this.totalQuantity = this.totalQuantity + parseInt(cartValues);
+      }
+      return this.totalQuantity;
+    }
+    return 0;
   }
 }
