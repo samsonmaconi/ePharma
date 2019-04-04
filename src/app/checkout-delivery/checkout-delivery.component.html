@@ -14,10 +14,10 @@
                 </thead>
                 <tbody>
                   <td>
-                    <p>{{ name }}</p>
-                    <p>{{ address }}</p>
-                    <p>{{ city }}</p>
-                    <p>Canada</p>
+                    <span>{{ name }}</span><br>
+                    <span>{{ address }}</span><br>
+                    <span>{{ city }}</span><br>
+                    <span>Canada</span>
                   </td>
                   <td>Payment on delivery</td>
                 </tbody>
@@ -70,7 +70,7 @@
               aria-label="Close"
               (click)="modal.dismiss('Cross click')"
             >
-              <span aria-hidden="true">&times;</span>
+              <!-- <span aria-hidden="true">&times;</span> -->
             </button>
           </div>
           <div class="modal-body">
@@ -88,7 +88,7 @@
           </div>
         </ng-template>
         <h4>
-          <b>Order Summary:-</b>
+          <b>Order Summary</b>
         </h4>
 
         <span layout="row"
