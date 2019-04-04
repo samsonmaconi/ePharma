@@ -1,18 +1,19 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { DataService } from '../data.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { DataService } from "../data.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
+import { AuthService } from "../services/auth.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
-  selector: 'app-checkout-delivery',
-  templateUrl: './checkout-delivery.component.html',
-  styleUrls: ['./checkout-delivery.component.scss']
+  selector: "app-checkout-delivery",
+  templateUrl: "./checkout-delivery.component.html",
+  styleUrls: ["./checkout-delivery.component.scss"]
 })
-
 export class CheckoutDeliveryComponent implements OnInit {
   pushCartItemArray: any = [];
+  pushCartItemInDb: any = [];
   productID: any;
   product;
   private routerSub: any;
@@ -23,6 +24,8 @@ export class CheckoutDeliveryComponent implements OnInit {
   public name: string;
   public address: string;
   public city: string;
+  public email: string;
+  public cartForm: FormGroup;
 
   constructor(
     private data: DataService,
@@ -30,30 +33,46 @@ export class CheckoutDeliveryComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private authServie: AuthService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
     this.loadProductsForCart();
     const id = this.authServie.getUserId();
-    this.http.get('/api/user/' + id).subscribe(res => {
+    this.http.get("/api/user/" + id).subscribe(res => {
       console.log(res);
-      //console.log(res['firstName']);
-      //console.log(res['Address1']);
-      this.name = res['firstName'] + ' ' + res['lastName'];
-      this.address = res['Address1'] + ' ' + res['Address2'];
-      this.city = res['city'] + ', ' + res['postalCode'];
-
+      this.name = res["firstName"] + " " + res["lastName"];
+      this.address = res["Address1"] + " " + res["Address2"];
+      this.city = res["city"] + ", " + res["postalCode"];
+      this.email = res["email"];
     });
   }
+
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
+
+    const data = {
+      user_email: this.email,
+      order_status: 1,
+      total_cost: this.finalTotal,
+      date_of_order: Date.now.toString(),
+      items: this.pushCartItemInDb
+    };
+
+    this.http
+      .post("/api/admin/saveOrders", data)
+      .subscribe(response => {
+        console.log(response);
+      });
+
+    localStorage.clear();
   }
 
   loadProductsForCart() {
     this.routerSub = this.route.params.subscribe(async params => {
-      var cartItems = JSON.parse(localStorage.getItem('cartProducts'));
-      var cartQuantity = JSON.parse(localStorage.getItem('cartQuantity'));
+      var cartItems = JSON.parse(localStorage.getItem("cartProducts"));
+      var cartQuantity = JSON.parse(localStorage.getItem("cartQuantity"));
       if (cartItems) {
         let count = 0;
         for (let cartValues of cartItems) {
@@ -71,6 +90,13 @@ export class CheckoutDeliveryComponent implements OnInit {
             this.totalAmount +
             this.product.product_price * currentProductQuantity;
 
+          this.pushCartItemInDb.push({
+            _id: this.productID,
+            name: this.product.product_name,
+            quantity: currentProductQuantity,
+            stock: "1",
+            status: "1"
+          });
           this.pushCartItemArray.push({
             productImage: this.product.product_image,
             productName: this.product.product_name,
@@ -93,5 +119,4 @@ export class CheckoutDeliveryComponent implements OnInit {
       }
     });
   }
-
 }

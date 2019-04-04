@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
 
 const prescriptionSchema = new mongoose.Schema({
-  orderNumber: Number,
   name: String,
   email: String,
-  phoneNumber: Number,
   imagePath : String
 });
 
