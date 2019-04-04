@@ -3,6 +3,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { prepareProfile } from 'selenium-webdriver/firefox';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-upload-prescription',
@@ -13,21 +15,18 @@ export class UploadPrescriptionComponent implements OnInit {
   fileToUpload: File = null;
   prescriptionForm: FormGroup;
   imagePreview: string;
-
+  private id:string;
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService,
+    private route: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
     this.prescriptionForm = this.fb.group({
-      orderNumber: ['',
-      [
-        Validators.required,
-        Validators.pattern('^[0-9]*$')
-      ]
-    ],
       name: ['', [
         Validators.required,
         Validators.pattern('^[a-zA-Z ]{2,30}$')
@@ -40,27 +39,26 @@ export class UploadPrescriptionComponent implements OnInit {
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
         ]
       ],
-      phoneNumber: ['',
-            [
-        Validators.required,
-        Validators.pattern('^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')
-      ]
-    ],
       image: ['', Validators.required]
+    });
+    this.id = this.authService.getUserId();
+    console.log('id',this.id);
+    this.http.get('api/user/' + this.id).subscribe(response => {
+      console.log(response);
+      this.prescriptionForm.patchValue({ name: response['firstName'] });
+      this.prescriptionForm.patchValue({ email: response['email'] });
     });
   }
 
-  onSubmit(): void {
-
+  onSubmit(content): void {
     if (this.prescriptionForm.valid) {
       console.log(this.prescriptionForm.value);
-      alert('Prescription Successful');
 
       const data = new FormData();
-      data.append('orderNumber', this.prescriptionForm.value.orderNumber);
+
       data.append('name', this.prescriptionForm.value.name);
       data.append('email', this.prescriptionForm.value.email);
-      data.append('phoneNumber', this.prescriptionForm.value.phoneNumber);
+
       data.append('image', this.fileToUpload);
 
       this.prescriptionForm.reset();
@@ -69,6 +67,7 @@ export class UploadPrescriptionComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
       });
+      this.modalService.open(content, { centered: true });
 
     } else {
       console.log('Prescription Submision Failed');
