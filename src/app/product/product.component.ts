@@ -89,7 +89,6 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
     addToCart() {
-    this.data.numberOfItemsInCart =this.totalNumberOfItems();
     this.messageEvent.emit(this.message);
     var cartItems = JSON.parse(localStorage.getItem('cartProducts'));
     if(!cartItems){
@@ -126,6 +125,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 
       localStorage.setItem('cartProducts', JSON.stringify(cartItems));
       localStorage.setItem('cartQuantity', JSON.stringify(cartQuantity));
+
+      this.data.numberOfItemsInCart =this.totalNumberOfItems();
     }
       // test.append(this.productID);
     }
@@ -136,7 +137,6 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
   totalNumberOfItems(){
     let cartQuantity = JSON.parse(localStorage.getItem('cartQuantity'));
-    console.log(cartQuantity);
     if(cartQuantity) {
       for(let cartValues in cartQuantity){
         this.totalQuantity = this.totalQuantity + parseInt(cartValues);

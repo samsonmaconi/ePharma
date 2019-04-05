@@ -25,7 +25,7 @@
         </tr>
       </tbody>
     </table>
-    <h3 class="right-float-total clear-div">Total: $ {{ totalAmount }}</h3>
+    <h3 class="right-float-total clear-div">Total: $ {{ totalAmount | number: "1.2-2" }}</h3>
     <button
       type="button"
       class="clear-div btn btn-primary btn-rounded waves-effect waves-light right-float-total bottom-margin-div"
