@@ -9,7 +9,8 @@
 /node_modules
 /server/node_modules
 server/node_modules/bcrypt/lib/binding/bcrypt_lib.node
-
+ server/node_modules/bcrypt/lib/binding/bcrypt_lib.node
+server/node_modules/.bin/detect-libc
 # profiling files
 chrome-profiler-events.json
 speed-measure-plugin.json

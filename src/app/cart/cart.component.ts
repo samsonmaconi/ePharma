@@ -38,7 +38,8 @@ export class CartComponent implements OnInit {
         this.productID = cartValues;
         // this.selectedQuantity =  '1';
         let currentProductQuantity= cartQuantity[count];
-
+        console.log(this.product);
+        console.log('id',this.productID)
         count = count +1;
         this.product = await this.http
         .get(this.data.productAPIURL + `/product?id=${this.productID}`)
@@ -53,5 +54,10 @@ export class CartComponent implements OnInit {
     }
   });
   }
+  deleteRow(index){
+    this.pushCartItemArray.splice(index,1);
+    // localStorage.removeItem('cartProducts[]');
+}
+
 
 }
