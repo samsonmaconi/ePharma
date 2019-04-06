@@ -27,7 +27,6 @@ export class NavComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private route: Router, public data: DataService) { }
 
   ngOnInit() {
-
     this.IsUserAuth = this.authService.getIsAuth();
     this.firstname = this.authService.getUsernName();
 
