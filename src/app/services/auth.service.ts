@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Ilogin } from '../models/auth-login';
+import { DataService } from '../data.service';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class AuthService {
   private Timer: any;
   private fetchedEmail: string;
   private fetchedData: any = {} ;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private dataService: DataService) { }
 
   getToken() {
     return this.token;
@@ -111,6 +112,8 @@ export class AuthService {
     this.fetchedEmail = null;
     clearTimeout(this.Timer);
     this.clearLocalStorageToken();
+    // this.dataService.numberOfItemsInCart = 0;
+    // console.log('count', this.dataService.numberOfItemsInCart);
     this.router.navigate(['/']);
   }
   private setTimer(duration: number) {
@@ -136,6 +139,8 @@ export class AuthService {
     localStorage.removeItem('firstname');
     localStorage.removeItem('fetchedEmail');
     localStorage.removeItem('id');
+    localStorage.removeItem('cartProducts');
+    localStorage.removeItem('cartQuantity');
   }
 
   private getTokenData() {

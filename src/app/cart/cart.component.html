@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let d of pushCartItemArray; let i = index" >
+        <tr *ngFor="let d of pushCartItemArray let i = index" >
           <th scope="row"><img class="image-product-cart" src="{{ d.productImage }}" /></th>
           <td>
             <p>{{ d.productName }}</p>
@@ -21,7 +21,8 @@
           <td>{{ d.productPrice }}</td>
           <td>{{ d.productQuantity }}</td>
           <td>{{ d.productAmount }}</td>
-          <button id="remove" (click)="deleteRow(i)">DELETE ROW</button>
+
+          <td><button id="remove"(click)="deleteRow(i,d.productId, d.productAmount,d.productQuantity)" class="btn"><i class="fa fa-trash"></i></button></td>
         </tr>
       </tbody>
     </table>
