@@ -1,5 +1,8 @@
 <div class="outer-dashboard-div">
     <div id="admin-page-content-wrapper">
+        <div *ngIf="showMyMessage" class="alert alert-success" role="alert">
+            Status has been updated and mail is sent to the user!
+          </div>
       <h4 class="card-title">Orders</h4>
       <div class="table-responsive">
       <table class="table table-hover table table-striped">
@@ -15,16 +18,14 @@
         <tbody>
 
             <tr *ngFor="let item of jsonData">
-                <input #myInput type='hidden' id='itemId' value='{{data.items[item].item_id | json}}'>
-                <input type="hidden" ng-model="record.usersId" value='{{data.items[item].item_id | json}}' ng-init="record.usersId=user.userId"/>
+
                   <td scope="row">{{data.items[item].name}}</td>
                   <td scope="row">{{data.items[item].quantity | json}}</td>
                   <td>
 
                       <select (change)="selectChangeHandler($event)">
-                          <option class="btn-block drop-button" value="{{data.items[item].status | json}}">{{orderStatus[data.items[item].status | json]}}</option>
-                          <option class="btn-block drop-button" value="1">{{orderStatus[1]}}</option>
-                          <option class="btn-block drop-button" value="2">{{orderStatus[2]}}</option>
+                          <option id='{{data.items[item]._id}}' class="btn-block drop-button" value="{{data.items[item].status | json}}">{{orderStatus[data.items[item].status | json]}}</option>
+                          <option id='{{data.items[item]._id}}' class="btn-block drop-button" value="2">{{orderStatus[2]}}</option>
 
                       </select>
 
@@ -38,7 +39,7 @@
 
 
                   </td>
-                  <td scope="row">Prescription Required</td>
+                  <td scope="row">Prescription Not Required</td>
             </tr>
 
         </tbody>

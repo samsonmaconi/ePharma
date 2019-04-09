@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private authSub: Subscription;
   private rsub;
   public IsUserAuth= false;
-  constructor(private fb: FormBuilder, public authService: AuthService,private router: Router) {}
+  constructor(private fb: FormBuilder, public authService: AuthService,private router: Router, private http: HttpClient) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -51,8 +52,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.firstname = this.authService.getUsernName();
     this.myform.reset();
 
-
   }
+
   ngOnDestroy(){
     this.authSub.unsubscribe();
   }

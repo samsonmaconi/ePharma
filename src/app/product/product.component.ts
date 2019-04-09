@@ -1,14 +1,25 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../data.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter
+} from "@angular/core";
+import { DataService } from "../data.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  selector: "app-product",
+  templateUrl: "./product.component.html",
+  styleUrls: ["./product.component.scss"]
 })
 export class ProductComponent implements OnInit, OnDestroy {
+  message: string = "updateCartValue";
+  @Output() messageEvent = new EventEmitter<string>();
+
+  public showMyMessage = false;
+  public showUpdateMessage = false;
   product;
   productName: string;
   productDescription: string;
@@ -20,8 +31,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   private routerSub: any;
   productID: string;
-  selectedQuantity = '1';
+  selectedQuantity = "1";
   starRating = 0;
+  totalQuantity = 0;
 
   constructor(
     private data: DataService,
@@ -34,14 +46,14 @@ export class ProductComponent implements OnInit, OnDestroy {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: "smooth"
     });
 
     this.router.events.subscribe(() =>
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'smooth'
+        behavior: "smooth"
       })
     );
 
@@ -49,9 +61,10 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   loadProduct() {
+    this.data.numberOfItemsInCart = this.totalNumberOfItems("main");
     this.routerSub = this.route.params.subscribe(async params => {
       this.productID = params.productId;
-      this.selectedQuantity =  '1';
+      this.selectedQuantity = "1";
 
       this.product = await this.http
         .get(this.data.productAPIURL + `/product?id=${this.productID}`)
@@ -65,7 +78,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       this.productRating = this.product.product_rating;
       this.productImage = this.product.product_image;
       this.productPrice = this.product.product_price;
-      console.log('Product loaded');
+      console.log("Product loaded");
 
       this.productDescription =
         this.productDescription[0].toUpperCase() +
@@ -79,5 +92,74 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.routerSub.unsubscribe();
   }
 
-  addToCart() {}
+  addToCart() {
+    this.messageEvent.emit(this.message);
+    var cartItems = JSON.parse(localStorage.getItem("cartProducts"));
+    if (!cartItems) {
+      const cartItem = [this.productID];
+      const cartQty = [this.selectedQuantity];
+      localStorage.setItem("cartProducts", JSON.stringify(cartItem));
+      localStorage.setItem("cartQuantity", JSON.stringify(cartQty));
+      this.showMyMessage = true;
+    } else {
+      this.showUpdateMessage = true;
+      let found = 0;
+      let cartItemIndex = 0;
+      for (let cartValues of cartItems) {
+        if (cartValues === this.productID) {
+          found = 1;
+          break;
+        }
+        cartItemIndex = cartItemIndex + 1;
+      }
+
+      if (found) {
+        const productCartIndex = cartItemIndex;
+        console.log(productCartIndex);
+        let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity"));
+        cartQuantity[productCartIndex] = this.selectedQuantity;
+        console.log(cartQuantity);
+        localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+      } else {
+        var cartItems = JSON.parse(localStorage.getItem("cartProducts"));
+        let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity"));
+
+        cartItems.push(this.productID);
+        cartQuantity.push(this.selectedQuantity);
+
+        localStorage.setItem("cartProducts", JSON.stringify(cartItems));
+        localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+      }
+      // test.append(this.productID);
+    }
+    this.data.numberOfItemsInCart =this.totalNumberOfItems('cart');
+    // const value = ["aa","bb","cc"];
+    // localStorage.setItem("testKey", JSON.stringify(value));
+
+    // alert(test);
+  }
+  totalNumberOfItems(source: string) {
+    console.log("inside total number of items inc cart");
+    let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity"));
+    console.log("-----------------------");
+    console.log(cartQuantity);
+    let count = 0;
+    this.totalQuantity = 0;
+    if (cartQuantity) {
+      for (let cartValues in cartQuantity) {
+        let currentProductQuantity = cartQuantity[count];
+        console.log("-----------------------");
+        console.log(this.totalQuantity);
+        this.totalQuantity =
+          this.totalQuantity + parseInt(currentProductQuantity);
+        count = count + 1;
+      }
+      console.log("-----------------------");
+      console.log(this.totalQuantity);
+      return this.totalQuantity;
+    } else {
+      console.log("inside else");
+      return 0;
+    }
+  }
 }

@@ -1,0 +1,44 @@
+@import '../../color-palette.scss';
+
+
+.cart-title-header{
+  margin-top:0.75rem;
+}
+.right-float-total{
+  float: right;
+}
+
+.clear-div{
+  clear: both;
+}
+
+.bottom-margin-div{
+  margin-bottom: 0.75rem;
+}
+
+.image-product-cart{
+  width: auto;
+  height: 100px;
+}
+.link{
+  a{
+    font-size: 1.25em;
+    color: $color1;
+}
+&:hover{
+    color: $color4;
+    a{
+        color: $color4;
+    }
+}
+}
+.btn-size-edit{
+  width: 45%;
+  margin-right: 2.5%;
+
+}
+
+.btn-size-update{
+  width: 45%;
+  margin-left: 2.5%;
+}

@@ -30,10 +30,8 @@ router.post("/prescription", (req, res, next) => {
 
   const prescription = new Prescription({
     _id: prescriptionId,
-    orderNumber: req.body.orderNumber,
     name: req.body.name,
     email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
     imagePath: fileDest + filename
   });
   prescription

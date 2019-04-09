@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
+  public filterValue = [{id: 1, name: 'Day'}, {id: 2, name: 'Week'}, {id: 3, name: 'Month'}];
   public data: any ;
   public pendingOrders: any;
   public pendingOrderCount: any;
@@ -67,8 +68,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     }
     this.completedOrderCount = completedOrders;
-    this.pendingOrderCount = countPendingOrders;
-    this.totalReveueGenerated = revenueGenerated;
+    this.pendingOrderCount = Number(countPendingOrders);
+    this.totalReveueGenerated = Number(revenueGenerated);
+  }
+
+  selectChangeHandlerFilter(event: any) {
+    alert("inside select change handler dashboard");
   }
 
   ngOnDestroy() {

@@ -4,22 +4,32 @@
       <h1>Dashboard</h1>
 
       <div class="row">
-        <div class="col-sm-6 text-color-white">
-          <div class="card bg-info">
+          <!-- <select (change)="selectChangeHandlerFilter($event)">
+              <option *ngFor="let filterValues of filterValue | keyvalue" id='' class="btn-block drop-button" value="1">{{filterValues.value.name}}</option>
+          </select> -->
+      </div>
+      <div class="row">
+        <div class="col-sm-6 ">
+          <a [routerLink]="['/admin/order/']" [queryParams]="{page: 1,status: 0}" >
+          <div class="card bg-info text-color-white">
             <div class="card-body">
-              <h5 class="card-title">Pending Orders</h5>
+              <h5 class="card-title">Pending Orders <i class="fas fa-arrow-circle-right custom-classes-icons"></i></h5>
+
               <p class="card-text">Total number of Pending orders are: {{pendingOrderCount}}</p>
             </div>
           </div>
+        </a>
         </div>
 
         <div class="col-sm-6">
+            <a [routerLink]="['/admin/order/']" [queryParams]="{page: 1,status: 1}" >
             <div class="card bg-success text-color-white">
               <div class="card-body">
-                <h5 class="card-title">Completed Orders</h5>
+                <h5 class="card-title">Completed Orders <i class="fas fa-arrow-circle-right custom-classes-icons"></i></h5>
                 <p class="card-text">Total number of completed orders are: {{completedOrderCount}} </p>
               </div>
             </div>
+            </a>
           </div>
       </div>
 
@@ -28,7 +38,7 @@
           <div class="card bg-primary">
             <div class="card-body">
               <h5 class="card-title">Revenue Generated</h5>
-              <p class="card-text">Total revenue generated is: $ {{totalReveueGenerated}}</p>
+              <p class="card-text">Total revenue generated is: $ {{totalReveueGenerated | number : '1.2-2'}}</p>
             </div>
           </div>
         </div>

@@ -3,6 +3,16 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ViewChild } from '@angular/core';
 
+interface Alert {
+  type: string;
+  message: string;
+}
+
+const ALERTS: Alert[] = [{
+  type: 'success',
+  message: 'Status has been updated and mail has been sent to the user',
+}];
+
 @Component({
   selector: 'app-orderitems',
   templateUrl: './orderitems.component.html',
@@ -12,12 +22,15 @@ import { ViewChild } from '@angular/core';
 
 export class OrderitemsComponent implements OnInit {
 
+  public showMyMessage = false;
+  alerts: Alert[];
   selectedValue: string = '';
   public data: any;
   orderId: any;
   getUrl: any;
+  getEmailUrl: any;
   Object = Object;
-  @ViewChild('itemId') itemId;
+  itemId: string;
   public jsonData: any;
   public orderStatus = ['Pending', 'Processing', 'Shipped/Completed'];
 
@@ -49,14 +62,37 @@ export class OrderitemsComponent implements OnInit {
      });
   }
 
-  selectChangeHandler (event: any) {
-    this.selectedValue = event.target.value;
-    this.getUrl = '/api/admin/UpdateOrders/' + this.orderId + '/' + this.itemId + '/' + this.selectedValue;
-    this.http.put(this.getUrl, {responseType: 'json'}).subscribe(
-      response => {
-          this.data = response;
-          console.log(this.data);
-     });
+  selectChangeHandler(event: any) {
+    const sendString = "";
+    this.showMyMessage = true;
+    this.sendEmail(this.itemId, sendString);
+    //or this
+
+    // this.itemId = event.target.options[event.target.options.selectedIndex].id;
+    // this.selectedValue = event.target.value;
+    // const sendString = 'Your order status for Medicine1 has been updated to ' + this.selectedValue;
+    // this.getUrl = '/api/admin/UpdateOrders/' + this.orderId + '/' + this.itemId + '/' + this.selectedValue;
+    // this.http.put(this.getUrl, {responseType: 'json'}).subscribe(
+    //   response => {
+    //       if(response === 1){
+    //         this.showMyMessage = true;
+    //       } else {
+
+    //       }
+    //       this.sendEmail(this.itemId, sendString);
+    //  });
+
+  }
+  sendEmail(itemId: string, stringMessage: string): any {
+    const data = new FormData();
+    data.append('userEmail', 'navneet.web.test@gmail.com');
+    data.append('bodyMessage', 'Your order status has been updated from pending to shipped ');
+
+    this.getEmailUrl = '/api/admin/sendMail';
+    this.http.post(this.getEmailUrl, data)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 
 }

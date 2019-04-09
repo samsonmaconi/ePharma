@@ -25,7 +25,7 @@
             <a class="nav-link" routerLink="/login"><i class="fa fa-user" aria-hidden="true"> </i>
               Sign In</a>
           </li>
-          <li class= "nav-item ml-auto" ngbDropdown *ngIf="IsUserAuth" [routerLinkActive]="['active']">
+          <li class= "nav-item ml-auto show-cursor" ngbDropdown *ngIf="IsUserAuth" [routerLinkActive]="['active']">
             <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user" aria-hidden="true"> </i>
               My Profile</a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -36,8 +36,9 @@
           </li>
 
           <li class="nav-item ml-auto" [routerLinkActive]="['active']">
-            <a class="nav-link" routerLink="shoppingcart"><i class="fa fa-shopping-cart" aria-hidden="true"> </i>
-              Shopping Cart (<span class="cart-itemcount">{{ cartItemCount }}</span>) </a>
+            <a class="nav-link" routerLink="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"> </i>
+              Shopping Cart  </a>
+              <!-- (<span class="cart-itemcount">{{data.numberOfItemsInCart }}</span>) -->
           </li>
         </ul>
       </div>

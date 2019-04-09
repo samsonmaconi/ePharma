@@ -1,0 +1,38 @@
+<div class="container">
+  <h4 class="card-title cart-title-header">Cart</h4>
+  <div class="table-responsive row">
+    <table class="table table-hover table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Amount</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of pushCartItemArray">
+          <th scope="row"><img class="image-product-cart" src="{{ d.productImage }}" /></th>
+          <td>
+            <p>{{ d.productName }}</p>
+          </td>
+          <td>{{ d.productPrice }}</td>
+          <td>{{ d.productQuantity }}</td>
+          <td>{{ d.productAmount }}</td>
+          <td>Delete</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 class="right-float-total clear-div">Total: $ {{ totalAmount | number: "1.2-2" }}</h3>
+    <button
+      type="button"
+      class="clear-div btn btn-primary btn-rounded waves-effect waves-light right-float-total bottom-margin-div"
+      [routerLink]="['/checkout-delivery']" routerLinkActive="router-link-active"
+    >
+      Complete purchase
+      <i class="fas fa-angle-right right"></i>
+    </button>
+  </div>
+</div>

@@ -4,20 +4,26 @@
       <div class="row">
         <div class="col mr-auto">
           <div class="card  mdp shadow-lg p-3 mb-5 bg-white rounded " style="max-width: 30rem;">
+              <ng-template #content let-modal>
+                  <div class="modal-body">
+                    <p>Update successful</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+                  </div>
+                </ng-template>
             <div class="card-header text-info ">
               <h4 class="color1">Edit Profile</h4>
             </div>
             <div class="card-body text-info">
-              <form [formGroup]="myform" (ngSubmit)="onSubmit()">
-
-
+              <form [formGroup]="myform" (ngSubmit)="onSubmit(content)">
                 <div class="form-group form-row">
                   <div class="col form-label-group">
 
                     <input type="text" class="form-control" formControlName="firstName" placeholder="First name"
                       id="fname" name="firstName"
                       [ngClass]="{ 'is-invalid' : myform.controls.firstName.errors && (myform.controls.firstName.touched || myform.controls.firstName.dirty)}"
-                      required>
+                      required  required [readonly]="temp"/>
                     <label for="fname">First Name</label>
                     <span class="invalid-feedback"
                       *ngIf="{ 'is-invalid' : myform.controls.firstName.errors && (myform.controls.firstName.touched || myform.controls.firstName.dirty)}">
@@ -29,7 +35,7 @@
                     <input type="text" class="form-control" formControlName="lastName" placeholder="Last name"
                       id="lname" name="lastName"
                       [ngClass]="{ 'is-invalid' : myform.controls.lastName.errors && (myform.controls.lastName.touched || myform.controls.lastName.dirty)}"
-                      required />
+                      required  required [readonly]="temp"/>
                     <label for="lname">Last Name</label>
                     <span class="invalid-feedback"
                       *ngIf="{ 'is-invalid' : myform.controls.lastName.errors && (myform.controls.lastName.touched || myform.controls.lastName.dirty)}">
@@ -41,41 +47,18 @@
                   <input type="email" class="form-control " formControlName="email" placeholder="Email" name="email"
                     id="email"
                     [ngClass]="{ 'is-invalid' : myform.controls.email.errors && (myform.controls.email.touched || myform.controls.email.dirty)}"
-                    required email />
+                    required email  required [readonly]="temp"/>
                   <label for="email">Email</label>
                   <span class="invalid-feedback"
                     *ngIf="{ 'is-invalid' : myform.controls.email.errors && (myform.controls.email.touched || myform.controls.email.dirty)}">
                     Email should be valid
                   </span>
                 </div>
-                <div class="form-group form-row ">
-                  <div class="col form-label-group">
-                    <input type="password" class="form-control" formControlName="password" placeholder="Password"
-                      id="pwd" name="password"
-                      [ngClass]="{ 'is-invalid' : myform.controls.password.errors && (myform.controls.password.touched || myform.controls.password.dirty)}"
-                      required />
-                    <label for="pwd">Password</label>
-                    <span class="invalid-feedback"
-                      *ngIf="{ 'is-invalid' : myform.controls.password.errors && (myform.controls.password.touched || myform.controls.password.dirty)}">
-                      Password is required and should be minimum 8 characters
-                    </span>
-                  </div>
-                  <div class="col form-label-group">
-                    <input type="password" class="form-control" formControlName="confirmPassword" id="cfpwd"
-                      placeholder="Confirm Password" name="confirmPassword"
-                      [ngClass]="{ 'is-invalid' : myform.controls.confirmPassword.errors && (myform.controls.confirmPassword.touched || myform.controls.confirmPassword.dirty)}">
-                    <label for="cfpwd">Confirm Password</label>
-                    <span class="invalid-feedback"
-                      *ngIf="{ 'is-invalid' : myform.controls.confirmPassword.errors?.MatchPassword}">
-                      Password and confirm password should be same
-                    </span>
-                  </div>
-                </div>
                 <div class="form-label-group">
                   <input type="text" class="form-control" formControlName="Add1" placeholder="Address line 1" id="add1"
                     name="Add1"
                     [ngClass]="{ 'is-invalid' : myform.controls.Add1.errors && (myform.controls.Add1.touched || myform.controls.Add1.dirty)}"
-                    required />
+                    required  required [readonly]="temp" />
                   <label for="add1">Address Line 1</label>
                   <span class="invalid-feedback"
                     *ngIf="{ 'is-invalid' : myform.controls.Add1.errors && (myform.controls.Add1.touched || myform.controls.Add1.dirty)}">
@@ -86,7 +69,7 @@
                   <input type="text" class="form-control" formControlName="Add2" placeholder="Address line 2" id="add2"
                     name="Add2"
                     [ngClass]="{ 'is-invalid' : myform.controls.Add2.errors && (myform.controls.Add2.touched || myform.controls.Add2.dirty)}"
-                    required />
+                    required  required [readonly]="temp"/>
                   <label for="add2">Address Line 2</label>
                   <span class="invalid-feedback"
                     *ngIf="{ 'is-invalid' : myform.controls.Add2.errors && (myform.controls.Add2.touched || myform.controls.Add2.dirty)}">
@@ -99,7 +82,7 @@
                     <input type="text" class="form-control" formControlName="city" placeholder="City" name="city"
                       id="city"
                       [ngClass]="{ 'is-invalid' : myform.controls.city.errors && (myform.controls.city.touched || myform.controls.city.dirty)}"
-                      required />
+                      required required [readonly]="temp" />
                     <label for="city">City</label>
                     <span class="invalid-feedback"
                       *ngIf="{ 'is-invalid' : myform.controls.city.errors && (myform.controls.city.touched || myform.controls.city.dirty)}">
@@ -111,7 +94,7 @@
                     <input type="text" class="form-control" formControlName="pc" placeholder="Postal-Code" name="pc"
                       id="pc"
                       [ngClass]="{ 'is-invalid' : myform.controls.pc.errors && (myform.controls.pc.touched || myform.controls.pc.dirty)}"
-                      required />
+                      required  required [readonly]="temp"/>
                     <label for="pc">Postal-Code</label>
                     <span class="invalid-feedback"
                       *ngIf="{ 'is-invalid' : myform.controls.pc.errors && (myform.controls.pc.touched || myform.controls.pc.dirty)}">
@@ -120,7 +103,15 @@
                   </div>
                 </div>
                 <div>
-                  <button class="btn btn-primary btn-block" type="submit">Update </button>
+                    <span *ngIf = "temp">
+                        <button class="btn btn-primary btn-block" (click)="onEdit()">{{editString}} </button>
+                      </span>
+                      <span *ngIf = "!temp">
+                      <button class="btn btn-primary btn-size-edit" (click)="onEdit()">{{editString}} </button>
+                      <button class="btn btn-primary btn-size-update" type="submit"
+                      >Save </button>
+                    </span>
+
                 </div>
               </form>
 
