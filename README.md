@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
 
+## Running the applciation
+
+Follow the steps to run the application:
+
+1. At the root of the application run npm install
+2. Run npm start
+3. cd server/ and then run the following commands in the given sequence: npm install, npm install bcrypt, npm start
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
